@@ -27,7 +27,7 @@ struct NorthSouthHexagonsView: View {
                         }
                         let center = CGPoint(x: Double(column) * hexRadius * sqrt(3.0) + rowOffset, y: Double(row) * hexRadius * 1.5)
 
-                        let mainPath: Path = hexPath(radius: hexRadius, row: row, column: column, center: center)
+                        let mainPath: Path = hexPath(radius: hexRadius, center: center)
                         brightness = .random(in: 0.50...0.750)
                         context.fill(mainPath, with: .color(.init(hue: 0.0, saturation: 0.0, brightness: brightness)))
                     }
@@ -36,7 +36,7 @@ struct NorthSouthHexagonsView: View {
         }
     }
 
-    func hexPath(radius: CGFloat, row: Int, column: Int, center: CGPoint) -> Path {
+    func hexPath(radius: CGFloat, center: CGPoint) -> Path {
         var path = Path()
         path.move(to: hexagonCorner(center: center, radius: radius, cornerIndex: 0))
         for index in 1...5 {
