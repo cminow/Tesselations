@@ -9,13 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack(alignment: .leading) {
+                List {
+                    NavigationLink {
+                        NorthSouthHexagonsView()
+                    } label: {
+                        Text("Hexagons - North/South")
+                    }
+
+                    NavigationLink {
+                        EastWestHexagonsView()
+                    } label: {
+                        Text("Hexagons - East/West")
+                    }
+                }
+                .scrollContentBackground(.hidden)
+                
+            }            
+            Spacer()
         }
-        .padding()
     }
 }
 
