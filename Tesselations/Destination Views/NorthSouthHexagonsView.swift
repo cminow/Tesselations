@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NorthSouthHexagonsView: View {
-    let hexRadius: CGFloat = 16.0
+    var hexRadius: CGFloat
 
     var body: some View {
         VStack {
@@ -58,5 +58,5 @@ struct NorthSouthHexagonsView: View {
 }
 
 #Preview {
-    NorthSouthHexagonsView()
+    NorthSouthHexagonsView(hexRadius: 16.0)
 }

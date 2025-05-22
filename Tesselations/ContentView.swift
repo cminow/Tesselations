@@ -13,15 +13,27 @@ struct ContentView: View {
             VStack(alignment: .leading) {
                 List {
                     NavigationLink {
-                        NorthSouthHexagonsView()
+                        NorthSouthHexagonsView(hexRadius: 16.0)
                     } label: {
-                        Text("Hexagons - North/South")
+                        HStack {
+                            NorthSouthHexagonsView(hexRadius: 8.0)
+                                .frame(width: 50, height: 50)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Hexagons - North/South")
+                        }
+                        
                     }
 
                     NavigationLink {
-                        EastWestHexagonsView()
+                        EastWestHexagonsView(hexRadius: 16.0)
                     } label: {
-                        Text("Hexagons - East/West")
+                        HStack {
+                            EastWestHexagonsView(hexRadius: 8.0)
+                                .frame(width: 50, height: 50)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Hexagons - East/West")
+                        }
+                        
                     }
                 }
                 .scrollContentBackground(.hidden)

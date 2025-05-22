@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EastWestHexagonsView: View {
-    let hexRadius: CGFloat = 16.0
+    var hexRadius: CGFloat
 
     var body: some View {
         VStack {
@@ -58,5 +58,5 @@ struct EastWestHexagonsView: View {
 }
 
 #Preview {
-    EastWestHexagonsView()
+    EastWestHexagonsView(hexRadius: 16.0)
 }
