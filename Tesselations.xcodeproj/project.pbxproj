@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CB89DE552DDFA244006399AE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CB89DE542DDFA244006399AE /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		CB89DE092DDF974C006399AE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		CB89DDF82DDF974C006399AE /* Tesselations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tesselations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB89DE082DDF974C006399AE /* TesselationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TesselationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB89DE122DDF974C006399AE /* TesselationsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TesselationsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB89DE542DDFA244006399AE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		CB89DDEF2DDF974C006399AE = {
 			isa = PBXGroup;
 			children = (
+				CB89DE542DDFA244006399AE /* README.md */,
 				CB89DDFA2DDF974C006399AE /* Tesselations */,
 				CB89DE0B2DDF974C006399AE /* TesselationsTests */,
 				CB89DE152DDF974C006399AE /* TesselationsUITests */,
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB89DE552DDFA244006399AE /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
