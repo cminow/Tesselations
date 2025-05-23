@@ -16,7 +16,7 @@ struct ContentView: View {
                         TrianglesView(hexRadius: 32.0)
                     } label: {
                         HStack {
-                            TrianglesView(hexRadius: 16.0)
+                            TrianglesView(hexRadius: 8.0)
                                 .frame(width: 50, height: 50)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                             Text("Triangles")
