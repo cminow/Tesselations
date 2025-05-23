@@ -16,7 +16,6 @@ struct TrianglesView: View {
             Canvas { context, size in
                 let rows = size.height / hexRadius
                 let columns = (size.width * (1.0 + halfSqrt3 )) / hexRadius
-                let insetFactor: CGFloat = 0.95
                 
                 for row in 0...Int(rows) {
                     for column in 0...Int(columns) {
@@ -27,7 +26,7 @@ struct TrianglesView: View {
 
                         let center = CGPoint(x: Double(column) * (halfSqrt3 * 2.0) * hexRadius + rowOffset, y: Double(row) * hexRadius * 1.5)
                         let mainPath: Path = trianglePath(hexCenter: center,
-                                                          radius: hexRadius * insetFactor)
+                                                          radius: hexRadius)
                         let brightness: Double = .random(in: 0.50...0.75)
 
                         context.fill(mainPath, with: .color(.init(hue: 0.0,
@@ -35,14 +34,17 @@ struct TrianglesView: View {
                                                                   brightness: brightness,
                                                                   opacity: 1.0)))
 
+                        context.stroke(mainPath, with: .color(.init(hue: 0.0, saturation: 0.0, brightness: 0.45)), lineWidth: 1.0)
+                        
                         let secondaryBrightness: Double = .random(in: 0.50...0.75)
                         let secondaryPath: Path = trianglePath(hexCenter: CGPoint(x: center.x + (hexRadius * halfSqrt3),
                                                                                   y: center.y + (hexRadius * 0.5)),
-                                                               radius: -hexRadius * insetFactor)
+                                                               radius: -hexRadius)
                         context.fill(secondaryPath, with: .color(.init(hue: 0.0,
                                                                        saturation: 0.0,
                                                                        brightness: secondaryBrightness,
                                                                        opacity: 1.0)))
+                        context.stroke(secondaryPath, with: .color(.init(hue: 0.0, saturation: 0.0, brightness: 0.45)), lineWidth: 1.0)
                     }
                 }
             }

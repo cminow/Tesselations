@@ -19,13 +19,14 @@ struct SpikeyBlocksView: View {
                 for row in 0...Int(rows) {
                     for column in 0...Int(columns) {
                         let center: CGPoint = CGPoint(x: Double(column) * radius * 2.0, y: Double(row) * radius * 2.0)
-                        let blockPath: Path = createSpikeyPath(center: center, radius: radius * 0.95)
+                        let blockPath: Path = createSpikeyPath(center: center, radius: radius)
                         let brightness: Double = .random(in: 0.50...0.75)
 
                         context.fill(blockPath, with: .color(.init(hue: 0.0,
                                                                   saturation: 0.0,
                                                                   brightness: brightness,
                                                                   opacity: 1.0)))
+                        context.stroke(blockPath, with: .color(.init(hue: 0.0, saturation: 0.0, brightness: 0.45)), lineWidth: 1.0)
                         
                     }
                 }
