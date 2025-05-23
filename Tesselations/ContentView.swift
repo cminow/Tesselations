@@ -46,7 +46,7 @@ struct ContentView: View {
                     }
 
                     NavigationLink {
-                        SpikeyBlocksView(radius: 32.0)
+                        SpikeyBlocksView(radius: 16.0)
                     } label: {
                         HStack {
                             SpikeyBlocksView(radius: 8.0)

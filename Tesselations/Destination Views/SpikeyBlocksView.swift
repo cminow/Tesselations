@@ -34,13 +34,34 @@ struct SpikeyBlocksView: View {
     }
 
     func createSpikeyPath(center: CGPoint, radius: CGFloat) -> Path {
+        let halfRadius: CGFloat = radius / 2.0
+
         var path: Path = Path()
         path.move(to: CGPoint(x: center.x - radius, y: center.y - radius))
-//        path.addLine(to: CGPoint(x: center.x - (radius / 2.0), y: center.y - radius * 1.25))
-//        path.addLine(to: CGPoint(x: center.x, y: center.y - radius))
+
+        path.addLine(to: CGPoint(x: center.x - halfRadius, y: center.y - radius - halfRadius))
+        path.addLine(to: CGPoint(x: center.x, y: center.y - radius))
+        path.addLine(to: CGPoint(x: center.x + halfRadius, y: center.y - halfRadius))
+
         path.addLine(to: CGPoint(x: center.x + radius, y: center.y - radius))
+
+        path.addLine(to: CGPoint(x: center.x + radius + radius / 2.0, y: center.y - halfRadius))
+        path.addLine(to: CGPoint(x: center.x + radius, y: center.y))
+        path.addLine(to: CGPoint(x: center.x + halfRadius, y: center.y + halfRadius))
+
         path.addLine(to: CGPoint(x: center.x + radius, y: center.y + radius))
+        
+        path.addLine(to: CGPoint(x: center.x + halfRadius, y: center.y + radius + halfRadius))
+        path.addLine(to: CGPoint(x: center.x, y: center.y + radius))
+        path.addLine(to: CGPoint(x: center.x - halfRadius, y: center.y + halfRadius))
+
         path.addLine(to: CGPoint(x: center.x - radius, y: center.y + radius))
+
+        path.addLine(to: CGPoint(x: center.x - radius - halfRadius, y: center.y + halfRadius))
+        path.addLine(to: CGPoint(x: center.x - radius, y: center.y))
+        path.addLine(to: CGPoint(x: center.x - halfRadius, y: center.y - halfRadius))
+        
+        path.addLine(to: CGPoint(x: center.x - radius, y: center.y - radius))
         path.closeSubpath()
         return path
     }
