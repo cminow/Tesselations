@@ -19,7 +19,7 @@ struct ArcsView: View {
                 for row in 0...Int(rows) {
                     for column in 0...Int(columns) {
                         let center: CGPoint = CGPoint(x: Double(column) * radius * 2.0, y: Double(row) * radius * 2.0)
-                        let arcsPath: Path = arcsPath(center: center, radius: radius * 1.0)
+                        let arcsPath: Path = arcsPath(center: center, radius: radius)
                         let brightness: Double = .random(in: 0.5...0.75)
                         context.fill(arcsPath, with: .color(.init(hue: 0.0,
                                                                   saturation: 0.0,
@@ -45,7 +45,8 @@ struct ArcsView: View {
         path.addArc(center: CGPoint(x: center.x - halfRadius, y: center.y + radius), radius: halfRadius, startAngle: (Angle(degrees: 0.0)), endAngle: Angle(degrees: 180.0), clockwise: true)
         path.addArc(center: CGPoint(x: center.x - radius, y: center.y + halfRadius), radius: halfRadius, startAngle: (Angle(degrees: 90.0)), endAngle: Angle(degrees: -90.0), clockwise: false)
         path.addArc(center: CGPoint(x: center.x - radius, y: center.y - halfRadius), radius: halfRadius, startAngle: (Angle(degrees: 90.0)), endAngle: Angle(degrees: -90.0), clockwise: true)
-        
+        path.closeSubpath()
+
         return path
     }
 }
