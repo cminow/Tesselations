@@ -55,6 +55,17 @@ struct ContentView: View {
                             Text("Spikey Blocks")
                         }
                     }
+
+                    NavigationLink {
+                        ArcsView(radius: 32.0)
+                    } label: {
+                        HStack {
+                            ArcsView(radius: 8.0)
+                                .frame(width: 50, height: 50)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Wavy Arcs")
+                        }
+                    }
                 }
                 .scrollContentBackground(.hidden)
                 
