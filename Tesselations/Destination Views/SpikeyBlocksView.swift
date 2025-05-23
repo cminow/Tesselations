@@ -39,27 +39,31 @@ struct SpikeyBlocksView: View {
         var path: Path = Path()
         path.move(to: CGPoint(x: center.x - radius, y: center.y - radius))
 
-        path.addLine(to: CGPoint(x: center.x - halfRadius, y: center.y - radius - halfRadius))
+        // Top line
+        path.addLine(to: CGPoint(x: center.x - halfRadius, y: center.y - radius - halfRadius * 0.5))
         path.addLine(to: CGPoint(x: center.x, y: center.y - radius))
-        path.addLine(to: CGPoint(x: center.x + halfRadius, y: center.y - halfRadius))
+        path.addLine(to: CGPoint(x: center.x + halfRadius, y: center.y - halfRadius * 1.5))
 
         path.addLine(to: CGPoint(x: center.x + radius, y: center.y - radius))
 
-        path.addLine(to: CGPoint(x: center.x + radius + radius / 2.0, y: center.y - halfRadius))
+        // Right side
+        path.addLine(to: CGPoint(x: center.x + radius + halfRadius * 0.5, y: center.y - halfRadius))
         path.addLine(to: CGPoint(x: center.x + radius, y: center.y))
-        path.addLine(to: CGPoint(x: center.x + halfRadius, y: center.y + halfRadius))
+        path.addLine(to: CGPoint(x: center.x + halfRadius * 1.5, y: center.y + halfRadius))
 
         path.addLine(to: CGPoint(x: center.x + radius, y: center.y + radius))
         
-        path.addLine(to: CGPoint(x: center.x + halfRadius, y: center.y + radius + halfRadius))
+        // Bottom
+        path.addLine(to: CGPoint(x: center.x + halfRadius, y: center.y + radius + halfRadius * 0.5))
         path.addLine(to: CGPoint(x: center.x, y: center.y + radius))
-        path.addLine(to: CGPoint(x: center.x - halfRadius, y: center.y + halfRadius))
+        path.addLine(to: CGPoint(x: center.x - halfRadius, y: center.y + halfRadius * 1.5))
 
         path.addLine(to: CGPoint(x: center.x - radius, y: center.y + radius))
 
-        path.addLine(to: CGPoint(x: center.x - radius - halfRadius, y: center.y + halfRadius))
+        // Left
+        path.addLine(to: CGPoint(x: center.x - radius - halfRadius * 0.5, y: center.y + halfRadius))
         path.addLine(to: CGPoint(x: center.x - radius, y: center.y))
-        path.addLine(to: CGPoint(x: center.x - halfRadius, y: center.y - halfRadius))
+        path.addLine(to: CGPoint(x: center.x - halfRadius * 1.5, y: center.y - halfRadius))
         
         path.addLine(to: CGPoint(x: center.x - radius, y: center.y - radius))
         path.closeSubpath()
