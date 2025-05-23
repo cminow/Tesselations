@@ -44,6 +44,17 @@ struct ContentView: View {
                             Text("Hexagons - East/West")
                         }
                     }
+
+                    NavigationLink {
+                        SpikeyBlocksView(radius: 32.0)
+                    } label: {
+                        HStack {
+                            SpikeyBlocksView(radius: 8.0)
+                                .frame(width: 50, height: 50)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Spikey Blocks")
+                        }
+                    }
                 }
                 .scrollContentBackground(.hidden)
                 
