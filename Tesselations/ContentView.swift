@@ -66,6 +66,17 @@ struct ContentView: View {
                             Text("Wavy Arcs")
                         }
                     }
+                    
+                    NavigationLink {
+                        RectanglesAndFourPointStarsView(blockWidth: 32.0)
+                    } label: {
+                        HStack {
+                            RectanglesAndFourPointStarsView(blockWidth: 8.0)
+                                .frame(width: 50, height: 50)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Rects and Stars")
+                        }
+                    }
                 }
                 .scrollContentBackground(.hidden)
                 
