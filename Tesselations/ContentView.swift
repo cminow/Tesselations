@@ -88,6 +88,17 @@ struct ContentView: View {
                             Text("Interlocking Ys")
                         }
                     }
+
+                    NavigationLink {
+                        OctagonsAndDiamondsView(blockWidth: 32.0)
+                    } label: {
+                        HStack {
+                            OctagonsAndDiamondsView(blockWidth: 16.0)
+                                .frame(width: 50, height: 50)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Octagons and Diamonds")
+                        }
+                    }
                 }
                 .scrollContentBackground(.hidden)
                 
