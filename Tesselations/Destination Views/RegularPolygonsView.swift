@@ -8,18 +8,25 @@
 import SwiftUI
 
 struct RegularPolygonsView: View {
+    let objectRadius: CGFloat
+
     var body: some View {
         VStack {
             Canvas { context, size in
-                let center: CGPoint = CGPoint(x: size.width / 2.0, y: size.height / 2.0)
-                let path = RegularPolygon(radius: 100, cornerCount: 8).path(in: CGRect(center: center, width: 100, height: 100))
-                context.fill(path, with: .color(.red))
+                let rows: CGFloat = size.height / objectRadius
+                let columns: CGFloat = size.width / objectRadius
+                for row in 0...Int(rows) {
+                    for column in 0...Int(columns) {
+                        let center: CGPoint = CGPoint(x: Double(column) * objectRadius * 2.0, y: Double(row) * objectRadius * 2.0)
+                        let path = RegularPolygon(radius: objectRadius, cornerCount: 8).path(in: CGRect(center: center, width: objectRadius, height: objectRadius))
+                        context.fill(path, with: .color(.red))
+                    }
+                }
             }
-            
         }
     }
 }
 
 #Preview {
-    RegularPolygonsView()
+    RegularPolygonsView(objectRadius: 32.0)
 }
