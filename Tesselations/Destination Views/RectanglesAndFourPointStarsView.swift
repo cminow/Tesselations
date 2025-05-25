@@ -26,7 +26,7 @@ struct RectanglesAndFourPointStarsView: View {
                         let rect = CGRect(x: center.x - blockWidth / 2.0, y: center.y - blockWidth / 2.0, width: blockWidth, height: blockWidth)
                         let rectPath = Rectangle().path(in: rect)
                         
-                        let brightness: Double = .random(in: 0.5...0.75)
+                        let brightness: Double = .random(in: 0.65...0.85)
                         context.fill(rectPath, with: .color(.init(hue: 0.0, saturation: 0.0, brightness: brightness)))
                         context.stroke(rectPath, with: .color(.gray), style: strokeStyle)
                         
@@ -35,27 +35,26 @@ struct RectanglesAndFourPointStarsView: View {
                         if row % 2 == 0 && column % 2 == 0 {
                             starBrightness = 0.0
                             let starPath: Path = starPath(center: center, blockWidth: blockWidth)
-                            context.fill(starPath, with: .color(.init(hue: 0.0, saturation: 1.0, brightness: starBrightness)))
+                            context.fill(starPath, with: .color(.init(hue: 0.0, saturation: 0.0, brightness: starBrightness)))
                         }
 
                         if row % 2 == 1 && column % 2 == 1 {
                             starBrightness = 0.2
                             let starPath: Path = starPath(center: center, blockWidth: blockWidth)
-                            context.fill(starPath, with: .color(.init(hue: 0.333, saturation: 1.0, brightness: starBrightness)))
+                            context.fill(starPath, with: .color(.init(hue: 0.333, saturation: 0.0, brightness: starBrightness)))
                         }
                         
                         if row % 2 == 1 && column % 2 == 0 {
                             starBrightness = 0.40
                             let starPath: Path = starPath(center: center, blockWidth: blockWidth)
-                            context.fill(starPath, with: .color(.init(hue: 0.6667, saturation: 1.0, brightness: starBrightness)))
+                            context.fill(starPath, with: .color(.init(hue: 0.6667, saturation: 0.0, brightness: starBrightness)))
                         }
                         
                         if row % 2 == 0 && column % 2 == 1 {
                             starBrightness = 0.60
                             let starPath: Path = starPath(center: center, blockWidth: blockWidth)
-                            context.fill(starPath, with: .color(.init(hue: 0.8, saturation: 1.0, brightness: starBrightness)))
+                            context.fill(starPath, with: .color(.init(hue: 0.8, saturation: 0.0, brightness: starBrightness)))
                         }
-                        
                     }
                 }
             }
@@ -63,17 +62,18 @@ struct RectanglesAndFourPointStarsView: View {
     }
     
     private func starPath(center: CGPoint, blockWidth: CGFloat) -> Path {
-        print(center)
+        let offsetCenter: CGPoint = CGPoint(x: center.x - blockWidth * 1.25, y: center.y -  blockWidth * 1.25)
+
         var path: Path = Path()
-        path.move(to: CGPoint(x: center.x + blockWidth / 2.0, y: center.y + blockWidth / 2.0))
-        path.addLine(to: CGPoint(x: center.x + blockWidth * 0.75, y: center.y - blockWidth / 2.0))
-        path.addLine(to: CGPoint(x: center.x + blockWidth * 0.75, y: center.y + blockWidth / 2.0))
-        path.addLine(to: CGPoint(x: center.x + blockWidth * 1.75, y: center.y + blockWidth * 0.75))
-        path.addLine(to: CGPoint(x: center.x + blockWidth * 0.75, y: center.y + blockWidth * 0.75))
-        path.addLine(to: CGPoint(x: center.x +  blockWidth / 2.0, y: center.y + blockWidth * 1.75))
-        path.addLine(to: CGPoint(x: center.x +  blockWidth / 2.0, y: center.y + blockWidth * 0.75))
-        path.addLine(to: CGPoint(x: center.x - blockWidth / 2.0, y: center.y + blockWidth / 2.0))
-        path.addLine(to: CGPoint(x: center.x + blockWidth / 2.0, y: center.y + blockWidth / 2.0))
+        path.move(to: CGPoint(x: offsetCenter.x + blockWidth / 2.0, y: offsetCenter.y + blockWidth / 2.0))
+        path.addLine(to: CGPoint(x: offsetCenter.x + blockWidth * 0.75, y: offsetCenter.y - blockWidth / 2.0))
+        path.addLine(to: CGPoint(x: offsetCenter.x + blockWidth * 0.75, y: offsetCenter.y + blockWidth / 2.0))
+        path.addLine(to: CGPoint(x: offsetCenter.x + blockWidth * 1.75, y: offsetCenter.y + blockWidth * 0.75))
+        path.addLine(to: CGPoint(x: offsetCenter.x + blockWidth * 0.75, y: offsetCenter.y + blockWidth * 0.75))
+        path.addLine(to: CGPoint(x: offsetCenter.x +  blockWidth / 2.0, y: offsetCenter.y + blockWidth * 1.75))
+        path.addLine(to: CGPoint(x: offsetCenter.x +  blockWidth / 2.0, y: offsetCenter.y + blockWidth * 0.75))
+        path.addLine(to: CGPoint(x: offsetCenter.x - blockWidth / 2.0, y: offsetCenter.y + blockWidth / 2.0))
+        path.addLine(to: CGPoint(x: offsetCenter.x + blockWidth / 2.0, y: offsetCenter.y + blockWidth / 2.0))
         path.closeSubpath()
         return path
     }
