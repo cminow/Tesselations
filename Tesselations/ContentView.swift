@@ -77,6 +77,17 @@ struct ContentView: View {
                             Text("Rects and Stars")
                         }
                     }
+
+                    NavigationLink {
+                        InterlockingYsView(hexRadius: 16.0)
+                    } label: {
+                        HStack {
+                            InterlockingYsView(hexRadius: 4.0)
+                                .frame(width: 50, height: 50)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Interlocking Ys")
+                        }
+                    }
                 }
                 .scrollContentBackground(.hidden)
                 
