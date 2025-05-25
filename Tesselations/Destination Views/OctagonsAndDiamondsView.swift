@@ -10,7 +10,7 @@ import SwiftUI
 struct OctagonsAndDiamondsView: View {
     var blockWidth: CGFloat
     var cornerInset: CGFloat {
-        return blockWidth * 0.2
+        return blockWidth * 0.33333
     }
     var body: some View {
         VStack {
@@ -22,13 +22,13 @@ struct OctagonsAndDiamondsView: View {
                     for column in 0...Int(columns) {
                         let center = CGPoint(x: Double(column) * blockWidth, y: Double(row) * blockWidth)
                         let octagonPath: Path = octagon(center: center, width: blockWidth, cornerInset: cornerInset)
-                        let octagonBrightness: Double = .random(in: 0.75...0.95)
+                        let octagonBrightness: Double = .random(in: 0.80...0.9)
 
                         context.fill(octagonPath, with: .color(.init(hue: 0.0, saturation: 0.0, brightness: octagonBrightness)))
                         
 
                         let diamondPath: Path = diamond(center: center, blockWidth: blockWidth / 2.0, cornerInset: cornerInset)
-                        let diamondBrightness: Double = .random(in: 0.40...0.65)
+                        let diamondBrightness: Double = .random(in: 0.550...0.75)
                         context.fill(diamondPath, with: .color(.init(hue: 0.0, saturation: 0.0, brightness: diamondBrightness)))
                         
                         context.stroke(octagonPath, with: .color(.gray), style: .init(lineWidth: 2.0, lineCap: .round, lineJoin: .round))
