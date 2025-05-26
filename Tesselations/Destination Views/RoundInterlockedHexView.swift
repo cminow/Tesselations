@@ -10,6 +10,7 @@ import SwiftUI
 struct RoundInterlockedHexView: View {
     var hexRadius: CGFloat
     let strokeStyle: StrokeStyle = .init(lineWidth: 2.0, lineCap: .round, lineJoin: .round)
+    let colors: [GraphicsContext.Shading] = [.color(.red), .color(.yellow), .color(.blue)]
 
     var body: some View {
         VStack {
@@ -28,18 +29,14 @@ struct RoundInterlockedHexView: View {
                         let center = CGPoint(x: Double(column) * hexRadius * 1.5, y: Double(row) * hexRadius * sqrt(3) + columnOffset)
 
                         let paths = paths(center: center, radius: hexRadius)
-                        context.fill(paths[0], with: .color(.red))
-                        context.fill(paths[1], with: .color(.yellow))
-                        context.fill(paths[2], with: .color(.blue))
-                        context.fill(paths[3], with: .color(.red))
-                        context.fill(paths[4], with: .color(.yellow))
-                        context.fill(paths[5], with: .color(.blue))
-                        context.stroke(paths[0], with: .color(.gray), style: strokeStyle)
-                        context.stroke(paths[1], with: .color(.gray), style: strokeStyle)
-                        context.stroke(paths[2], with: .color(.gray), style: strokeStyle)
-                        context.stroke(paths[3], with: .color(.gray), style: strokeStyle)
-                        context.stroke(paths[4], with: .color(.gray), style: strokeStyle)
-                        context.stroke(paths[5], with: .color(.gray), style: strokeStyle)
+                        
+                        for (index, path) in paths.enumerated() {
+                            context.fill(path, with: colors[index % 3])
+                        }
+
+                        for path in paths {
+                            context.stroke(path, with: .color(.gray), style: strokeStyle)
+                        }
                     }
                 }
             }
