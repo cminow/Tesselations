@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    let frameWidth: CGFloat = 40.0
+
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
@@ -17,7 +19,7 @@ struct ContentView: View {
                     } label: {
                         HStack {
                             TrianglesView(hexRadius: 8.0)
-                                .frame(width: 50, height: 50)
+                                .frame(width: frameWidth, height: frameWidth)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                             Text("Triangles")
                         }
@@ -28,7 +30,7 @@ struct ContentView: View {
                     } label: {
                         HStack {
                             NorthSouthHexagonsView(hexRadius: 8.0)
-                                .frame(width: 50, height: 50)
+                                .frame(width: frameWidth, height: frameWidth)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                             Text("Hexagons - North/South")
                         }
@@ -39,7 +41,7 @@ struct ContentView: View {
                     } label: {
                         HStack {
                             EastWestHexagonsView(hexRadius: 8.0)
-                                .frame(width: 50, height: 50)
+                                .frame(width: frameWidth, height: frameWidth)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                             Text("Hexagons - East/West")
                         }
@@ -50,7 +52,7 @@ struct ContentView: View {
                     } label: {
                         HStack {
                             SpikeyBlocksView(radius: 8.0)
-                                .frame(width: 50, height: 50)
+                                .frame(width: frameWidth, height: frameWidth)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                             Text("Spikey Blocks")
                         }
@@ -61,7 +63,7 @@ struct ContentView: View {
                     } label: {
                         HStack {
                             ArcsView(radius: 8.0)
-                                .frame(width: 50, height: 50)
+                                .frame(width: frameWidth, height: frameWidth)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                             Text("Wavy Arcs")
                         }
@@ -72,7 +74,7 @@ struct ContentView: View {
                     } label: {
                         HStack {
                             RectanglesAndFourPointStarsView(blockWidth: 8.0)
-                                .frame(width: 50, height: 50)
+                                .frame(width: frameWidth, height: frameWidth)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                             Text("Rects and Stars")
                         }
@@ -83,7 +85,7 @@ struct ContentView: View {
                     } label: {
                         HStack {
                             InterlockingYsView(hexRadius: 4.0)
-                                .frame(width: 50, height: 50)
+                                .frame(width: frameWidth, height: frameWidth)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                             Text("Interlocking Ys")
                         }
@@ -94,7 +96,7 @@ struct ContentView: View {
                     } label: {
                         HStack {
                             OctagonsAndDiamondsView(blockWidth: 16.0)
-                                .frame(width: 50, height: 50)
+                                .frame(width: frameWidth, height: frameWidth)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                             Text("Octagons and Diamonds")
                         }
@@ -105,7 +107,7 @@ struct ContentView: View {
                     } label: {
                         HStack {
                             RoundInterlockedHexView(hexRadius: 16.0)
-                                .frame(width: 50, height: 50)
+                                .frame(width: frameWidth, height: frameWidth)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                             Text("Round Hex Interlock")
                         }
