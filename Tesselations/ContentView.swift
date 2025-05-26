@@ -68,7 +68,7 @@ struct ContentView: View {
                     }
                     
                     NavigationLink {
-                        RectanglesAndFourPointStarsView(blockWidth: 64.0)
+                        RectanglesAndFourPointStarsView(blockWidth: 32.0)
                     } label: {
                         HStack {
                             RectanglesAndFourPointStarsView(blockWidth: 8.0)
