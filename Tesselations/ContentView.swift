@@ -99,6 +99,17 @@ struct ContentView: View {
                             Text("Octagons and Diamonds")
                         }
                     }
+
+                    NavigationLink {
+                        RoundInterlockedHexView(hexRadius: 32.0)
+                    } label: {
+                        HStack {
+                            RoundInterlockedHexView(hexRadius: 16.0)
+                                .frame(width: 50, height: 50)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Round Hex Interlock")
+                        }
+                    }
                 }
                 .scrollContentBackground(.hidden)
                 

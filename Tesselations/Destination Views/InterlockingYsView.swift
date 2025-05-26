@@ -26,7 +26,7 @@ struct InterlockingYsView: View {
                             columnOffset = -hexRadius * 1.5
                         }
                         
-                        var center = CGPoint(x: 1.50 * Double(column) * hexRadius * sqrt(3.0), y: 2.0 * Double(row) * hexRadius * 1.5 + columnOffset)
+                        let center = CGPoint(x: 1.50 * Double(column) * hexRadius * sqrt(3.0), y: 2.0 * Double(row) * hexRadius * 1.5 + columnOffset)
                         
                         let paths: [Path] = paths(center: center, radius: hexRadius)
                         context.fill(paths[0], with: .color(.red))
