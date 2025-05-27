@@ -99,27 +99,24 @@ struct EightPointStarView: View {
     
     private func starPath(center: CGPoint, blockWidth: CGFloat) -> Path {
         var path: Path = Path()
-        let halfBlock: CGFloat = blockWidth / 2.0
-        let quarterBlock: CGFloat = blockWidth / 4.0
-        
+        var halfBlock: CGFloat = blockWidth / 2.0
+        var quarterBlock: CGFloat = blockWidth / 4.0
+
         path.move(to: CGPoint(x: center.x - halfBlock, y: center.y - halfBlock))
-        path.addLine(to: CGPoint(x: center.x - quarterBlock, y: center.y - halfBlock))
-        path.addLine(to: CGPoint(x: center.x, y: center.y - halfBlock - quarterBlock))
-        path.addLine(to: CGPoint(x: center.x + quarterBlock, y: center.y - halfBlock))
-        path.addLine(to: CGPoint(x: center.x + halfBlock, y: center.y - halfBlock))
-        path.addLine(to: CGPoint(x: center.x + halfBlock, y: center.y - quarterBlock))
-        path.addLine(to: CGPoint(x: center.x + halfBlock + quarterBlock, y: center.y))
-        path.addLine(to: CGPoint(x: center.x + halfBlock, y: center.y + quarterBlock))
-        path.addLine(to: CGPoint(x: center.x + halfBlock, y: center.y + halfBlock))
-        path.addLine(to: CGPoint(x: center.x + quarterBlock, y: center.y + halfBlock))
-        path.addLine(to: CGPoint(x: center.x, y: center.y + halfBlock + quarterBlock))
-        path.addLine(to: CGPoint(x: center.x -  quarterBlock, y: center.y + halfBlock))
-        path.addLine(to: CGPoint(x: center.x -  quarterBlock, y: center.y + halfBlock))
-        path.addLine(to: CGPoint(x: center.x -  halfBlock, y: center.y + halfBlock))
-        path.addLine(to: CGPoint(x: center.x -  halfBlock, y: center.y + quarterBlock))
-        path.addLine(to: CGPoint(x: center.x -  halfBlock -  quarterBlock, y: center.y))
-        path.addLine(to: CGPoint(x: center.x -  halfBlock, y: center.y - quarterBlock))
-        path.addLine(to: CGPoint(x: center.x -  halfBlock, y: center.y - halfBlock))
+
+        for _ in 0...1 {
+            path.addLine(to: CGPoint(x: center.x - quarterBlock, y: center.y - halfBlock))
+            path.addLine(to: CGPoint(x: center.x, y: center.y - halfBlock - quarterBlock))
+            path.addLine(to: CGPoint(x: center.x + quarterBlock, y: center.y - halfBlock))
+            path.addLine(to: CGPoint(x: center.x + halfBlock, y: center.y - halfBlock))
+            path.addLine(to: CGPoint(x: center.x + halfBlock, y: center.y - quarterBlock))
+            path.addLine(to: CGPoint(x: center.x + halfBlock + quarterBlock, y: center.y))
+            path.addLine(to: CGPoint(x: center.x + halfBlock, y: center.y + quarterBlock))
+            path.addLine(to: CGPoint(x: center.x + halfBlock, y: center.y + halfBlock))
+            
+            halfBlock = -halfBlock
+            quarterBlock = -quarterBlock
+        }
         path.closeSubpath()
         
         return path
