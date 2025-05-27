@@ -123,6 +123,17 @@ struct ContentView: View {
                             Text("Six-sided Rosette")
                         }
                     }
+
+                    NavigationLink {
+                        EightPointStarView(blockWidth: 32.0)
+                    } label: {
+                        HStack {
+                            EightPointStarView(blockWidth: 16.0)
+                                .frame(width: frameWidth, height: frameWidth)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Eight-Pointed Star")
+                        }
+                    }
                 }
                 .scrollContentBackground(.hidden)
                 
