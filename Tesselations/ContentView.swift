@@ -125,7 +125,7 @@ struct ContentView: View {
                     }
 
                     NavigationLink {
-                        EightPointStarView(blockWidth: 32.0)
+                        EightPointStarView(blockWidth: 48.0)
                     } label: {
                         HStack {
                             EightPointStarView(blockWidth: 16.0)
