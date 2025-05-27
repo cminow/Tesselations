@@ -113,7 +113,7 @@ struct EightPointStarView: View {
             path.addLine(to: CGPoint(x: center.x + halfBlock + quarterBlock, y: center.y))
             path.addLine(to: CGPoint(x: center.x + halfBlock, y: center.y + quarterBlock))
             path.addLine(to: CGPoint(x: center.x + halfBlock, y: center.y + halfBlock))
-            
+            // Draws the second half:
             halfBlock = -halfBlock
             quarterBlock = -quarterBlock
         }
