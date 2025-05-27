@@ -44,6 +44,12 @@ struct SixSidedRosetteView: View {
                         for path in outerPetalPaths {
                             context.fill(path, with: .color(.green))
                         }
+
+                        let outerRhombusPetalPaths: [Path] = outerEdgeRhombusPaths(center: center, outerRadis: hexRadius)
+                        
+                        for path in outerRhombusPetalPaths {
+                            context.fill(path, with: .color(.yellow))
+                        }
                         
                         // Stroke everything once we've filled in the rest.
                         for path in paths {
@@ -57,12 +63,38 @@ struct SixSidedRosetteView: View {
                         for path in outerPetalPaths {
                             context.stroke(path, with: .color(.gray), style: strokeStyle)
                         }
+
+                        for path in outerRhombusPetalPaths {
+                            context.stroke(path, with: .color(.gray), style: strokeStyle)
+                        }
                     }
                 }
             }
         }
     }
 
+    private func outerEdgeRhombusPaths(center: CGPoint, outerRadis: CGFloat) -> [Path] {
+        var paths: [Path] = []
+        var hexCenters: [CGPoint] = []
+
+        let newRadius: CGFloat = hexRadius / 4.0
+        for index in 0...5 {
+            hexCenters.append(northSouthHexagonCorner(center: center, radius: newRadius * 3.5, cornerIndex: index))
+        }
+
+        for index in 0...5 {
+            var path = Path()
+            path.move(to: eastWestHexagonCorner(center: hexCenters[index], radius: newRadius, cornerIndex: (index + 2) % 6))
+            path.addLine(to: eastWestHexagonCorner(center: hexCenters[index], radius: newRadius, cornerIndex: (index + 3) % 6))
+            path.addLine(to: eastWestHexagonCorner(center: hexCenters[index], radius: newRadius, cornerIndex: (index + 4) % 6))
+            path.addLine(to: eastWestHexagonCorner(center: hexCenters[index], radius: newRadius, cornerIndex: (index + 1) % 6))
+            path.closeSubpath()
+            paths.append(path)
+        }
+        
+        return paths
+    }
+    
     private func middleRhombusPaths(center: CGPoint, outerRadius: CGFloat) -> [Path] {
         var paths: [Path] = []
         
@@ -99,8 +131,8 @@ struct SixSidedRosetteView: View {
         var innerRadiusPoints: [CGPoint] = []
         var petalPointRadiusPoints: [CGPoint] = []
         
-        for index in 0...5 {
-            let newRadius: CGFloat = outerRadius / 4.0
+        let newRadius: CGFloat = outerRadius / 4.0
+        for index in 0...5 {            
             innerRadiusPoints.append(eastWestHexagonCorner(center: center, radius: newRadius, cornerIndex: index))
             petalPointRadiusPoints.append(northSouthHexagonCorner(center: center, radius: newRadius * 1.75, cornerIndex: index))
         }
@@ -174,5 +206,5 @@ struct SixSidedRosetteView: View {
 }
 
 #Preview {
-    SixSidedRosetteView(hexRadius: 128)
+    SixSidedRosetteView(hexRadius: 200)
 }
