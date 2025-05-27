@@ -73,6 +73,10 @@ struct SixSidedRosetteView: View {
                         for path in outerRhombusPetalPaths {
                             context.stroke(path, with: .color(.gray), style: strokeStyle)
                         }
+
+                        for path in fillerTriangles {
+                            context.stroke(path, with: .color(.gray), style: strokeStyle)
+                        }
                     }
                 }
             }
@@ -108,12 +112,21 @@ struct SixSidedRosetteView: View {
         let newRadius: CGFloat = outerRadius / 4.0
 
         for index in 0...5 {
-            centerPoints.append(eastWestHexagonCorner(center: center, radius: newRadius * 2.0, cornerIndex: index))
+            centerPoints.append(northSouthHexagonCorner(center: center, radius: newRadius * 1.75, cornerIndex: index))
         }
         
         for index in 0...5 {
             var path = Path()
-
+            path.move(to: centerPoints[index])
+            for cornerIndex in 0...2 {
+                path.addLine(to: eastWestHexagonCorner(center: centerPoints[index],
+                                                       radius: newRadius,
+                                                       cornerIndex: index % 6))
+                path.addLine(to: eastWestHexagonCorner(center: centerPoints[index],
+                                                       radius: newRadius,
+                                                       cornerIndex: (index + 5) % 6))
+            }
+            path.closeSubpath()
             paths.append(path)
         }
         
@@ -231,5 +244,5 @@ struct SixSidedRosetteView: View {
 }
 
 #Preview {
-    SixSidedRosetteView(hexRadius: 200)
+    SixSidedRosetteView(hexRadius: 64)
 }
