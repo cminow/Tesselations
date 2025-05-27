@@ -45,10 +45,16 @@ struct SixSidedRosetteView: View {
                             context.fill(path, with: .color(.green))
                         }
 
-                        let outerRhombusPetalPaths: [Path] = outerEdgeRhombusPaths(center: center, outerRadis: hexRadius)
+                        let outerRhombusPetalPaths: [Path] = outerEdgeRhombusPaths(center: center, outerRadius: hexRadius)
                         
                         for path in outerRhombusPetalPaths {
                             context.fill(path, with: .color(.yellow))
+                        }
+
+                        let fillerTriangles: [Path] = triangleFillers(center: center, outerRadius: hexRadius)
+                        
+                        for path in fillerTriangles {
+                            context.fill(path, with: .color(.cyan))
                         }
                         
                         // Stroke everything once we've filled in the rest.
@@ -73,11 +79,11 @@ struct SixSidedRosetteView: View {
         }
     }
 
-    private func outerEdgeRhombusPaths(center: CGPoint, outerRadis: CGFloat) -> [Path] {
+    private func outerEdgeRhombusPaths(center: CGPoint, outerRadius: CGFloat) -> [Path] {
         var paths: [Path] = []
         var hexCenters: [CGPoint] = []
 
-        let newRadius: CGFloat = hexRadius / 4.0
+        let newRadius: CGFloat = outerRadius / 4.05
         for index in 0...5 {
             hexCenters.append(northSouthHexagonCorner(center: center, radius: newRadius * 3.5, cornerIndex: index))
         }
@@ -89,6 +95,25 @@ struct SixSidedRosetteView: View {
             path.addLine(to: eastWestHexagonCorner(center: hexCenters[index], radius: newRadius, cornerIndex: (index + 4) % 6))
             path.addLine(to: eastWestHexagonCorner(center: hexCenters[index], radius: newRadius, cornerIndex: (index + 1) % 6))
             path.closeSubpath()
+            paths.append(path)
+        }
+        
+        return paths
+    }
+
+    private func triangleFillers(center: CGPoint, outerRadius: CGFloat) -> [Path] {
+        var paths: [Path] = []
+
+        var centerPoints: [CGPoint] = []
+        let newRadius: CGFloat = outerRadius / 4.0
+
+        for index in 0...5 {
+            centerPoints.append(eastWestHexagonCorner(center: center, radius: newRadius * 2.0, cornerIndex: index))
+        }
+        
+        for index in 0...5 {
+            var path = Path()
+
             paths.append(path)
         }
         
