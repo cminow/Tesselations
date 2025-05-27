@@ -30,15 +30,89 @@ struct EightPointStarView: View {
                         let smallStarPath = starPath(center: smallStarCenter, blockWidth: blockWidth / 2.0)
                         
                         context.fill(smallStarPath, with: .color(.blue))
+
+                        let petalFillerPaths: [Path] = petalFillerPaths(center: smallStarCenter, blockWidth: blockWidth)
+
+                        for path in petalFillerPaths {
+                            context.fill(path, with: .color(.green))
+                        }
                         
                         context.stroke(mainStarPath, with: .color(.gray), style: strokeStyle)
                         context.stroke(smallStarPath, with: .color(.gray), style: strokeStyle)
+
+                        for path in petalFillerPaths {
+                            context.stroke(path, with: .color(.gray), style: strokeStyle)
+                        }
+                        
                     }
                 }
             }
         }
     }
 
+    private func petalFillerPaths(center: CGPoint, blockWidth: CGFloat) -> [Path] {
+        var paths: [Path] = []
+        var halfBlockWidth: CGFloat = blockWidth / 2.0
+        var quarterBlockWidth: CGFloat = blockWidth / 4.0
+        
+        var path1 = Path()
+        path1.move(to: CGPoint(x: center.x, y: center.y - quarterBlockWidth * 3.0))
+        path1.addLine(to: CGPoint(x: center.x + quarterBlockWidth, y: center.y - halfBlockWidth))
+        path1.addLine(to: CGPoint(x: center.x + quarterBlockWidth, y: center.y - quarterBlockWidth))
+        path1.addLine(to: CGPoint(x: center.x + quarterBlockWidth / 2.0, y: center.y - quarterBlockWidth))
+        path1.addLine(to: CGPoint(x: center.x, y: center.y - quarterBlockWidth * 1.5))
+        path1.addLine(to: CGPoint(x: center.x - quarterBlockWidth / 2.0, y: center.y - quarterBlockWidth))
+        path1.addLine(to: CGPoint(x: center.x - quarterBlockWidth, y: center.y - quarterBlockWidth))
+        path1.addLine(to: CGPoint(x: center.x - quarterBlockWidth, y: center.y - halfBlockWidth))
+        path1.addLine(to: CGPoint(x: center.x, y: center.y - quarterBlockWidth * 3.0))
+        path1.closeSubpath()
+        paths.append(path1)
+
+        var path2 = Path()
+        path2.move(to: CGPoint(x: center.x + quarterBlockWidth * 3.0, y: center.y))
+        path2.addLine(to: CGPoint(x: center.x + halfBlockWidth, y: center.y + quarterBlockWidth))
+        path2.addLine(to: CGPoint(x: center.x + quarterBlockWidth, y: center.y + quarterBlockWidth))
+        path2.addLine(to: CGPoint(x: center.x + quarterBlockWidth, y: center.y + quarterBlockWidth / 2.0))
+        path2.addLine(to: CGPoint(x: center.x + quarterBlockWidth * 1.5, y: center.y ))
+        path2.addLine(to: CGPoint(x: center.x + quarterBlockWidth, y: center.y - quarterBlockWidth / 2.0))
+        path2.addLine(to: CGPoint(x: center.x + quarterBlockWidth, y: center.y - quarterBlockWidth))
+        path2.addLine(to: CGPoint(x: center.x + quarterBlockWidth * 2.0, y: center.y - quarterBlockWidth))
+        path2.addLine(to: CGPoint(x: center.x + quarterBlockWidth * 3.0, y: center.y))
+        path2.closeSubpath()
+        paths.append(path2)
+
+        quarterBlockWidth = -quarterBlockWidth
+        halfBlockWidth = -halfBlockWidth
+        
+        var path3 = Path()
+        path3.move(to: CGPoint(x: center.x + quarterBlockWidth * 3.0, y: center.y))
+        path3.addLine(to: CGPoint(x: center.x + halfBlockWidth, y: center.y + quarterBlockWidth))
+        path3.addLine(to: CGPoint(x: center.x + quarterBlockWidth, y: center.y + quarterBlockWidth))
+        path3.addLine(to: CGPoint(x: center.x + quarterBlockWidth, y: center.y + quarterBlockWidth / 2.0))
+        path3.addLine(to: CGPoint(x: center.x + quarterBlockWidth * 1.5, y: center.y ))
+        path3.addLine(to: CGPoint(x: center.x + quarterBlockWidth, y: center.y - quarterBlockWidth / 2.0))
+        path3.addLine(to: CGPoint(x: center.x + quarterBlockWidth, y: center.y - quarterBlockWidth))
+        path3.addLine(to: CGPoint(x: center.x + quarterBlockWidth * 2.0, y: center.y - quarterBlockWidth))
+        path3.addLine(to: CGPoint(x: center.x + quarterBlockWidth * 3.0, y: center.y))
+        path3.closeSubpath()
+        paths.append(path3)
+
+        var path4 = Path()
+        path4.move(to: CGPoint(x: center.x, y: center.y - quarterBlockWidth * 3.0))
+        path4.addLine(to: CGPoint(x: center.x + quarterBlockWidth, y: center.y - halfBlockWidth))
+        path4.addLine(to: CGPoint(x: center.x + quarterBlockWidth, y: center.y - quarterBlockWidth))
+        path4.addLine(to: CGPoint(x: center.x + quarterBlockWidth / 2.0, y: center.y - quarterBlockWidth))
+        path4.addLine(to: CGPoint(x: center.x, y: center.y - quarterBlockWidth * 1.5))
+        path4.addLine(to: CGPoint(x: center.x - quarterBlockWidth / 2.0, y: center.y - quarterBlockWidth))
+        path4.addLine(to: CGPoint(x: center.x - quarterBlockWidth, y: center.y - quarterBlockWidth))
+        path4.addLine(to: CGPoint(x: center.x - quarterBlockWidth, y: center.y - halfBlockWidth))
+        path4.addLine(to: CGPoint(x: center.x, y: center.y - quarterBlockWidth * 3.0))
+        path4.closeSubpath()
+        paths.append(path4)
+        
+        return paths
+    }
+    
     private func starPath(center: CGPoint, blockWidth: CGFloat) -> Path {
         var path: Path = Path()
         let halfBlock: CGFloat = blockWidth / 2.0
@@ -69,5 +143,5 @@ struct EightPointStarView: View {
 }
 
 #Preview {
-    EightPointStarView(blockWidth: 64)
+    EightPointStarView(blockWidth: 128)
 }
