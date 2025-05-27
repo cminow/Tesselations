@@ -32,6 +32,7 @@ struct EightPointStarView: View {
                         context.fill(smallStarPath, with: .color(.blue))
                         
                         context.stroke(mainStarPath, with: .color(.gray), style: strokeStyle)
+                        context.stroke(smallStarPath, with: .color(.gray), style: strokeStyle)
                     }
                 }
             }
