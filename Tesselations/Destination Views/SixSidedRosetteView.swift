@@ -38,6 +38,12 @@ struct SixSidedRosetteView: View {
                         for path in rhombusPaths {
                             context.fill(path, with: .color(.blue))
                         }
+
+                        let outerPetalPaths: [Path] = cornerPetalPaths(center: center, outerRadius: hexRadius)
+                        
+                        for path in outerPetalPaths {
+                            context.fill(path, with: .color(.green))
+                        }
                         
                         // Stroke everything once we've filled in the rest.
                         for path in paths {
@@ -47,7 +53,10 @@ struct SixSidedRosetteView: View {
                         for path in rhombusPaths {
                             context.stroke(path, with: .color(.gray), style: strokeStyle)
                         }
-                        
+
+                        for path in outerPetalPaths {
+                            context.stroke(path, with: .color(.gray), style: strokeStyle)
+                        }
                     }
                 }
             }
@@ -110,6 +119,37 @@ struct SixSidedRosetteView: View {
         return paths
     }
 
+    private func cornerPetalPaths(center: CGPoint, outerRadius: CGFloat) -> [Path] {
+        var paths: [Path] = []
+        
+        var centerPoints: [CGPoint] = []
+        let newRadius: CGFloat = outerRadius * 0.25
+
+        for index in 0...5 {
+            centerPoints.append(eastWestHexagonCorner(center: center, radius: newRadius * 3.0, cornerIndex: index))
+        }
+        
+        for index in 0...5 {
+            var path: Path = Path()
+            path.move(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (5 + index % 6)))
+            path.addLine(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (0 + index % 6)))
+            path.addLine(to: centerPoints[index % 6])
+            path.addLine(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (4 + index % 6)))
+            path.addLine(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (5 + index % 6)))
+            path.closeSubpath()
+            paths.append(path)
+
+            path.move(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (1 + index % 6)))
+            path.addLine(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (2 + index % 6)))
+            path.addLine(to: centerPoints[index % 6])
+            path.addLine(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (0 + index % 6)))
+            path.addLine(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (1 + index % 6)))
+            path.closeSubpath()
+            paths.append(path)
+        }
+        
+        return paths
+    }
     
     
     private func northSouthHexagonCorner(center: CGPoint, radius: CGFloat, cornerIndex: Int) -> CGPoint {
