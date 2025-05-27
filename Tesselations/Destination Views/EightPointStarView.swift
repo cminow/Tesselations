@@ -36,10 +36,10 @@ struct EightPointStarView: View {
                         context.fill(smallStarPath3, with: .color(red: 0.0, green: 0.75, blue: 1.0))
 
                         let mediumStarPath = starPath(center: center, blockWidth: blockWidth * 0.85)
-                        context.fill(mediumStarPath, with: .color(.orange))
+                        context.fill(mediumStarPath, with: .color(red: 0.65, green: 0.250, blue: 0.0))
                         
-                        let centerStarPath = starPath(center: center, blockWidth: blockWidth * 0.55)
-                        context.fill(centerStarPath, with: .color(.yellow))
+                        let centerStarPath = starPath(center: center, blockWidth: blockWidth * 0.6)
+                        context.fill(centerStarPath, with: .radialGradient(Gradient(colors: [.red, .yellow]), center: center, startRadius: blockWidth * 0.5, endRadius: 0.0))
                         
                         let petalFillerPaths: [Path] = petalFillerPaths(center: smallStarCenter, blockWidth: blockWidth)
                         for path in petalFillerPaths {
