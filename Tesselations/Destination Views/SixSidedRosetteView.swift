@@ -118,7 +118,7 @@ struct SixSidedRosetteView: View {
         for index in 0...5 {
             var path = Path()
             path.move(to: centerPoints[index])
-            for cornerIndex in 0...2 {
+            for _ in 0...2 {
                 path.addLine(to: eastWestHexagonCorner(center: centerPoints[index],
                                                        radius: newRadius,
                                                        cornerIndex: index % 6))
