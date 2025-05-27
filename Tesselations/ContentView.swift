@@ -112,6 +112,17 @@ struct ContentView: View {
                             Text("Round Hex Interlock")
                         }
                     }
+
+                    NavigationLink {
+                        SixSidedRosetteView(hexRadius: 64.0)
+                    } label: {
+                        HStack {
+                            SixSidedRosetteView(hexRadius: 32.0)
+                                .frame(width: frameWidth, height: frameWidth)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Six-sided Rosette")
+                        }
+                    }
                 }
                 .scrollContentBackground(.hidden)
                 

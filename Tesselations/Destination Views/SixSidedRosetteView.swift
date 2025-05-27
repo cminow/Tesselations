@@ -54,7 +54,7 @@ struct SixSidedRosetteView: View {
                         let fillerTriangles: [Path] = triangleFillers(center: center, outerRadius: hexRadius)
                         
                         for path in fillerTriangles {
-                            context.fill(path, with: .color(.cyan))
+                            context.fill(path, with: .color(.purple))
                         }
                         
                         // Stroke everything once we've filled in the rest.
