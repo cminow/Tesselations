@@ -16,7 +16,8 @@ struct MoreHexagons: View {
             Canvas(rendersAsynchronously: true) { context, size in
                 let rows: CGFloat = size.height / radius
                 let columns: CGFloat = size.width / radius
-                
+
+                var count: Int = 0
                 for row in 0...Int(rows) {
                     for column in 0...Int(columns) {
                         var columnOffset: CGFloat = 0.0
@@ -50,22 +51,35 @@ struct MoreHexagons: View {
                         }
 
                         let innerCornerCapsPaths = innerCornerCaps(center: center, radius: radius)
-                        for path in innerCornerCapsPaths {
-                            context.fill(path, with: .color(red: 0.750, green: 0.50, blue: 0.750))
+                        for (index, path) in innerCornerCapsPaths.enumerated() {
+                            if (index + row) % 2 == 0 {
+                                context.fill(path, with: .color(red: 0.750, green: 0.50, blue: 0.750))
+                            } else {
+                                context.fill(path, with: .color(red: 0.750, green: 0.150, blue: 0.750))
+                            }
+                            
                         }
 
                         let outerTrapezoidsPaths = outerTrapezoids(center: center, radius: radius,startCornerIndex: 1)
-                        for path in outerTrapezoidsPaths {
-                            context.fill(path, with: .color(red: 0.50, green: 0.85, blue: 1.0))
+                        for (index, path) in outerTrapezoidsPaths.enumerated() {
+                            if index % 2 == 0 {
+                                context.fill(path, with: .color(red: 0.50, green: 0.85, blue: 1.0))
+                            } else {
+                                context.fill(path, with: .color(red: 0.50, green: 0.750, blue: 1.0))
+                            }
                         }
 
                         let secondOuterTrapezoidPaths = outerTrapezoids(center: center, radius: radius, startCornerIndex: 4)
-                        for path in secondOuterTrapezoidPaths {
-                            context.fill(path, with: .color(red: 0.50, green: 0.750, blue: 1.0))
+                        for (index, path) in secondOuterTrapezoidPaths.enumerated() {
+                            if index % 2 == 1 {
+                                context.fill(path, with: .color(red: 0.50, green: 0.85, blue: 1.0))
+                            } else {
+                                context.fill(path, with: .color(red: 0.50, green: 0.750, blue: 1.0))
+                            }
                         }
                         
                         // Stroke the outlines here so it's always on top:
-                        context.stroke(backgroundHexagon, with: .color(.gray), style: strokeStyle)
+                        context.stroke(backgroundHexagon, with: .color(.white), style: strokeStyle)
                         context.stroke(innerMostHex, with: .color(.gray), style: strokeStyle)
                         for path in firstMiddleTrapezoidPaths {
                             context.stroke(path, with: .color(.gray), style: strokeStyle)
@@ -78,11 +92,12 @@ struct MoreHexagons: View {
                         }
 
                         for path in outerTrapezoidsPaths {
-                            context.stroke(path, with: .color(.gray), style: strokeStyle)
+                            context.stroke(path, with: .color(red: 0.75, green: 0.85, blue: 0.75), style: strokeStyle)
                         }
                         for path in secondOuterTrapezoidPaths {
-                            context.stroke(path, with: .color(.gray), style: strokeStyle)
+                            context.stroke(path, with: .color(red: 0.75, green: 0.85, blue: 0.75), style: strokeStyle)
                         }
+                        count += 1
                     }
                 }
             }
@@ -231,5 +246,5 @@ struct MoreHexagons: View {
 }
 
 #Preview {
-    MoreHexagons(radius: 128.0)
+    MoreHexagons(radius: 64.0)
 }
