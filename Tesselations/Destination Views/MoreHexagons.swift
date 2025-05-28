@@ -45,8 +45,15 @@ struct MoreHexagons: View {
                             context.fill(path, with: .color(.purple))
                         }
                         
+                        // Stroke the outlines here so it's always on top:
                         context.stroke(innerMostHex, with: .color(.gray), style: strokeStyle)
                         for path in firstMiddleRhombusPaths {
+                            context.stroke(path, with: .color(.gray), style: strokeStyle)
+                        }
+                        for path in secondMiddleRhombusPaths {
+                            context.stroke(path, with: .color(.gray), style: strokeStyle)
+                        }
+                        for path in innerCornerCapsPaths {
                             context.stroke(path, with: .color(.gray), style: strokeStyle)
                         }
                     }
@@ -136,6 +143,16 @@ struct MoreHexagons: View {
     
     private func hexagonCorner(center: CGPoint, radius: CGFloat, cornerIndex: Int) -> CGPoint {
         let angleDegrees: CGFloat = (60.0 * CGFloat(cornerIndex))
+        let angleRadians: CGFloat = .pi / 180.0 * angleDegrees
+        let corner = CGPoint(
+            x: center.x + radius * cos(angleRadians),
+            y: center.y + radius * sin(angleRadians)
+        )
+        return corner
+    }
+
+    private func northSouthHexagonCorner(center: CGPoint, radius: CGFloat, cornerIndex: Int) -> CGPoint {
+        let angleDegrees: CGFloat = (60.0 * CGFloat(cornerIndex)) - 30.0
         let angleRadians: CGFloat = .pi / 180.0 * angleDegrees
         let corner = CGPoint(
             x: center.x + radius * cos(angleRadians),

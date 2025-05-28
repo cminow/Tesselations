@@ -43,7 +43,7 @@ struct EightPointStarView: View {
                         
                         let petalFillerPaths: [Path] = petalFillerPaths(center: smallStarCenter, blockWidth: blockWidth)
                         for path in petalFillerPaths {
-                            context.fill(path, with: .color(red: 0.0, green: 0.7, blue: 0.0))
+                            context.fill(path, with: .color(red: 0.0, green: 0.6, blue: 0.0))
                         }
                         
                         context.stroke(mainStarPath, with: .color(.gray), style: strokeStyle)

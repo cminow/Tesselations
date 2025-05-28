@@ -136,10 +136,10 @@ struct ContentView: View {
                     }
 
                     NavigationLink {
-                        MoreHexagons(radius: 128.0)
+                        MoreHexagons(radius: 64.0)
                     } label: {
                         HStack {
-                            MoreHexagons(radius: 16.0)
+                            MoreHexagons(radius: 32.0)
                                 .frame(width: frameWidth, height: frameWidth)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                             Text("More Hexagons")
