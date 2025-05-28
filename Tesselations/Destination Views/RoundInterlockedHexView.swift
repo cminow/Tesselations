@@ -31,7 +31,7 @@ struct RoundInterlockedHexView: View {
                         let paths = paths(center: center, radius: hexRadius)
                         
                         for (index, path) in paths.enumerated() {
-                            context.fill(path, with: colors[index % 3])
+                            context.fill(path, with: colors[index % colors.count])
                         }
 
                         for path in paths {
