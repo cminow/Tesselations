@@ -39,6 +39,11 @@ struct MoreHexagons: View {
                         for path in secondMiddleRhombusPaths {
                             context.fill(path, with: .color(.yellow))
                         }
+
+                        let innerCornerCapsPaths = innerCornerCaps(center: center, radius: radius)
+                        for path in innerCornerCapsPaths {
+                            context.fill(path, with: .color(.purple))
+                        }
                         
                         context.stroke(innerMostHex, with: .color(.gray), style: strokeStyle)
                         for path in firstMiddleRhombusPaths {
@@ -50,28 +55,66 @@ struct MoreHexagons: View {
         }
     }
 
+    private func innerCornerCaps(center: CGPoint, radius: CGFloat) -> [Path] {
+        var paths: [Path] = []
+        
+        var centerPoints: [CGPoint] = []
+        for index in 0...5 {
+            centerPoints.append(hexagonCorner(center: center,
+                                              radius: (radius / 5.0) * 3.0,
+                                              cornerIndex: index))
+        }
+
+        for index in 0...5 {
+            var path = Path()
+            path.move(to: hexagonCorner(center: centerPoints[index],
+                                        radius: radius / 5.0,
+                                        cornerIndex: index % 6))
+            path.addLine(to: hexagonCorner(center: centerPoints[index],
+                                        radius: radius / 5.0,
+                                        cornerIndex: (index + 1) % 6))
+            path.addLine(to: hexagonCorner(center: centerPoints[index],
+                                        radius: radius / 5.0,
+                                        cornerIndex: (index + 2) % 6))
+            path.addLine(to: centerPoints[index])
+            path.addLine(to: hexagonCorner(center: centerPoints[index],
+                                           radius: radius / 5.0,
+                                           cornerIndex: (index + 4) % 6))
+            path.addLine(to: hexagonCorner(center: centerPoints[index],
+                                           radius: radius / 5.0,
+                                           cornerIndex: (index + 5) % 6))
+            path.addLine(to: hexagonCorner(center: centerPoints[index],
+                                        radius: radius / 5.0,
+                                        cornerIndex: index % 6))
+            path.closeSubpath()
+            paths.append(path)
+        }
+        
+        return paths
+    }
+    
     private func middleRhombusPaths(center: CGPoint, radius: CGFloat, startCornerIndex: Int) -> [Path] {
         var paths: [Path] = []
 
         var centerPoints: [CGPoint] = []
         for index in 0...5 {
             centerPoints.append(hexagonCorner(center: center,
-                                              radius: radius / 2.55,
+                                              radius: radius / 2.5,
                                               cornerIndex: index))
         }
 
         for index in 0...5 {
             var path: Path = Path()
-            path.move(to: hexagonCorner(center: centerPoints[index % 6],
+            path.move(to: hexagonCorner(center: centerPoints[index],
                                         radius: radius / 5.0,
                                         cornerIndex: (startCornerIndex + index) % 6))
-            path.addLine(to: hexagonCorner(center: centerPoints[index % 6],
+            path.addLine(to: hexagonCorner(center: centerPoints[index],
                                            radius: radius / 5.0,
                                            cornerIndex: (startCornerIndex + index + 1) % 6))
-            path.addLine(to: hexagonCorner(center: centerPoints[index % 6],
+            path.addLine(to: hexagonCorner(center: centerPoints[index],
                                            radius: radius / 5.0,
                                            cornerIndex: (startCornerIndex + index + 2) % 6))
-            path.addLine(to: hexagonCorner(center: centerPoints[index % 6],
+            path.addLine(to: hexagonCorner(center: centerPoints[index],
                                            radius: radius / 5.0,
                                            cornerIndex: (startCornerIndex + index + 3) % 6))
             path.closeSubpath()
