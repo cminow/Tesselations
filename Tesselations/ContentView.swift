@@ -134,6 +134,17 @@ struct ContentView: View {
                             Text("Eight-Pointed Star")
                         }
                     }
+
+                    NavigationLink {
+                        MoreHexagons(radius: 128.0)
+                    } label: {
+                        HStack {
+                            MoreHexagons(radius: 16.0)
+                                .frame(width: frameWidth, height: frameWidth)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("More Hexagons")
+                        }
+                    }
                 }
                 .scrollContentBackground(.hidden)
                 
