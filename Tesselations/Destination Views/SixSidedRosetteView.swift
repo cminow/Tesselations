@@ -29,14 +29,23 @@ struct SixSidedRosetteView: View {
 
                         let paths = centralPetalPaths(center: center, outerRadius: hexRadius)
                         
-                        for path in paths {
-                            context.fill(path, with: .color(.red))
+                        for (index, path) in paths.enumerated() {
+                            if index % 2 == 0 {
+                                context.fill(path, with: .color(red: 1.0, green: 0.0, blue: 0.0))
+                            } else {
+                                context.fill(path, with: .color(red: 0.70, green: 0.0, blue: 0.0))
+                            }
                         }
 
-                        let rhombusPaths: [Path] = middleRhombusPaths(center: center, outerRadius: hexRadius)
+                        let trapezoidPaths: [Path] = middleTrapezoidPaths(center: center, outerRadius: hexRadius)
 
-                        for path in rhombusPaths {
-                            context.fill(path, with: .color(.blue))
+                        for (index, path) in trapezoidPaths.enumerated() {
+                            if index % 2 == 0 {
+                                context.fill(path, with: .color(red: 0.0, green: 0.0, blue: 1.0))
+                            } else {
+                                context.fill(path, with: .color(red: 0.0, green: 0.0, blue: 0.5))
+                            }
+                            
                         }
 
                         let outerPetalPaths: [Path] = cornerPetalPaths(center: center, outerRadius: hexRadius)
@@ -45,9 +54,9 @@ struct SixSidedRosetteView: View {
                             context.fill(path, with: .color(.green))
                         }
 
-                        let outerRhombusPetalPaths: [Path] = outerEdgeRhombusPaths(center: center, outerRadius: hexRadius)
+                        let outerTrapezoidPetalPaths: [Path] = outerEdgeTrapezoidPaths(center: center, outerRadius: hexRadius)
                         
-                        for path in outerRhombusPetalPaths {
+                        for path in outerTrapezoidPetalPaths {
                             context.fill(path, with: .color(.yellow))
                         }
 
@@ -62,7 +71,7 @@ struct SixSidedRosetteView: View {
                             context.stroke(path, with: .color(.gray), style: strokeStyle)
                         }
 
-                        for path in rhombusPaths {
+                        for path in trapezoidPaths {
                             context.stroke(path, with: .color(.gray), style: strokeStyle)
                         }
 
@@ -70,7 +79,7 @@ struct SixSidedRosetteView: View {
                             context.stroke(path, with: .color(.gray), style: strokeStyle)
                         }
 
-                        for path in outerRhombusPetalPaths {
+                        for path in outerTrapezoidPetalPaths {
                             context.stroke(path, with: .color(.gray), style: strokeStyle)
                         }
 
@@ -83,7 +92,7 @@ struct SixSidedRosetteView: View {
         }
     }
 
-    private func outerEdgeRhombusPaths(center: CGPoint, outerRadius: CGFloat) -> [Path] {
+    private func outerEdgeTrapezoidPaths(center: CGPoint, outerRadius: CGFloat) -> [Path] {
         var paths: [Path] = []
         var hexCenters: [CGPoint] = []
 
@@ -133,7 +142,7 @@ struct SixSidedRosetteView: View {
         return paths
     }
     
-    private func middleRhombusPaths(center: CGPoint, outerRadius: CGFloat) -> [Path] {
+    private func middleTrapezoidPaths(center: CGPoint, outerRadius: CGFloat) -> [Path] {
         var paths: [Path] = []
         
         var centerPoints: [CGPoint] = []
@@ -145,19 +154,22 @@ struct SixSidedRosetteView: View {
 
         for index in 0...5 {
             var path: Path = Path()
+            var path1: Path = Path()
             path.move(to: eastWestHexagonCorner(center: centerPoints[index % 6], radius: newRadius, cornerIndex: index % 6))
             path.addLine(to: eastWestHexagonCorner(center: centerPoints[index % 6], radius: newRadius, cornerIndex: (index + 1) % 6))
             path.addLine(to: eastWestHexagonCorner(center: centerPoints[index % 6], radius: newRadius, cornerIndex: (index + 2) % 6))
             path.addLine(to: eastWestHexagonCorner(center: centerPoints[index % 6], radius: newRadius, cornerIndex: (index + 3) % 6))
             path.addLine(to: eastWestHexagonCorner(center: centerPoints[index % 6], radius: newRadius, cornerIndex: (index + 0) % 6))
+            path.closeSubpath()
             paths.append(path)
 
-            path.move(to: eastWestHexagonCorner(center: centerPoints[index % 6], radius: newRadius, cornerIndex: index % 6))
-            path.addLine(to: eastWestHexagonCorner(center: centerPoints[index % 6], radius: newRadius, cornerIndex: (index + 3) % 6))
-            path.addLine(to: eastWestHexagonCorner(center: centerPoints[index % 6], radius: newRadius, cornerIndex: (index + 4) % 6))
-            path.addLine(to: eastWestHexagonCorner(center: centerPoints[index % 6], radius: newRadius, cornerIndex: (index + 5) % 6))
-            path.addLine(to: eastWestHexagonCorner(center: centerPoints[index % 6], radius: newRadius, cornerIndex: (index + 0) % 6))
-            paths.append(path)
+            path1.move(to: eastWestHexagonCorner(center: centerPoints[index % 6], radius: newRadius, cornerIndex: index % 6))
+            path1.addLine(to: eastWestHexagonCorner(center: centerPoints[index % 6], radius: newRadius, cornerIndex: (index + 3) % 6))
+            path1.addLine(to: eastWestHexagonCorner(center: centerPoints[index % 6], radius: newRadius, cornerIndex: (index + 4) % 6))
+            path1.addLine(to: eastWestHexagonCorner(center: centerPoints[index % 6], radius: newRadius, cornerIndex: (index + 5) % 6))
+            path1.addLine(to: eastWestHexagonCorner(center: centerPoints[index % 6], radius: newRadius, cornerIndex: (index + 0) % 6))
+            path1.closeSubpath()
+            paths.append(path1)
         }
         
         
