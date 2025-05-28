@@ -15,6 +15,61 @@ struct ContentView: View {
             VStack(alignment: .leading) {
                 List {
                     NavigationLink {
+                        SixSidedRosetteView(hexRadius: 64.0)
+                    } label: {
+                        HStack {
+                            SixSidedRosetteView(hexRadius: 32.0)
+                                .frame(width: frameWidth, height: frameWidth)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Six-sided Rosette")
+                        }
+                    }
+
+                    NavigationLink {
+                        EightPointStarView(blockWidth: 48.0)
+                    } label: {
+                        HStack {
+                            EightPointStarView(blockWidth: 16.0)
+                                .frame(width: frameWidth, height: frameWidth)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Eight-Pointed Star")
+                        }
+                    }
+
+                    NavigationLink {
+                        MoreHexagons(radius: 64.0)
+                    } label: {
+                        HStack {
+                            MoreHexagons(radius: 32.0)
+                                .frame(width: frameWidth, height: frameWidth)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("More Hexagons")
+                        }
+                    }
+
+                    NavigationLink {
+                        InterlockingYsView(hexRadius: 16.0)
+                    } label: {
+                        HStack {
+                            InterlockingYsView(hexRadius: 4.0)
+                                .frame(width: frameWidth, height: frameWidth)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Interlocking Ys")
+                        }
+                    }
+
+                    NavigationLink {
+                        RoundInterlockedHexView(hexRadius: 32.0)
+                    } label: {
+                        HStack {
+                            RoundInterlockedHexView(hexRadius: 16.0)
+                                .frame(width: frameWidth, height: frameWidth)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Round Hex Interlock")
+                        }
+                    }
+
+                    NavigationLink {
                         TrianglesView(hexRadius: 32.0)
                     } label: {
                         HStack {
@@ -81,17 +136,6 @@ struct ContentView: View {
                     }
 
                     NavigationLink {
-                        InterlockingYsView(hexRadius: 16.0)
-                    } label: {
-                        HStack {
-                            InterlockingYsView(hexRadius: 4.0)
-                                .frame(width: frameWidth, height: frameWidth)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                            Text("Interlocking Ys")
-                        }
-                    }
-
-                    NavigationLink {
                         OctagonsAndDiamondsView(blockWidth: 32.0)
                     } label: {
                         HStack {
@@ -99,50 +143,6 @@ struct ContentView: View {
                                 .frame(width: frameWidth, height: frameWidth)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                             Text("Octagons and Diamonds")
-                        }
-                    }
-
-                    NavigationLink {
-                        RoundInterlockedHexView(hexRadius: 32.0)
-                    } label: {
-                        HStack {
-                            RoundInterlockedHexView(hexRadius: 16.0)
-                                .frame(width: frameWidth, height: frameWidth)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                            Text("Round Hex Interlock")
-                        }
-                    }
-
-                    NavigationLink {
-                        SixSidedRosetteView(hexRadius: 64.0)
-                    } label: {
-                        HStack {
-                            SixSidedRosetteView(hexRadius: 32.0)
-                                .frame(width: frameWidth, height: frameWidth)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                            Text("Six-sided Rosette")
-                        }
-                    }
-
-                    NavigationLink {
-                        EightPointStarView(blockWidth: 48.0)
-                    } label: {
-                        HStack {
-                            EightPointStarView(blockWidth: 16.0)
-                                .frame(width: frameWidth, height: frameWidth)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                            Text("Eight-Pointed Star")
-                        }
-                    }
-
-                    NavigationLink {
-                        MoreHexagons(radius: 64.0)
-                    } label: {
-                        HStack {
-                            MoreHexagons(radius: 32.0)
-                                .frame(width: frameWidth, height: frameWidth)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                            Text("More Hexagons")
                         }
                     }
                 }
