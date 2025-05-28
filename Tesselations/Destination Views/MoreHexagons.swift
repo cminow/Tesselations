@@ -27,16 +27,19 @@ struct MoreHexagons: View {
 
                         let center = CGPoint(x: Double(column) * radius * 1.5, y: Double(row) * radius * sqrt(3) + columnOffset)
                         
+                        let backgroundHexagon = hexPath(radius: radius, center: center)
+                        context.fill(backgroundHexagon, with: .color(.green))
+                        
                         let innerMostHex = hexPath(radius: radius / 5.0, center: center)
                         context.fill(innerMostHex, with: .color(.blue))
 
-                        let firstMiddleRhombusPaths = middleRhombusPaths(center: center, radius: radius, startCornerIndex: 0)
-                        for path in firstMiddleRhombusPaths {
+                        let firstMiddleTrapezoidPaths = middleTrapezoidPaths(center: center, radius: radius, startCornerIndex: 0)
+                        for path in firstMiddleTrapezoidPaths {
                             context.fill(path, with: .color(.red))
                         }
 
-                        let secondMiddleRhombusPaths = middleRhombusPaths(center: center, radius: radius, startCornerIndex: 3)
-                        for path in secondMiddleRhombusPaths {
+                        let secondMiddleTrapezoidPaths = middleTrapezoidPaths(center: center, radius: radius, startCornerIndex: 3)
+                        for path in secondMiddleTrapezoidPaths {
                             context.fill(path, with: .color(.yellow))
                         }
 
@@ -46,11 +49,12 @@ struct MoreHexagons: View {
                         }
                         
                         // Stroke the outlines here so it's always on top:
+                        context.stroke(backgroundHexagon, with: .color(.gray), style: strokeStyle)
                         context.stroke(innerMostHex, with: .color(.gray), style: strokeStyle)
-                        for path in firstMiddleRhombusPaths {
+                        for path in firstMiddleTrapezoidPaths {
                             context.stroke(path, with: .color(.gray), style: strokeStyle)
                         }
-                        for path in secondMiddleRhombusPaths {
+                        for path in secondMiddleTrapezoidPaths {
                             context.stroke(path, with: .color(.gray), style: strokeStyle)
                         }
                         for path in innerCornerCapsPaths {
@@ -100,7 +104,7 @@ struct MoreHexagons: View {
         return paths
     }
     
-    private func middleRhombusPaths(center: CGPoint, radius: CGFloat, startCornerIndex: Int) -> [Path] {
+    private func middleTrapezoidPaths(center: CGPoint, radius: CGFloat, startCornerIndex: Int) -> [Path] {
         var paths: [Path] = []
 
         var centerPoints: [CGPoint] = []
