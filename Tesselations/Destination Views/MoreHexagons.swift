@@ -13,7 +13,7 @@ struct MoreHexagons: View {
 
     var body: some View {
         VStack {
-            Canvas { context, size in
+            Canvas(rendersAsynchronously: true) { context, size in
                 let rows: CGFloat = size.height / radius
                 let columns: CGFloat = size.width / radius
                 
@@ -28,10 +28,16 @@ struct MoreHexagons: View {
                         let center = CGPoint(x: Double(column) * radius * 1.5, y: Double(row) * radius * sqrt(3) + columnOffset)
                         
                         let backgroundHexagon = hexPath(radius: radius, center: center)
-                        context.fill(backgroundHexagon, with: .color(.green))
+                        context.fill(backgroundHexagon, with: .radialGradient(Gradient(colors: [Color(red: 0.5, green: 1.0, blue: 0.5), .blue, .yellow, .white]), center: center, startRadius: radius, endRadius: 0.0))
                         
                         let innerMostHex = hexPath(radius: radius / 5.0, center: center)
                         context.fill(innerMostHex, with: .color(.blue))
+                        
+                        let innermostHexOverlay1 = northSouthHexPath(radius: radius / 6.0, center: center)
+                        context.fill(innermostHexOverlay1, with: .color(red: 0.0, green: 0.850, blue: 1.0))
+                        
+                        let innermostHexOverlay2 = hexPath(radius: radius / 7.5, center: center)
+                        context.fill(innermostHexOverlay2, with: .color(red: 0.0, green: 1.0, blue: 1.0))
 
                         let firstMiddleTrapezoidPaths = middleTrapezoidPaths(center: center, radius: radius, startCornerIndex: 0)
                         for path in firstMiddleTrapezoidPaths {
@@ -40,22 +46,22 @@ struct MoreHexagons: View {
 
                         let secondMiddleTrapezoidPaths = middleTrapezoidPaths(center: center, radius: radius, startCornerIndex: 3)
                         for path in secondMiddleTrapezoidPaths {
-                            context.fill(path, with: .color(.yellow))
+                            context.fill(path, with: .color(red: 0.75, green: 0.25, blue: 0.25))
                         }
 
                         let innerCornerCapsPaths = innerCornerCaps(center: center, radius: radius)
                         for path in innerCornerCapsPaths {
-                            context.fill(path, with: .color(.purple))
+                            context.fill(path, with: .color(red: 0.750, green: 0.50, blue: 0.750))
                         }
 
                         let outerTrapezoidsPaths = outerTrapezoids(center: center, radius: radius,startCornerIndex: 1)
                         for path in outerTrapezoidsPaths {
-                            context.fill(path, with: .color(red: 0.0, green: 0.5, blue: 1.0))
+                            context.fill(path, with: .color(red: 0.50, green: 0.85, blue: 1.0))
                         }
 
                         let secondOuterTrapezoidPaths = outerTrapezoids(center: center, radius: radius, startCornerIndex: 4)
                         for path in secondOuterTrapezoidPaths {
-                            context.fill(path, with: .color(red: 0.50, green: 1.0, blue: 1.0))
+                            context.fill(path, with: .color(red: 0.50, green: 0.750, blue: 1.0))
                         }
                         
                         // Stroke the outlines here so it's always on top:
@@ -72,6 +78,9 @@ struct MoreHexagons: View {
                         }
 
                         for path in outerTrapezoidsPaths {
+                            context.stroke(path, with: .color(.gray), style: strokeStyle)
+                        }
+                        for path in secondOuterTrapezoidPaths {
                             context.stroke(path, with: .color(.gray), style: strokeStyle)
                         }
                     }
@@ -189,7 +198,17 @@ struct MoreHexagons: View {
         path.closeSubpath()
         return path
     }
-    
+
+    func northSouthHexPath(radius: CGFloat, center: CGPoint) -> Path {
+        var path = Path()
+        path.move(to: northSouthHexagonCorner(center: center, radius: radius, cornerIndex: 0))
+        for index in 1...5 {
+            path.addLine(to: northSouthHexagonCorner(center: center, radius: radius, cornerIndex: index))
+        }
+        path.closeSubpath()
+        return path
+    }
+
     private func hexagonCorner(center: CGPoint, radius: CGFloat, cornerIndex: Int) -> CGPoint {
         let angleDegrees: CGFloat = (60.0 * CGFloat(cornerIndex))
         let angleRadians: CGFloat = .pi / 180.0 * angleDegrees
