@@ -47,6 +47,16 @@ struct MoreHexagons: View {
                         for path in innerCornerCapsPaths {
                             context.fill(path, with: .color(.purple))
                         }
+
+                        let outerTrapezoidsPaths = outerTrapezoids(center: center, radius: radius,startCornerIndex: 1)
+                        for path in outerTrapezoidsPaths {
+                            context.fill(path, with: .color(red: 0.0, green: 0.5, blue: 1.0))
+                        }
+
+                        let secondOuterTrapezoidPaths = outerTrapezoids(center: center, radius: radius, startCornerIndex: 4)
+                        for path in secondOuterTrapezoidPaths {
+                            context.fill(path, with: .color(red: 0.50, green: 1.0, blue: 1.0))
+                        }
                         
                         // Stroke the outlines here so it's always on top:
                         context.stroke(backgroundHexagon, with: .color(.gray), style: strokeStyle)
@@ -60,12 +70,47 @@ struct MoreHexagons: View {
                         for path in innerCornerCapsPaths {
                             context.stroke(path, with: .color(.gray), style: strokeStyle)
                         }
+
+                        for path in outerTrapezoidsPaths {
+                            context.stroke(path, with: .color(.gray), style: strokeStyle)
+                        }
                     }
                 }
             }
         }
     }
 
+    private func outerTrapezoids(center: CGPoint, radius: CGFloat, startCornerIndex: Int) -> [Path] {
+        var paths: [Path] = []
+
+        var centerPoints: [CGPoint] = []
+        for index in 0...5 {
+            centerPoints.append(northSouthHexagonCorner(center: center,
+                                                        radius: radius * sqrt(0.48),
+                                                        cornerIndex: index))
+        }
+
+        for index in 0...5 {
+            var path: Path = Path()
+            path.move(to: hexagonCorner(center: centerPoints[index],
+                                        radius: radius / 5.0,
+                                        cornerIndex: (startCornerIndex + index) % 6))
+            path.addLine(to: hexagonCorner(center: centerPoints[index],
+                                           radius: radius / 5.0,
+                                           cornerIndex: (startCornerIndex + index + 1) % 6))
+            path.addLine(to: hexagonCorner(center: centerPoints[index],
+                                           radius: radius / 5.0,
+                                           cornerIndex: (startCornerIndex + index + 2) % 6))
+            path.addLine(to: hexagonCorner(center: centerPoints[index],
+                                           radius: radius / 5.0,
+                                           cornerIndex: (startCornerIndex + index + 3) % 6))
+            path.closeSubpath()
+            paths.append(path)
+        }
+        
+        return paths
+    }
+    
     private func innerCornerCaps(center: CGPoint, radius: CGFloat) -> [Path] {
         var paths: [Path] = []
         
