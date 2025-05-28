@@ -28,16 +28,16 @@ struct MoreHexagons: View {
                         let center = CGPoint(x: Double(column) * radius * 1.5, y: Double(row) * radius * sqrt(3) + columnOffset)
                         
                         let backgroundHexagon = hexPath(radius: radius, center: center)
-                        context.fill(backgroundHexagon, with: .radialGradient(Gradient(colors: [Color(red: 0.5, green: 1.0, blue: 0.5), .blue, .yellow, .white]), center: center, startRadius: radius, endRadius: 0.0))
+                        context.fill(backgroundHexagon, with: .radialGradient(Gradient(colors: [Color(red: 0.5, green: 1.0, blue: 0.85), .blue, .yellow, .white]), center: center, startRadius: radius, endRadius: 0.0))
                         
                         let innerMostHex = hexPath(radius: radius / 5.0, center: center)
-                        context.fill(innerMostHex, with: .color(.blue))
+                        context.fill(innerMostHex, with: .color(.red))
                         
                         let innermostHexOverlay1 = northSouthHexPath(radius: radius / 6.0, center: center)
-                        context.fill(innermostHexOverlay1, with: .color(red: 0.0, green: 0.850, blue: 1.0))
+                        context.fill(innermostHexOverlay1, with: .color(red: 1.0, green: 0.50, blue: 0.0))
                         
                         let innermostHexOverlay2 = hexPath(radius: radius / 7.5, center: center)
-                        context.fill(innermostHexOverlay2, with: .color(red: 0.0, green: 1.0, blue: 1.0))
+                        context.fill(innermostHexOverlay2, with: .color(red: 1.0, green: 0.950, blue: 0.750))
 
                         let firstMiddleTrapezoidPaths = middleTrapezoidPaths(center: center, radius: radius, startCornerIndex: 0)
                         for path in firstMiddleTrapezoidPaths {
