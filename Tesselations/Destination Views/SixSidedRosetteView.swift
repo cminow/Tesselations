@@ -50,20 +50,34 @@ struct SixSidedRosetteView: View {
 
                         let outerPetalPaths: [Path] = cornerPetalPaths(center: center, outerRadius: hexRadius)
                         
-                        for path in outerPetalPaths {
-                            context.fill(path, with: .color(.green))
+                        for (index, path) in outerPetalPaths.enumerated() {
+                            if index % 2 == 0 {
+                                context.fill(path, with: .color(red: 0.2, green: 0.50, blue: 0.0))
+                            } else {
+                                context.fill(path, with: .color(red: 0.2, green: 0.70, blue: 0.0))
+                            }
+                            
                         }
 
                         let outerTrapezoidPetalPaths: [Path] = outerEdgeTrapezoidPaths(center: center, outerRadius: hexRadius)
                         
-                        for path in outerTrapezoidPetalPaths {
-                            context.fill(path, with: .color(.yellow))
+                        for (index, path) in outerTrapezoidPetalPaths.enumerated() {
+                            if index % 2 == 0 {
+                                context.fill(path, with: .color(red: 0.90, green: 0.90, blue: 0.0))
+                            } else {
+                                context.fill(path, with: .color(red: 1.0, green: 0.70, blue: 0.0))
+                            }
                         }
 
                         let fillerTriangles: [Path] = triangleFillers(center: center, outerRadius: hexRadius)
                         
-                        for path in fillerTriangles {
-                            context.fill(path, with: .color(.purple))
+                        for (index, path) in fillerTriangles.enumerated() {
+                            if index % 2 == 0 {
+                                context.fill(path, with: .color(red: 1.0, green: 0.50, blue: 1.0))
+                            } else {
+                                context.fill(path, with: .color(red: 0.80, green: 0.0, blue: 0.80))
+                            }
+                            
                         }
                         
                         // Stroke everything once we've filled in the rest.
@@ -213,6 +227,7 @@ struct SixSidedRosetteView: View {
         
         for index in 0...5 {
             var path: Path = Path()
+            var path1: Path = Path()
             path.move(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (5 + index % 6)))
             path.addLine(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (0 + index % 6)))
             path.addLine(to: centerPoints[index % 6])
@@ -221,13 +236,13 @@ struct SixSidedRosetteView: View {
             path.closeSubpath()
             paths.append(path)
 
-            path.move(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (1 + index % 6)))
-            path.addLine(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (2 + index % 6)))
-            path.addLine(to: centerPoints[index % 6])
-            path.addLine(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (0 + index % 6)))
-            path.addLine(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (1 + index % 6)))
-            path.closeSubpath()
-            paths.append(path)
+            path1.move(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (1 + index % 6)))
+            path1.addLine(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (2 + index % 6)))
+            path1.addLine(to: centerPoints[index % 6])
+            path1.addLine(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (0 + index % 6)))
+            path1.addLine(to: eastWestHexagonCorner(center: centerPoints[index], radius: newRadius, cornerIndex: (1 + index % 6)))
+            path1.closeSubpath()
+            paths.append(path1)
         }
         
         return paths
