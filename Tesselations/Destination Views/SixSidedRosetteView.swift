@@ -41,9 +41,9 @@ struct SixSidedRosetteView: View {
 
                         for (index, path) in trapezoidPaths.enumerated() {
                             if index % 2 == 0 {
-                                context.fill(path, with: .color(red: 0.0, green: 0.0, blue: 1.0))
+                                context.fill(path, with: .color(red: 0.30, green: 0.30, blue: 1.0))
                             } else {
-                                context.fill(path, with: .color(red: 0.0, green: 0.0, blue: 0.5))
+                                context.fill(path, with: .color(red: 0.30, green: 0.30, blue: 0.65))
                             }
                             
                         }
@@ -52,9 +52,9 @@ struct SixSidedRosetteView: View {
                         
                         for (index, path) in outerPetalPaths.enumerated() {
                             if index % 2 == 0 {
-                                context.fill(path, with: .color(red: 0.2, green: 0.50, blue: 0.0))
+                                context.fill(path, with: .color(red: 0.2, green: 0.50, blue: 0.40))
                             } else {
-                                context.fill(path, with: .color(red: 0.2, green: 0.70, blue: 0.0))
+                                context.fill(path, with: .color(red: 0.2, green: 0.60, blue: 0.40))
                             }
                             
                         }
