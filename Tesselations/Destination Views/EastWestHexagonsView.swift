@@ -48,11 +48,10 @@ struct EastWestHexagonsView: View {
     }
     
     func hexagonCorner(center: CGPoint, radius: CGFloat, cornerIndex: Int) -> CGPoint {
-        let angleDegrees: CGFloat = (60.0 * CGFloat(cornerIndex))// - 30.0
-        let angleRadians: CGFloat = .pi / 180.0 * angleDegrees
+        let angle: CGFloat = (CGFloat(60).radians * CGFloat(cornerIndex))
         let corner = CGPoint(
-            x: center.x + radius * cos(angleRadians),
-            y: center.y + radius * sin(angleRadians)
+            x: center.x + radius * cos(angle),
+            y: center.y + radius * sin(angle)
         )
         return corner
     }
