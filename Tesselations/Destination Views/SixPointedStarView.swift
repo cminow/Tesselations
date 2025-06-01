@@ -26,13 +26,14 @@ struct SixPointedStarView: View {
                         let center = CGPoint(x: Double(column) * radius * .sqrt3 + rowOffset, y: Double(row) * radius * 1.5)
 
                         let backgroundPath: Path = northSouthHexPath(radius: radius, center: center)
-//                        context.fill(backgroundPath, with: .color(.red))
-                        context.stroke(backgroundPath, with: .color(.red), style: .init(lineWidth: 1.0))
+                        context.fill(backgroundPath, with: .color(.blue))
+                        context.stroke(backgroundPath, with: .color(.blue), style: .init(lineWidth: 1.0))
 
                         let outerPetalPath: Path = outerPetalpath(center: center, radius: radius * 0.75, initialAngle: .degrees(15.0))
-                        context.stroke(outerPetalPath, with: .color(.black))
+//                        context.stroke(outerPetalPath, with: .color(.black))
+                        context.fill(outerPetalPath, with: .color(.white))
 
-                        let petalPaths: [Path] = middlePetalPaths(center: center, radius: radius * 0.5, initialAngle: .degrees(30))
+                        let petalPaths: [Path] = middlePetalPaths(center: center, radius: radius * (.sqrt3 / 2.0), initialAngle: .degrees(30))
                         for (index, path) in petalPaths.enumerated() {
                             var fillColor: GraphicsContext.Shading = .color(red: 0.30, green: 0.30, blue: 1.0)
                             if index % 2 == 1 {
@@ -41,7 +42,7 @@ struct SixPointedStarView: View {
                             context.fill(path, with: fillColor)
                         }
 
-                        let smallStar: Path = sixPointStarPath(center: center, radius: radius * 0.25, initialRotation: .degrees(0.0))
+                        let smallStar: Path = sixPointStarPath(center: center, radius: radius * (.sqrt3 / 4.0), initialRotation: .degrees(0.0))
                         context.fill(smallStar, with: .color(.white))
 
                         
@@ -56,8 +57,8 @@ struct SixPointedStarView: View {
         let incrementAngle: Angle = Angle(degrees: 15)
         
         let firstPoint: CGPoint = CGPoint(
-            x: center.x + radius * cos(0.0 + initialAngle.radians),
-            y: center.y + radius * sin(0.0 + initialAngle.radians)
+            x: center.x + radius * cos(0.0 + initialAngle.radians) * 1.2,
+            y: center.y + radius * sin(0.0 + initialAngle.radians) * 1.2
         )
         
         path.move(to: firstPoint)
@@ -66,7 +67,7 @@ struct SixPointedStarView: View {
 
             let pointOffset: CGFloat
             if index % 2 == 1 {
-                pointOffset = .sqrt3 / 2.0
+                pointOffset = .sqrt3 / 1.75
             } else {
                 pointOffset = 1.20
             }
@@ -165,5 +166,5 @@ struct SixPointedStarView: View {
 }
 
 #Preview {
-    SixPointedStarView(radius: 256)
+    SixPointedStarView(radius: 128)
 }

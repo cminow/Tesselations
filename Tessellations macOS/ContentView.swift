@@ -14,13 +14,13 @@ struct ContentView: View {
         NavigationSplitView {
             List {
                 NavigationLink {
-                    SixPointedStarView(radius: 64.0)
+                    SixPointedStarView(radius: 48.0)
                 } label: {
                     HStack {
-                        SixPointedStarView(radius: 32.0)
+                        SixPointedStarView(radius: 16.0)
                             .frame(width: frameWidth, height: frameWidth)
                             .clipShape(RoundedRectangle(cornerRadius: 8))
-                        Text("Six-sided Rosette")
+                        Text("Six-Pointed Star")
                     }
                 }
 
@@ -31,7 +31,7 @@ struct ContentView: View {
                         SixSidedRosetteView(hexRadius: 32.0)
                             .frame(width: frameWidth, height: frameWidth)
                             .clipShape(RoundedRectangle(cornerRadius: 8))
-                        Text("Six-sided Rosette")
+                        Text("Six-Sided Rosette")
                     }
                 }
 
