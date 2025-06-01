@@ -25,23 +25,35 @@ struct SixPointedStarView: View {
                         }
                         let center = CGPoint(x: Double(column) * radius * .sqrt3 + rowOffset, y: Double(row) * radius * 1.5)
 
-                        let backgroundPath: Path = northSouthHexPath(radius: radius, center: center)
-                        context.fill(backgroundPath, with: .color(.blue))
-                        context.stroke(backgroundPath, with: .color(.blue), style: .init(lineWidth: 1.0))
+//                        let backgroundPath: Path = northSouthHexPath(radius: radius, center: center)
+//                        context.fill(backgroundPath, with: .color(.blue))
+//                        context.stroke(backgroundPath, with: .color(.blue), style: .init(lineWidth: 1.0))
 
                         let outerPetalPath: Path = outerPetalpath(center: center, radius: radius * 0.75, initialAngle: .degrees(15.0))
-//                        context.stroke(outerPetalPath, with: .color(.black))
                         context.fill(outerPetalPath, with: .color(.white))
 
                         let petalPaths: [Path] = middlePetalPaths(center: center, radius: radius * (.sqrt3 / 2.0), initialAngle: .degrees(30))
                         for (index, path) in petalPaths.enumerated() {
-                            var fillColor: GraphicsContext.Shading = .color(red: 0.30, green: 0.30, blue: 1.0)
+                            var fillColor: GraphicsContext.Shading = .color(red: 0.350, green: 0.350, blue: 0.750)
                             if index % 2 == 1 {
-                                fillColor = .color(red: 0.5, green: 0.5, blue: 1.0)
+                                fillColor = .color(red: 0.5, green: 0.5, blue: 0.750)
                             }
                             context.fill(path, with: fillColor)
                         }
 
+                        // Corner hexagons (only need 3):
+                        for index in -1...1 {
+                            let centerPoint: CGPoint = northSouthHexagonCorner(center: center, radius: radius, cornerIndex: index)
+                            let cornerHexagon = northSouthHexPath(radius: radius * 0.25, center: centerPoint)
+                            var fillColor: GraphicsContext.Shading = .color(red: 0.0, green: 0.650, blue: 0.750)
+                            if abs(index % 2) == 1 {
+                                fillColor = .color(red: 0.0, green: 0.5, blue: 0.750)
+                            }
+                            context.fill(cornerHexagon, with: fillColor)
+                        }
+                        
+                        
+                        
                         let smallStar: Path = sixPointStarPath(center: center, radius: radius * (.sqrt3 / 4.0), initialRotation: .degrees(0.0))
                         context.fill(smallStar, with: .color(.white))
 
@@ -166,5 +178,5 @@ struct SixPointedStarView: View {
 }
 
 #Preview {
-    SixPointedStarView(radius: 128)
+    SixPointedStarView(radius: 64)
 }
