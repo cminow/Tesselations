@@ -11,7 +11,7 @@ struct ContentView: View {
     let frameWidth: CGFloat = 40.0
 
     var body: some View {
-        NavigationView {
+        NavigationSplitView {
             List {
                 NavigationLink {
                     SixSidedRosetteView(hexRadius: 64.0)
@@ -145,6 +145,8 @@ struct ContentView: View {
                     }
                 }
             }
+        } detail: {
+            Text("Select a Tessellation")
         }
         .listStyle(.sidebar)
     }
