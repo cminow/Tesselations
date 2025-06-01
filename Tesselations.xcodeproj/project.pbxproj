@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
+		CB1B761A2DEC99420058D08E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB89DDF02DDF974C006399AE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB1B76082DEC99410058D08E;
+			remoteInfo = "Tessellations macOS";
+		};
+		CB1B76242DEC99420058D08E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB89DDF02DDF974C006399AE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB1B76082DEC99410058D08E;
+			remoteInfo = "Tessellations macOS";
+		};
 		CB89DE092DDF974C006399AE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CB89DDF02DDF974C006399AE /* Project object */;
@@ -24,15 +38,61 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB1B76092DEC99410058D08E /* Tessellations macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tessellations macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB1B76192DEC99420058D08E /* Tessellations macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tessellations macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB1B76232DEC99420058D08E /* Tessellations macOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tessellations macOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB89DDF82DDF974C006399AE /* Tessellations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tessellations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB89DE082DDF974C006399AE /* TessellationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TessellationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB89DE122DDF974C006399AE /* TessellationsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TessellationsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB89DE542DDFA244006399AE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CB1B76352DEC9A3E0058D08E /* Exceptions for "Tesselations" folder in "Tessellations macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Destination Views/ArcsView.swift",
+				"Destination Views/EastWestHexagonsView.swift",
+				"Destination Views/EightPointStarView.swift",
+				"Destination Views/InterlockingYsView.swift",
+				"Destination Views/MoreHexagons.swift",
+				"Destination Views/NorthSouthHexagonsView.swift",
+				"Destination Views/OctagonsAndDiamondsView.swift",
+				"Destination Views/RectanglesAndFourPointStarsView.swift",
+				"Destination Views/RegularPolygonsView.swift",
+				"Destination Views/RoundInterlockedHexView.swift",
+				"Destination Views/SixSidedRosetteView.swift",
+				"Destination Views/SpikeyBlocksView.swift",
+				"Destination Views/TrianglesView.swift",
+				Extensions/CGFloat.swift,
+				Extensions/CGRect.swift,
+				Extensions/Shape.swift,
+			);
+			target = CB1B76082DEC99410058D08E /* Tessellations macOS */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		CB1B760A2DEC99410058D08E /* Tessellations macOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Tessellations macOS";
+			sourceTree = "<group>";
+		};
+		CB1B761C2DEC99420058D08E /* Tessellations macOSTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Tessellations macOSTests";
+			sourceTree = "<group>";
+		};
+		CB1B76262DEC99420058D08E /* Tessellations macOSUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Tessellations macOSUITests";
+			sourceTree = "<group>";
+		};
 		CB89DDFA2DDF974C006399AE /* Tesselations */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CB1B76352DEC9A3E0058D08E /* Exceptions for "Tesselations" folder in "Tessellations macOS" target */,
+			);
 			path = Tesselations;
 			sourceTree = "<group>";
 		};
@@ -49,6 +109,27 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CB1B76062DEC99410058D08E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB1B76162DEC99420058D08E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB1B76202DEC99420058D08E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CB89DDF52DDF974C006399AE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -80,6 +161,9 @@
 				CB89DDFA2DDF974C006399AE /* Tesselations */,
 				CB89DE0B2DDF974C006399AE /* TesselationsTests */,
 				CB89DE152DDF974C006399AE /* TesselationsUITests */,
+				CB1B760A2DEC99410058D08E /* Tessellations macOS */,
+				CB1B761C2DEC99420058D08E /* Tessellations macOSTests */,
+				CB1B76262DEC99420058D08E /* Tessellations macOSUITests */,
 				CB89DDF92DDF974C006399AE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +174,9 @@
 				CB89DDF82DDF974C006399AE /* Tessellations.app */,
 				CB89DE082DDF974C006399AE /* TessellationsTests.xctest */,
 				CB89DE122DDF974C006399AE /* TessellationsUITests.xctest */,
+				CB1B76092DEC99410058D08E /* Tessellations macOS.app */,
+				CB1B76192DEC99420058D08E /* Tessellations macOSTests.xctest */,
+				CB1B76232DEC99420058D08E /* Tessellations macOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,6 +184,74 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CB1B76082DEC99410058D08E /* Tessellations macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB1B76312DEC99420058D08E /* Build configuration list for PBXNativeTarget "Tessellations macOS" */;
+			buildPhases = (
+				CB1B76052DEC99410058D08E /* Sources */,
+				CB1B76062DEC99410058D08E /* Frameworks */,
+				CB1B76072DEC99410058D08E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				CB1B760A2DEC99410058D08E /* Tessellations macOS */,
+			);
+			name = "Tessellations macOS";
+			packageProductDependencies = (
+			);
+			productName = "Tessellations macOS";
+			productReference = CB1B76092DEC99410058D08E /* Tessellations macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CB1B76182DEC99420058D08E /* Tessellations macOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB1B76322DEC99420058D08E /* Build configuration list for PBXNativeTarget "Tessellations macOSTests" */;
+			buildPhases = (
+				CB1B76152DEC99420058D08E /* Sources */,
+				CB1B76162DEC99420058D08E /* Frameworks */,
+				CB1B76172DEC99420058D08E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CB1B761B2DEC99420058D08E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CB1B761C2DEC99420058D08E /* Tessellations macOSTests */,
+			);
+			name = "Tessellations macOSTests";
+			packageProductDependencies = (
+			);
+			productName = "Tessellations macOSTests";
+			productReference = CB1B76192DEC99420058D08E /* Tessellations macOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CB1B76222DEC99420058D08E /* Tessellations macOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB1B76332DEC99420058D08E /* Build configuration list for PBXNativeTarget "Tessellations macOSUITests" */;
+			buildPhases = (
+				CB1B761F2DEC99420058D08E /* Sources */,
+				CB1B76202DEC99420058D08E /* Frameworks */,
+				CB1B76212DEC99420058D08E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CB1B76252DEC99420058D08E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CB1B76262DEC99420058D08E /* Tessellations macOSUITests */,
+			);
+			name = "Tessellations macOSUITests";
+			packageProductDependencies = (
+			);
+			productName = "Tessellations macOSUITests";
+			productReference = CB1B76232DEC99420058D08E /* Tessellations macOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		CB89DDF72DDF974C006399AE /* Tessellations */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CB89DE1C2DDF974C006399AE /* Build configuration list for PBXNativeTarget "Tessellations" */;
@@ -175,6 +330,17 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
+					CB1B76082DEC99410058D08E = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					CB1B76182DEC99420058D08E = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = CB1B76082DEC99410058D08E;
+					};
+					CB1B76222DEC99420058D08E = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = CB1B76082DEC99410058D08E;
+					};
 					CB89DDF72DDF974C006399AE = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -205,11 +371,35 @@
 				CB89DDF72DDF974C006399AE /* Tessellations */,
 				CB89DE072DDF974C006399AE /* TessellationsTests */,
 				CB89DE112DDF974C006399AE /* TessellationsUITests */,
+				CB1B76082DEC99410058D08E /* Tessellations macOS */,
+				CB1B76182DEC99420058D08E /* Tessellations macOSTests */,
+				CB1B76222DEC99420058D08E /* Tessellations macOSUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CB1B76072DEC99410058D08E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB1B76172DEC99420058D08E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB1B76212DEC99420058D08E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CB89DDF62DDF974C006399AE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -234,6 +424,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CB1B76052DEC99410058D08E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB1B76152DEC99420058D08E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB1B761F2DEC99420058D08E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CB89DDF42DDF974C006399AE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -258,6 +469,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CB1B761B2DEC99420058D08E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CB1B76082DEC99410058D08E /* Tessellations macOS */;
+			targetProxy = CB1B761A2DEC99420058D08E /* PBXContainerItemProxy */;
+		};
+		CB1B76252DEC99420058D08E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CB1B76082DEC99410058D08E /* Tessellations macOS */;
+			targetProxy = CB1B76242DEC99420058D08E /* PBXContainerItemProxy */;
+		};
 		CB89DE0A2DDF974C006399AE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CB89DDF72DDF974C006399AE /* Tessellations */;
@@ -271,6 +492,140 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		CB1B762B2DEC99420058D08E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Tessellations macOS/Tessellations_macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Tessellations macOS/Preview Content\"";
+				DEVELOPMENT_TEAM = 52LS6H35Y9;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Tessellations;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cminow.Tessellations-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		CB1B762C2DEC99420058D08E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Tessellations macOS/Tessellations_macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Tessellations macOS/Preview Content\"";
+				DEVELOPMENT_TEAM = 52LS6H35Y9;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Tessellations;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cminow.Tessellations-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		CB1B762D2DEC99420058D08E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 52LS6H35Y9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cminow.Tessellations-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tessellations macOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tessellations macOS";
+			};
+			name = Debug;
+		};
+		CB1B762E2DEC99420058D08E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 52LS6H35Y9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cminow.Tessellations-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tessellations macOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tessellations macOS";
+			};
+			name = Release;
+		};
+		CB1B762F2DEC99420058D08E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 52LS6H35Y9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cminow.Tessellations-macOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Tessellations macOS";
+			};
+			name = Debug;
+		};
+		CB1B76302DEC99420058D08E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 52LS6H35Y9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cminow.Tessellations-macOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Tessellations macOS";
+			};
+			name = Release;
+		};
 		CB89DE1A2DDF974C006399AE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -525,6 +880,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CB1B76312DEC99420058D08E /* Build configuration list for PBXNativeTarget "Tessellations macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB1B762B2DEC99420058D08E /* Debug */,
+				CB1B762C2DEC99420058D08E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB1B76322DEC99420058D08E /* Build configuration list for PBXNativeTarget "Tessellations macOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB1B762D2DEC99420058D08E /* Debug */,
+				CB1B762E2DEC99420058D08E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB1B76332DEC99420058D08E /* Build configuration list for PBXNativeTarget "Tessellations macOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB1B762F2DEC99420058D08E /* Debug */,
+				CB1B76302DEC99420058D08E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CB89DDF32DDF974C006399AE /* Build configuration list for PBXProject "Tesselations" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
