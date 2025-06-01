@@ -25,18 +25,15 @@ struct SixPointedStarView: View {
                         }
                         let center = CGPoint(x: Double(column) * radius * .sqrt3 + rowOffset, y: Double(row) * radius * 1.5)
 
-                        let backgroundPath: Path = northSouthHexPath(radius: radius * 0.99, center: center)
+                        let backgroundPath: Path = northSouthHexPath(radius: radius, center: center)
                         context.fill(backgroundPath, with: .color(.red))
-
-                        let mediumStar: Path = sixPointStartPath(center: center, radius: radius * 0.25 * .sqrt3, initialRotation: .degrees(30.0))
-                        context.fill(mediumStar, with: .color(.blue))
                         
-                        let petalPaths: [Path] = middlePetalPaths(center: center, radius: radius * 0.5)
+                        let petalPaths: [Path] = middlePetalPaths(center: center, radius: radius * 0.5, initialAngle: .degrees(30))
                         for (index, path) in petalPaths.enumerated() {
-                            context.fill(path, with: .color(.black))
+                            context.fill(path, with: .color(.blue))
                         }
                         
-                        let smallStar: Path = sixPointStartPath(center: center, radius: radius * 0.25, initialRotation: .degrees(0.0))
+                        let smallStar: Path = sixPointStarPath(center: center, radius: radius * 0.25, initialRotation: .degrees(0.0))
                         context.fill(smallStar, with: .color(.white))
 
                         
@@ -46,34 +43,35 @@ struct SixPointedStarView: View {
         }
     }
 
-    private func middlePetalPaths(center: CGPoint, radius: CGFloat) -> [Path] {
+    private func middlePetalPaths(center: CGPoint, radius: CGFloat, initialAngle: Angle) -> [Path] {
         var paths: [Path] = []
 
-//        for index in 0...5 {
-        var path: Path = Path()
-        path.move(to: center)
+        let incrementAngle: CGFloat = Angle(degrees: 60.0).radians
+        
+        for index in 0...5 {
+            var path: Path = Path()
+            path.move(to: center)
 
-        let x1: CGFloat = center.x + radius * cos((.pi / 6.0) - (.pi / 6.0)) / 2.0
-        let y1: CGFloat =  center.y + radius * sin((.pi / 6.0) - (.pi / 6.0)) / 2.0
-        path.addLine(to: CGPoint(x: x1, y:y1))
+            let x1: CGFloat = center.x + radius * cos(Double(index) * incrementAngle + initialAngle.radians - (.pi / 6.0)) / 2.0
+            let y1: CGFloat =  center.y + radius * sin(Double(index) * incrementAngle + initialAngle.radians - (.pi / 6.0)) / 2.0
+            path.addLine(to: CGPoint(x: x1, y:y1))
 
-        let x2: CGFloat = center.x + radius * cos(.pi / 6.0) * (.sqrt3 / 2.0)
-        let y2: CGFloat =  center.y + radius * sin(.pi / 6.0) * (.sqrt3 / 2.0)
-        path.addLine(to: CGPoint(x: x2, y: y2))
+            let x2: CGFloat = center.x + radius * cos(Double(index) * incrementAngle + initialAngle.radians) * (.sqrt3 / 2.0)
+            let y2: CGFloat =  center.y + radius * sin(Double(index) * incrementAngle + initialAngle.radians) * (.sqrt3 / 2.0)
+            path.addLine(to: CGPoint(x: x2, y: y2))
 
-        let x3: CGFloat = center.x + radius * cos((.pi / 6.0) + (.pi / 6.0)) / 2.0
-        let y3: CGFloat =  center.y + radius * sin((.pi / 6.0) + (.pi / 6.0)) / 2.0
-        path.addLine(to: CGPoint(x: x3, y:y3))
-        path.addLine(to: center)
-        path.closeSubpath()
-        paths.append(path)
-            
-//        }
+            let x3: CGFloat = center.x + radius * cos(Double(index) * incrementAngle + initialAngle.radians + (.pi / 6.0)) / 2.0
+            let y3: CGFloat =  center.y + radius * sin(Double(index) * incrementAngle + initialAngle.radians + (.pi / 6.0)) / 2.0
+            path.addLine(to: CGPoint(x: x3, y:y3))
+            path.addLine(to: center)
+            path.closeSubpath()
+            paths.append(path)
+        }
         
         return paths
     }
     
-    private func sixPointStartPath(center: CGPoint, radius: CGFloat, initialRotation: Angle) -> Path {
+    private func sixPointStarPath(center: CGPoint, radius: CGFloat, initialRotation: Angle) -> Path {
         var path = Path()
         
         let angleIncrement: Angle = .degrees(30.0)
