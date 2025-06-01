@@ -31,13 +31,15 @@ struct SixPointedStarView: View {
                         let mediumStar: Path = sixPointStartPath(center: center, radius: radius * 0.25 * .sqrt3, initialRotation: .degrees(30.0))
                         context.fill(mediumStar, with: .color(.blue))
                         
+                        let petalPaths: [Path] = middlePetalPaths(center: center, radius: radius * 0.5)
+                        for (index, path) in petalPaths.enumerated() {
+                            context.fill(path, with: .color(.black))
+                        }
+                        
                         let smallStar: Path = sixPointStartPath(center: center, radius: radius * 0.25, initialRotation: .degrees(0.0))
                         context.fill(smallStar, with: .color(.white))
 
-                        let petalPaths: [Path] = middlePetalPaths(center: center, radius: radius)
-                        for (index, path) in petalPaths.enumerated() {
-                            context.stroke(path, with: .color(.black), style: .init(lineWidth: 2.0))
-                        }
+                        
                     }
                 }
             }
@@ -46,6 +48,27 @@ struct SixPointedStarView: View {
 
     private func middlePetalPaths(center: CGPoint, radius: CGFloat) -> [Path] {
         var paths: [Path] = []
+
+//        for index in 0...5 {
+        var path: Path = Path()
+        path.move(to: center)
+
+        let x1: CGFloat = center.x + radius * cos((.pi / 6.0) - (.pi / 6.0)) / 2.0
+        let y1: CGFloat =  center.y + radius * sin((.pi / 6.0) - (.pi / 6.0)) / 2.0
+        path.addLine(to: CGPoint(x: x1, y:y1))
+
+        let x2: CGFloat = center.x + radius * cos(.pi / 6.0) * (.sqrt3 / 2.0)
+        let y2: CGFloat =  center.y + radius * sin(.pi / 6.0) * (.sqrt3 / 2.0)
+        path.addLine(to: CGPoint(x: x2, y: y2))
+
+        let x3: CGFloat = center.x + radius * cos((.pi / 6.0) + (.pi / 6.0)) / 2.0
+        let y3: CGFloat =  center.y + radius * sin((.pi / 6.0) + (.pi / 6.0)) / 2.0
+        path.addLine(to: CGPoint(x: x3, y:y3))
+        path.addLine(to: center)
+        path.closeSubpath()
+        paths.append(path)
+            
+//        }
         
         return paths
     }
