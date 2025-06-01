@@ -25,12 +25,16 @@ struct SixPointedStarView: View {
                         }
                         let center = CGPoint(x: Double(column) * radius * .sqrt3 + rowOffset, y: Double(row) * radius * 1.5)
 
-                        let backgroundPath: Path = northSouthHexPath(radius: radius, center: center)
+                        let backgroundPath: Path = northSouthHexPath(radius: radius * 0.99, center: center)
                         context.fill(backgroundPath, with: .color(.red))
                         
                         let petalPaths: [Path] = middlePetalPaths(center: center, radius: radius * 0.5, initialAngle: .degrees(30))
                         for (index, path) in petalPaths.enumerated() {
-                            context.fill(path, with: .color(.blue))
+                            var fillColor: GraphicsContext.Shading = .color(red: 0.30, green: 0.30, blue: 1.0)
+                            if index % 2 == 1 {
+                                fillColor = .color(red: 0.5, green: 0.5, blue: 1.0)
+                            }
+                            context.fill(path, with: fillColor)
                         }
                         
                         let smallStar: Path = sixPointStarPath(center: center, radius: radius * 0.25, initialRotation: .degrees(0.0))
@@ -41,6 +45,12 @@ struct SixPointedStarView: View {
                 }
             }
         }
+    }
+
+    private func outerPetalpaths(center: CGPoint, radius: CGFloat, initialAngle: Angle) -> [Path] {
+        var paths: [Path] = []
+        
+        return paths
     }
 
     private func middlePetalPaths(center: CGPoint, radius: CGFloat, initialAngle: Angle) -> [Path] {
