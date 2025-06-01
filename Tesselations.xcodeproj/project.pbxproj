@@ -61,6 +61,7 @@
 				"Destination Views/RectanglesAndFourPointStarsView.swift",
 				"Destination Views/RegularPolygonsView.swift",
 				"Destination Views/RoundInterlockedHexView.swift",
+				"Destination Views/SixPointedStarView.swift",
 				"Destination Views/SixSidedRosetteView.swift",
 				"Destination Views/SpikeyBlocksView.swift",
 				"Destination Views/TrianglesView.swift",

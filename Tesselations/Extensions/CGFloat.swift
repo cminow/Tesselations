@@ -15,4 +15,8 @@ extension CGFloat {
     var degrees: CGFloat {
         return self * (180.0 / .pi)
     }
+
+    static var sqrt3: CGFloat {
+        return 1.7320508075688772
+    }
 }
