@@ -15,7 +15,7 @@ struct ContentView: View {
             VStack(alignment: .leading) {
                 List {
                     NavigationLink {
-                        SixPointedStarView(radius: 48.0)
+                        SixPointedStarView(radius: 64.0)
                     } label: {
                         HStack {
                             SixPointedStarView(radius: 16.0)
