@@ -34,8 +34,6 @@ struct SixPointedStarView: View {
                                                            center: center,
                                                            startRadius: radius,
                                                            endRadius: 0.0))
-//                        let outerPetalPath: Path = outerPetalpath(center: center, radius: radius * 0.75, initialAngle: .degrees(15.0))
-//                        context.fill(outerPetalPath, with: .color(.white))
 
                         let petalPaths: [Path] = middlePetalPaths(center: center, radius: radius * (.sqrt3 / 2.0), initialAngle: .degrees(30))
                         for (index, path) in petalPaths.enumerated() {
@@ -46,7 +44,6 @@ struct SixPointedStarView: View {
                             context.fill(path, with: fillColor)
                         }
 
-                        // Corner hexagons (only need 3):
                         for index in 0...5 {
                             let centerPoint: CGPoint = northSouthHexagonCorner(center: center, radius: radius, cornerIndex: index)
                             let cornerHexagon = northSouthHexPath(radius: radius * 0.25, center: centerPoint)
@@ -76,10 +73,10 @@ struct SixPointedStarView: View {
                         }
                         
                         let smallStar: Path = sixPointStarPath(center: center, radius: radius * (.sqrt3 / 4.0), initialRotation: .degrees(0.0))
-                        context.fill(smallStar, with: .color(.white))
+                        context.fill(smallStar, with: .color(.init(hue: 0.33333, saturation: 0.250, brightness: 0.8)))
 
                         let smallestStar: Path = sixPointStarPath(center: center, radius: radius * 0.25, initialRotation: .degrees(30.0))
-                        context.fill(smallestStar, with: .color(.init(hue: 0.33333, saturation: 0.250, brightness: 0.80)))
+                        context.fill(smallestStar, with: .color(.init(hue: 0.33333, saturation: 0.10, brightness: 0.95)))
                         
                     }
                 }
@@ -96,39 +93,6 @@ struct SixPointedStarView: View {
 //        path.addLine(to: eastWestHexagonCorner(center: center, radius: radius, cornerIndex: (initialCorner + 3) % 6))
         path.addLine(to: eastWestHexagonCorner(center: center, radius: radius, cornerIndex: initialCorner % 6))
         path.closeSubpath()
-        return path
-    }
-
-    private func outerPetalpath(center: CGPoint, radius: CGFloat, initialAngle: Angle) -> Path {
-        var path: Path = Path()
-        let incrementAngle: Angle = Angle(degrees: 15)
-        
-        let firstPoint: CGPoint = CGPoint(
-            x: center.x + radius * cos(0.0 + initialAngle.radians) * 1.2,
-            y: center.y + radius * sin(0.0 + initialAngle.radians) * 1.2
-        )
-        
-        path.move(to: firstPoint)
-        
-        for index in 1...23 {
-
-            let pointOffset: CGFloat
-            if index % 2 == 1 {
-                pointOffset = .sqrt3 / 1.75
-            } else {
-                pointOffset = 1.20
-            }
-
-            let newRadius: CGFloat = pointOffset * radius
-            
-            let point: CGPoint = CGPoint(
-                x: center.x + newRadius * cos(initialAngle.radians + Double(index) * incrementAngle.radians),
-                y: center.y + newRadius * sin(initialAngle.radians + Double(index) * incrementAngle.radians)
-            )
-            path.addLine(to: point)
-        }
-        path.closeSubpath()
-        
         return path
     }
 
