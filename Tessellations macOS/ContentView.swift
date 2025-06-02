@@ -14,6 +14,17 @@ struct ContentView: View {
         NavigationSplitView {
             List {
                 NavigationLink {
+                    Pentagons(radius: 64.0)
+                } label: {
+                    HStack {
+                        Pentagons(radius: 16.0)
+                            .frame(width: frameWidth, height: frameWidth)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        Text("Pentagons")
+                    }
+                }
+
+                NavigationLink {
                     SixPointedStarView(radius: 48.0)
                 } label: {
                     HStack {
