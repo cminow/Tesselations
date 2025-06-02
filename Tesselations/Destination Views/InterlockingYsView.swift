@@ -30,8 +30,13 @@ struct InterlockingYsView: View {
                         
                         let paths: [Path] = paths(center: center, radius: hexRadius)
                         context.fill(paths[0], with: .color(.red))
+                        context.stroke(paths[0], with: .color(.red), style: .init(lineWidth: 0.1))
+                        
                         context.fill(paths[1], with: .color(.blue))
+                        context.stroke(paths[1], with: .color(.blue), style: .init(lineWidth: 0.1))
+                        
                         context.fill(paths[2], with: .color(.yellow))
+                        context.stroke(paths[2], with: .color(.yellow), style: .init(lineWidth: 0.1))
                     }
                 }
             }
