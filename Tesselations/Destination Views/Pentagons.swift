@@ -17,12 +17,14 @@ struct Pentagons: View {
             Canvas { context, size in
                 let rows: CGFloat = (size.height / radius)
                 let columns: CGFloat = (size.width / radius)
-                let path = Rectangle().path(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-                context.fill(path, with: .color(.blue))
-                
+
                 for row in 0...Int(rows + 5) {
                     for column in 0...Int(columns + 5) {
                         let center: CGPoint = CGPoint(x: Double(column) * radius * horizontalOffset, y: Double(row) * radius * verticalOffset)
+                        
+                        let innerHex: Path = hexPath(radius: radius / 5.875, center: center)
+                        context.fill(innerHex, with: .color(.init(hue: 0.0, saturation: 0.5, brightness: 1.0)))
+                        
                         for index in 0...5 {
                             let point: CGPoint = hexagonCorner(center: center, radius: radius / 3.26530612244898, cornerIndex: index)
                             let initialAngle: Angle = .degrees(60.0 * CGFloat(index))
@@ -55,6 +57,16 @@ struct Pentagons: View {
         return corner
     }
 
+    func hexPath(radius: CGFloat, center: CGPoint) -> Path {
+        var path = Path()
+        path.move(to: hexagonCorner(center: center, radius: radius, cornerIndex: 0))
+        for index in 1...5 {
+            path.addLine(to: hexagonCorner(center: center, radius: radius, cornerIndex: index))
+        }
+        path.closeSubpath()
+        return path
+    }
+
     private func hexagonCorner(center: CGPoint, radius: CGFloat, cornerIndex: Int) -> CGPoint {
         let angle: CGFloat = (CGFloat(60).radians * CGFloat(cornerIndex))
         let corner = CGPoint(
@@ -66,5 +78,5 @@ struct Pentagons: View {
 }
 
 #Preview {
-    Pentagons(radius: 64)
+    Pentagons(radius: 128)
 }
