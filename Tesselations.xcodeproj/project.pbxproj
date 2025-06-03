@@ -54,6 +54,7 @@
 				"Destination Views/ArcsView.swift",
 				"Destination Views/EastWestHexagonsView.swift",
 				"Destination Views/EightPointStarView.swift",
+				"Destination Views/HexagonalLatticeView.swift",
 				"Destination Views/InterlockingYsView.swift",
 				"Destination Views/MoreHexagons.swift",
 				"Destination Views/NorthSouthHexagonsView.swift",
