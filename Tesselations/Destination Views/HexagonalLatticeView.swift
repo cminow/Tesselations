@@ -9,14 +9,19 @@ import SwiftUI
 
 struct HexagonalLatticeView: View {
     var radius: CGFloat
-    let thickLine: StrokeStyle = .init(lineWidth: 4.0, lineCap: .round, lineJoin: .round)
-    let thinLine: StrokeStyle = .init(lineWidth: 2.0, lineCap: .round, lineJoin: .round)
     
     var body: some View {
         VStack {
             Canvas { context, size in
                 let rows: CGFloat = size.height / radius
                 let columns: CGFloat = size.width / radius
+
+                var thickLine: StrokeStyle = .init(lineWidth: 4.0, lineCap: .round, lineJoin: .round)
+                var thinLine: StrokeStyle = .init(lineWidth: 2.0, lineCap: .round, lineJoin: .round)
+                if radius < 64.0 {
+                    thickLine.lineWidth = 2.0
+                    thinLine.lineWidth = 1.0
+                }
 
                 let backgroundPath: Path = Rectangle().path(in: context.clipBoundingRect)
                 context.fill(backgroundPath, with: .color(.black))
@@ -33,13 +38,23 @@ struct HexagonalLatticeView: View {
 
                         for index in 0...5 {
                             let centerPoint: CGPoint = eastWestHexagonCorner(center: center, radius: radius, cornerIndex: index)
+
+                            let thinHexagon: Path = eastWestHexPath(center: center, radius: radius * 0.625)
+                            context.stroke(thinHexagon, with: .color(.red), style: thinLine)
+                            
                             let hexPath: Path = eastWestHexPath(center: centerPoint, radius: radius * 0.5)
                             context.stroke(hexPath, with: .color(.red), style: thickLine)
-                            
+
                             let line: Path = radialLine(center: centerPoint, startRadius: 0.0, length: radius * 0.35, angle: Angle(degrees: Double(index) * 60.0))
                             context.stroke(line, with: .color(.red), style: thinLine)
-                        }
+                            
+                            let line2: Path = radialLine(center: centerPoint, startRadius: 0.0, length: radius * .sqrt3 / 4.70, angle: Angle(degrees: Double(index) * 60.0 + 60.0))
+                            context.stroke(line2, with: .color(.red), style: thinLine)
 
+                            let insetHex: Path = eastWestHexPath(center: centerPoint, radius: radius / 6)
+                            context.stroke(insetHex, with: .color(.red), style: thinLine)
+                        }
+                        
                         let centerStar: Path = sixPointStarPath(center: center, radius: radius * 0.25, initialRotation: .degrees(30.0))
                         context.stroke(centerStar, with: .color(.red), style: thinLine)
 

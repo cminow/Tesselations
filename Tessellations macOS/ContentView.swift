@@ -14,13 +14,13 @@ struct ContentView: View {
         NavigationSplitView {
             List {
                 NavigationLink {
-                    HexagonalLatticeView(radius: 64.0)
+                    HexagonalLatticeView(radius: 128.0)
                 } label: {
                     HStack {
-                        HexagonalLatticeView(radius: 16.0)
+                        HexagonalLatticeView(radius: 24.0)
                             .frame(width: frameWidth, height: frameWidth)
                             .clipShape(RoundedRectangle(cornerRadius: 8))
-                        Text("Six-Pointed Star")
+                        Text("Hexagonal Lattice")
                     }
                 }
 
