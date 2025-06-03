@@ -35,6 +35,9 @@ struct HexagonalLatticeView: View {
                             let centerPoint: CGPoint = eastWestHexagonCorner(center: center, radius: radius, cornerIndex: index)
                             let hexPath: Path = eastWestHexPath(center: centerPoint, radius: radius * 0.5)
                             context.stroke(hexPath, with: .color(.red), style: thickLine)
+                            
+                            let line: Path = radialLine(center: centerPoint, startRadius: 0.0, length: radius * 0.35, angle: Angle(degrees: Double(index) * 60.0))
+                            context.stroke(line, with: .color(.red), style: thinLine)
                         }
 
                         let centerStar: Path = sixPointStarPath(center: center, radius: radius * 0.25, initialRotation: .degrees(30.0))
@@ -70,11 +73,11 @@ struct HexagonalLatticeView: View {
     private func radialLine(center: CGPoint, startRadius: CGFloat, length: CGFloat, angle: Angle) -> Path {
         var path: Path = Path()
         let startPoint: CGPoint = CGPoint(
-            x: center.x + startRadius * CoreGraphics.cos(angle.radians),
+            x: center.x + startRadius * cos(CGFloat(angle.radians)),
             y: center.y + startRadius * sin(angle.radians)
         )
         let endPoint: CGPoint = CGPoint(
-            x: center.x + (startRadius + length) * CoreGraphics.cos(angle.radians),
+            x: center.x + (startRadius + length) * cos(CGFloat(angle.radians)),
             y: center.y + (startRadius + length) * sin(angle.radians)
         )
 
@@ -156,5 +159,5 @@ struct HexagonalLatticeView: View {
 }
 
 #Preview {
-    HexagonalLatticeView(radius: 256)
+    HexagonalLatticeView(radius: 128)
 }
