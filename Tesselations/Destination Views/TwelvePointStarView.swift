@@ -16,7 +16,7 @@ struct TwelvePointStarView: View {
                 let rows: CGFloat = (size.height * 1.5) / radius
                 let columns: CGFloat = size.width / radius
                 let backgroundRect: CGRect = context.clipBoundingRect
-                context.fill(Rectangle().path(in: backgroundRect), with: .color(.pink))
+                context.fill(Rectangle().path(in: backgroundRect), with: .color(.red))
                 
                 for row in 0...Int(rows) {
                     for column in 0...Int(columns) {
@@ -33,6 +33,17 @@ struct TwelvePointStarView: View {
                             layoutHexagons.append(hexagon)
 //                            context.stroke(hexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0, lineCap: .round, lineJoin: .round))
                         }
+                        
+                        let gradient: Gradient = .init(stops: [
+                                .init(color: .init(hue: 0.0, saturation: 0.750, brightness: 0.5), location: 0.250),
+                                .init(color: .init(hue: 0.0, saturation: 1.0, brightness: 1.0), location: 0.850)
+                                                              
+                        ])
+                        
+                        context.fill(layoutHexagons[0].path, with: .radialGradient(gradient,
+                                                                                   center: center,
+                                                                                   startRadius: radius,
+                                                                                   endRadius: 0.0))
                         
                         let innerHex = layoutHexagons[layoutHexagons.count - 2]
                         context.fill(innerHex.inscribedSixPointStarPath, with: .color(.black))
@@ -60,7 +71,7 @@ struct TwelvePointStarView: View {
                             }
                         }
 
-                        var convexPetalPaths: [Path] =  []
+                        var concavePetalPaths: [Path] =  []
                         for index in 0...5 {
                             var path: Path = Path()
                             path.move(to: innerHex.points[index])
@@ -71,9 +82,11 @@ struct TwelvePointStarView: View {
                             path.addLine(to: innerCornerHexagons[index].points[(index + 1) % 6])
                             path.addLine(to: innerHex.points[index])
                             path.closeSubpath()
-                            context.fill(path, with: .color(.yellow))
+                            
+                            let brightness: Double = .random(in: 0.75...0.90)
+                            context.fill(path, with: .color(.init(hue: 0.15, saturation: 1.0, brightness: brightness)))
 //                            context.stroke(path, with: .color(.cyan), style: .init(lineWidth: 1.0))
-                            convexPetalPaths.append(path)
+                            concavePetalPaths.append(path)
                         }
 
                         // Just for construction:
@@ -90,7 +103,8 @@ struct TwelvePointStarView: View {
                             path.addLine(to: innerEastWestHexagon.points[index])
                             path.closeSubpath()
 //                            context.stroke(path, with: .color(.cyan), style: .init(lineWidth: 1.0))
-                            context.fill(path, with: .color(.blue))
+                            let brightness: Double = .random(in: 0.85...1.0)
+                            context.fill(path, with: .color(.init(hue: 0.6, saturation: 0.80, brightness: brightness)))
                         }
                     }
                 }
