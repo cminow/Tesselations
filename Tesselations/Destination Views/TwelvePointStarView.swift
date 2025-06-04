@@ -15,6 +15,8 @@ struct TwelvePointStarView: View {
             Canvas { context, size in
                 let rows: CGFloat = (size.height * 1.5) / radius
                 let columns: CGFloat = size.width / radius
+                let backgroundRect: CGRect = context.clipBoundingRect
+                context.fill(Rectangle().path(in: backgroundRect), with: .color(.pink))
                 
                 for row in 0...Int(rows) {
                     for column in 0...Int(columns) {
@@ -29,7 +31,7 @@ struct TwelvePointStarView: View {
                         for layoutFactor: CGFloat in stride(from: 1.0, to: 0.0, by: -0.2) {
                             let hexagon: Hexagon = Hexagon(center: center, radius: radius * layoutFactor, direction: .northSouth)
                             layoutHexagons.append(hexagon)
-                            context.stroke(hexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0, lineCap: .round, lineJoin: .round))
+//                            context.stroke(hexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0, lineCap: .round, lineJoin: .round))
                         }
                         
                         let innerHex = layoutHexagons[layoutHexagons.count - 2]
@@ -46,6 +48,8 @@ struct TwelvePointStarView: View {
 //                                context.stroke(cornerHex.path, with: .color(.cyan))
                             }
                         }
+
+                        // Just for construction:
                         var innerCornerHexagons: [Hexagon] = []
                         for _ in 0...5 {
                             let hexagon = Hexagon(center: center, radius: radius * 0.6, direction: .northSouth)
@@ -56,6 +60,7 @@ struct TwelvePointStarView: View {
                             }
                         }
 
+                        var convexPetalPaths: [Path] =  []
                         for index in 0...5 {
                             var path: Path = Path()
                             path.move(to: innerHex.points[index])
@@ -65,10 +70,28 @@ struct TwelvePointStarView: View {
                             path.addLine(to: cornerHexagons[index].points[(index + 2) % 6])
                             path.addLine(to: innerCornerHexagons[index].points[(index + 1) % 6])
                             path.addLine(to: innerHex.points[index])
+                            path.closeSubpath()
                             context.fill(path, with: .color(.yellow))
-                            context.stroke(path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+//                            context.stroke(path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                            convexPetalPaths.append(path)
                         }
-                        
+
+                        // Just for construction:
+                        let innerEastWestHexagon = Hexagon(center: center, radius: radius * 0.4, direction: .eastWest)
+//                        context.stroke(innerEastWestHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                        let inscribedHexagon = Hexagon(center: center, radius: radius * .sqrt3 / 2.0, direction: .eastWest)
+//                        context.stroke(inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                        for index in 0...5 {
+                            var path: Path = Path()
+                            path.move(to: innerEastWestHexagon.points[index])
+                            path.addLine(to: innerCornerHexagons[(index + 5) % 6].points[index])
+                            path.addLine(to: inscribedHexagon.points[index])
+                            path.addLine(to: innerCornerHexagons[index].points[(index + 5) % 6])
+                            path.addLine(to: innerEastWestHexagon.points[index])
+                            path.closeSubpath()
+//                            context.stroke(path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                            context.fill(path, with: .color(.blue))
+                        }
                     }
                 }
             }
