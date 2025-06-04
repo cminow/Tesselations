@@ -24,16 +24,27 @@ struct TwelvePointStarView: View {
                             rowOffset = radius * .sqrt3 / 2.0
                         }
                         let center = CGPoint(x: Double(column) * radius * sqrt(3.0) + rowOffset, y: Double(row) * radius * 1.5)
-                        
-                        let centerStar1: Path = sixPointStarPath(center: center, radius: radius * .sqrt3 / 6.0, initialRotation: .degrees(0.0))
+
+                        for layoutFactor: CGFloat in stride(from: 1.0, to: 0.0, by: -0.2) {
+                            let layoutPath: Path = northSouthHexPath(radius: radius * layoutFactor, center: center)
+                            context.stroke(layoutPath, with: .color(.black), style: .init(lineWidth: 1.0, lineCap: .round, lineJoin: .round))
+                        }
+
+                        let centerStar1: Path = sixPointStarPath(center: center, radius: radius * .sqrt3 / 9.0, initialRotation: .degrees(0.0))
                         context.fill(centerStar1, with: .color(.black))
-                        let centerStar2: Path = sixPointStarPath(center: center, radius: radius * .sqrt3 / 6.0, initialRotation: .degrees(30.0))
+                        let centerStar2: Path = sixPointStarPath(center: center, radius: radius * .sqrt3 / 9.0, initialRotation: .degrees(30.0))
                         context.fill(centerStar2, with: .color(.black))
 
                         for index in 0...5 {
                             let centerPoint: CGPoint = northSouthHexagonCorner(center: center, radius: radius, cornerIndex: index)
-                            let cornerHexPath: Path = northSouthHexPath(radius: radius * .sqrt3 / 10.5, center: centerPoint)
+                            let cornerHexPath: Path = northSouthHexPath(radius: radius * .sqrt3 / 9.0, center: centerPoint)
                             context.fill(cornerHexPath, with: .color(.red))
+                        }
+                        
+                        for index in 0...5 {
+                            let centerPoint: CGPoint = northSouthHexagonCorner(center: center, radius: radius * 0.6, cornerIndex: index)
+                            let cornerHexPath: Path = northSouthHexPath(radius: radius * .sqrt3 / 9.0, center: centerPoint)
+                            context.fill(cornerHexPath, with: .color(.blue))
                         }
                     }
                 }
