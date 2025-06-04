@@ -29,12 +29,46 @@ struct TwelvePointStarView: View {
                         for layoutFactor: CGFloat in stride(from: 1.0, to: 0.0, by: -0.2) {
                             let hexagon: Hexagon = Hexagon(center: center, radius: radius * layoutFactor, direction: .northSouth)
                             layoutHexagons.append(hexagon)
-                            context.stroke(hexagon.path, with: .color(.black), style: .init(lineWidth: 1.0, lineCap: .round, lineJoin: .round))
+                            context.stroke(hexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0, lineCap: .round, lineJoin: .round))
                         }
-                        let innerHex = layoutHexagons[layoutHexagons.count - 1]
+                        
+                        let innerHex = layoutHexagons[layoutHexagons.count - 2]
                         context.fill(innerHex.inscribedSixPointStarPath, with: .color(.black))
                         let secondStar = Hexagon(center: center, radius: innerHex.radius, direction: .eastWest)
                         context.fill(secondStar.inscribedSixPointStarPath, with: .color(.black))
+
+                        var cornerHexagons: [Hexagon] = []
+                        for _ in 0...5 {
+                            let hexagon = Hexagon(center: center, radius: radius, direction: .northSouth)
+                            for centerPoint: CGPoint in hexagon.points {
+                                let cornerHex: Hexagon = Hexagon(center: centerPoint, radius: radius * .sqrt3 / 8.0, direction: .northSouth)
+                                cornerHexagons.append(cornerHex)
+//                                context.stroke(cornerHex.path, with: .color(.cyan))
+                            }
+                        }
+                        var innerCornerHexagons: [Hexagon] = []
+                        for _ in 0...5 {
+                            let hexagon = Hexagon(center: center, radius: radius * 0.6, direction: .northSouth)
+                            for centerPoint: CGPoint in hexagon.points {
+                                let cornerHex: Hexagon = Hexagon(center: centerPoint, radius: radius * .sqrt3 / 8.0, direction: .northSouth)
+                                innerCornerHexagons.append(cornerHex)
+//                                context.stroke(cornerHex.path, with: .color(.cyan))
+                            }
+                        }
+
+                        for index in 0...5 {
+                            var path: Path = Path()
+                            path.move(to: innerHex.points[index])
+                            path.addLine(to: innerCornerHexagons[index].points[(index + 5) % 6])
+                            path.addLine(to: cornerHexagons[index].points[(index + 4) % 6])
+                            path.addLine(to: cornerHexagons[index].points[(index + 3) % 6])
+                            path.addLine(to: cornerHexagons[index].points[(index + 2) % 6])
+                            path.addLine(to: innerCornerHexagons[index].points[(index + 1) % 6])
+                            path.addLine(to: innerHex.points[index])
+                            context.fill(path, with: .color(.yellow))
+                            context.stroke(path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                        }
+                        
                     }
                 }
             }
