@@ -70,6 +70,7 @@
 				Extensions/CGFloat.swift,
 				Extensions/CGRect.swift,
 				Extensions/Shape.swift,
+				Geometry/Hexagon.swift,
 			);
 			target = CB1B76082DEC99410058D08E /* Tessellations macOS */;
 		};

@@ -14,7 +14,7 @@ struct ContentView: View {
         NavigationSplitView {
             List {
                 NavigationLink {
-                    TwelvePointStarView(radius: 128.0)
+                    TwelvePointStarView(radius: 256)
                 } label: {
                     HStack {
                         TwelvePointStarView(radius: 24.0)

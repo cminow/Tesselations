@@ -25,104 +25,23 @@ struct TwelvePointStarView: View {
                         }
                         let center = CGPoint(x: Double(column) * radius * sqrt(3.0) + rowOffset, y: Double(row) * radius * 1.5)
 
+                        var layoutHexagons: [Hexagon] = []
                         for layoutFactor: CGFloat in stride(from: 1.0, to: 0.0, by: -0.2) {
-                            let layoutPath: Path = northSouthHexPath(radius: radius * layoutFactor, center: center)
-                            context.stroke(layoutPath, with: .color(.black), style: .init(lineWidth: 1.0, lineCap: .round, lineJoin: .round))
+                            let hexagon: Hexagon = Hexagon(center: center, radius: radius * layoutFactor, direction: .northSouth)
+                            layoutHexagons.append(hexagon)
+                            context.stroke(hexagon.path, with: .color(.black), style: .init(lineWidth: 1.0, lineCap: .round, lineJoin: .round))
                         }
-
-                        let centerStar1: Path = sixPointStarPath(center: center, radius: radius * .sqrt3 / 9.0, initialRotation: .degrees(0.0))
-                        context.fill(centerStar1, with: .color(.black))
-                        let centerStar2: Path = sixPointStarPath(center: center, radius: radius * .sqrt3 / 9.0, initialRotation: .degrees(30.0))
-                        context.fill(centerStar2, with: .color(.black))
-
-                        for index in 0...5 {
-                            let centerPoint: CGPoint = northSouthHexagonCorner(center: center, radius: radius, cornerIndex: index)
-                            let cornerHexPath: Path = northSouthHexPath(radius: radius * .sqrt3 / 9.0, center: centerPoint)
-                            context.fill(cornerHexPath, with: .color(.red))
-                        }
-                        
-                        for index in 0...5 {
-                            let centerPoint: CGPoint = northSouthHexagonCorner(center: center, radius: radius * 0.6, cornerIndex: index)
-                            let cornerHexPath: Path = northSouthHexPath(radius: radius * .sqrt3 / 9.0, center: centerPoint)
-                            context.fill(cornerHexPath, with: .color(.blue))
-                        }
+                        let innerHex = layoutHexagons[layoutHexagons.count - 1]
+                        context.fill(innerHex.inscribedSixPointStarPath, with: .color(.black))
+                        let secondStar = Hexagon(center: center, radius: innerHex.radius, direction: .eastWest)
+                        context.fill(secondStar.inscribedSixPointStarPath, with: .color(.black))
                     }
                 }
             }
         }
     }
-    
-    private func sixPointStarPath(center: CGPoint, radius: CGFloat, initialRotation: Angle) -> Path {
-        var path = Path()
-        
-        let angleIncrement: Angle = .degrees(30.0)
-        let firstPoint: CGPoint = CGPoint(
-            x: center.x + radius * cos(0.0 + initialRotation.radians),
-            y: center.y + radius * sin(0.0 + initialRotation.radians)
-        )
-        
-        path.move(to: firstPoint)
-        for index in 1...11 {
-
-            let pointOffset: CGFloat
-            if index % 2 == 1 {
-                pointOffset = .sqrt3 / 3.0
-            } else {
-                pointOffset = 1.0
-            }
-
-            let newRadius: CGFloat = pointOffset * radius
-            
-            let point: CGPoint = CGPoint(
-                x: center.x + newRadius * cos(0.0 + initialRotation.radians + Double(index) * angleIncrement.radians),
-                y: center.y + newRadius * sin(0.0 + initialRotation.radians + Double(index) * angleIncrement.radians)
-            )
-            path.addLine(to: point)
-        }
-        path.closeSubpath()
-        return path
-    }
-
-    private func northSouthHexPath(radius: CGFloat, center: CGPoint) -> Path {
-        var path = Path()
-        path.move(to: northSouthHexagonCorner(center: center, radius: radius, cornerIndex: 0))
-        for index in 1...5 {
-            path.addLine(to: northSouthHexagonCorner(center: center, radius: radius, cornerIndex: index))
-        }
-        path.closeSubpath()
-        return path
-    }
-    
-    private func northSouthHexagonCorner(center: CGPoint, radius: CGFloat, cornerIndex: Int) -> CGPoint {
-        let angleDegrees: CGFloat = (60.0 * CGFloat(cornerIndex)) - 30.0
-        let angleRadians: CGFloat = .pi / 180.0 * angleDegrees
-        let corner = CGPoint(
-            x: center.x + radius * cos(angleRadians),
-            y: center.y + radius * sin(angleRadians)
-        )
-        return corner
-    }
-
-    private func eastWestHexPath(radius: CGFloat, center: CGPoint) -> Path {
-        var path = Path()
-        path.move(to: eastWestHexagonCorner(center: center, radius: radius, cornerIndex: 0))
-        for index in 1...5 {
-            path.addLine(to: eastWestHexagonCorner(center: center, radius: radius, cornerIndex: index))
-        }
-        path.closeSubpath()
-        return path
-    }
-    
-    func eastWestHexagonCorner(center: CGPoint, radius: CGFloat, cornerIndex: Int) -> CGPoint {
-        let angle: CGFloat = (CGFloat(60).radians * CGFloat(cornerIndex))
-        let corner = CGPoint(
-            x: center.x + radius * cos(angle),
-            y: center.y + radius * sin(angle)
-        )
-        return corner
-    }
 }
 
 #Preview {
-    TwelvePointStarView(radius: 128.0)
+    TwelvePointStarView(radius: 128)
 }
