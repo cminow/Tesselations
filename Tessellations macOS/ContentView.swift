@@ -14,6 +14,17 @@ struct ContentView: View {
         NavigationSplitView {
             List {
                 NavigationLink {
+                    Mondrian()
+                } label: {
+                    HStack {
+                        Mondrian()
+                            .frame(width: frameWidth, height: frameWidth)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        Text("Mondrian")
+                    }
+                }
+
+                NavigationLink {
                     TwelvePointStarView(radius: 64)
                 } label: {
                     HStack {
