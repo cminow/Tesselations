@@ -21,7 +21,9 @@ struct Mondrian: View {
     var body: some View {
         VStack {
             Canvas { context, size in
+                // This needs to stay because the view won't update if the variable isn't used:
                 print(isTapped)
+
                 drawRect(x: 0.0,
                          y: 0.0,
                          width: size.width,
@@ -31,7 +33,6 @@ struct Mondrian: View {
             }
             .onTapGesture {
                 isTapped.toggle()
-                print("Tapped...")
             }
         }
     }
@@ -39,7 +40,6 @@ struct Mondrian: View {
     var tap: some Gesture {
         TapGesture(count: 1)
             .onEnded { _ in
-                print("Tapped.")
                 depth = 3
         }
     }
