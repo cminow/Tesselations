@@ -81,7 +81,11 @@ struct Mondrian: View {
             let rect = CGRect(x: x, y: y, width: width, height: height)
             let path: Path = Path(rect)
             context.fill(path, with: .color(colors[Int.random(in: 0...colors.count - 1)]))
-            context.stroke(path, with: .color(.black), style: .init(lineWidth: 8.0))
+            var lineWidth: CGFloat = 8.0
+            if context.clipBoundingRect.width < 128 {
+                lineWidth = 2.0
+            }
+            context.stroke(path, with: .color(.black), style: .init(lineWidth: lineWidth))
         }
             
     }
