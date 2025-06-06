@@ -15,7 +15,7 @@ struct Mondrian: View {
         .red, .red,
         .blue, .blue,
         .yellow, .yellow,
-        .white, .white, .white, .white
+        .white, .white, .white, .white, .white, .white, .white
     ]
 
     var body: some View {
