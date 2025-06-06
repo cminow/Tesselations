@@ -8,21 +8,19 @@
 import SwiftUI
 
 struct Mondrian: View {
-    @State private var depth: Int = 3
-    @State private var isTapped: Bool = false
+    @State private var depth: Int = 4
+    @State private var remainder: Int = .random(in: 0...1)
     
     private var colors: [Color] = [
-        .red,
-        .blue,
-        .yellow,
-        .white, .white, .white
+        .red, .red,
+        .blue, .blue,
+        .yellow, .yellow,
+        .white, .white, .white, .white
     ]
 
     var body: some View {
         VStack {
             Canvas { context, size in
-                // This needs to stay because the view won't update if the variable isn't used:
-                print(isTapped)
 
                 drawRect(x: 0.0,
                          y: 0.0,
@@ -32,7 +30,7 @@ struct Mondrian: View {
                          context: context)
             }
             .onTapGesture {
-                isTapped.toggle()
+                remainder = (remainder + 1) % 2
             }
         }
     }
@@ -46,8 +44,9 @@ struct Mondrian: View {
     
     private func drawRect(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, depth: Int, context: GraphicsContext) {
         if depth > 0 {
-            // Vertical split if it's less than 0.5
-            if Double.random(in: 0.0...1.0) < 0.5 {
+            if depth % 2 == remainder {
+                // Vertical split
+//                print("Vertical: \(depth)")
                 let sizePercentage: Double = .random(in: 0.3...0.8)
                 drawRect(x: x,
                          y: y,
@@ -63,6 +62,7 @@ struct Mondrian: View {
                          context: context)
             } else {
                 // Horizontal split:
+//                print("Horizontal: \(depth)")
                 let sizePercentage: Double = .random(in: 0.3...0.8)
                 drawRect(x: x,
                          y: y,
