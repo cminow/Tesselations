@@ -66,12 +66,14 @@
 				"Destination Views/SixPointedStarView.swift",
 				"Destination Views/SixSidedRosetteView.swift",
 				"Destination Views/SpikeyBlocksView.swift",
+				"Destination Views/TempTestView.swift",
 				"Destination Views/TrianglesView.swift",
 				"Destination Views/TwelvePointStarView.swift",
 				Extensions/CGFloat.swift,
 				Extensions/CGRect.swift,
 				Extensions/Shape.swift,
 				Geometry/Hexagon.swift,
+				Geometry/LayoutCircle.swift,
 			);
 			target = CB1B76082DEC99410058D08E /* Tessellations macOS */;
 		};
