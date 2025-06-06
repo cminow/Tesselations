@@ -75,6 +75,7 @@
 				Geometry/Hexagon.swift,
 				Geometry/LayoutCircle.swift,
 				Geometry/Octagon.swift,
+				Geometry/Square.swift,
 				Geometry/Triangle.swift,
 			);
 			target = CB1B76082DEC99410058D08E /* Tessellations macOS */;

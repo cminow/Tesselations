@@ -27,6 +27,10 @@ struct LayoutCircle {
         return Hexagon(center: center, radius: radius, direction: inscribedPathDirection, initialAngle: inscribedPolygonInitialAngle)
     }
 
+    var inscribedSquare: Square {
+        return Square(center: center, radius: radius, initialAngle: inscribedPolygonInitialAngle)
+    }
+    
     var inscribedTriangle: Triangle {
         return Triangle(center: center, radius: radius, initialAngle: inscribedPolygonInitialAngle)
     }
