@@ -15,9 +15,17 @@ struct TempTestView: View {
                 var layoutCircle1: LayoutCircle = LayoutCircle(center: .zero, radius: 150.0)
                 context.stroke(layoutCircle1.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
                 context.stroke(layoutCircle1.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                context.stroke(layoutCircle1.inscribedTriangle.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
                 
                 layoutCircle1.inscribedPathDirection = .northSouth
                 context.stroke(layoutCircle1.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                
+                
+                let layoutCircle2: LayoutCircle = LayoutCircle(center: .zero, radius: 75.0, inscribedPolygonInitialAngle: .degrees(0.0))
+                context.stroke(layoutCircle2.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                context.stroke(layoutCircle2.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                
+                context.stroke(layoutCircle2.inscribedHexagon.inscribedSixPointStarPath, with: .color(.cyan), style: .init(lineWidth: 1.0))
             }
         }
     }

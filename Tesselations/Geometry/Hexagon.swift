@@ -12,6 +12,7 @@ struct Hexagon {
     var radius: CGFloat
     var points: [CGPoint]
     var direction: HexDirection
+    var initialAngle: Angle
     
     var path: Path {
         var path: Path = Path()
@@ -37,7 +38,7 @@ struct Hexagon {
             insideHexPointOffset = 0
         }
         
-        let insideHexagon: Hexagon = Hexagon(center: center, radius: radius * radiusFactor, direction: insideHexDirection)
+        let insideHexagon: Hexagon = Hexagon(center: center, radius: radius * radiusFactor, direction: insideHexDirection, initialAngle: initialAngle)
         
         var path: Path = Path()
         path.move(to: points[0])
@@ -50,10 +51,11 @@ struct Hexagon {
         return path
     }
     
-    init(center: CGPoint, radius: CGFloat, direction: HexDirection = .eastWest) {
+    init(center: CGPoint, radius: CGFloat, direction: HexDirection = .eastWest, initialAngle: Angle = .degrees(0.0)) {
         self.center = center
         self.radius = radius
         self.direction = direction
+        self.initialAngle = initialAngle
         points = []
         for index in 0...5 {
             points.append(hexagonCorner(center: center, radius: radius, direction: direction, cornerIndex: index))
@@ -66,7 +68,7 @@ struct Hexagon {
             initialAngleOffset = CGFloat(30.0).radians
         }
         
-        let angle: CGFloat = (CGFloat(60).radians * CGFloat(cornerIndex)) + initialAngleOffset
+        let angle: CGFloat = (CGFloat(60).radians * CGFloat(cornerIndex)) + initialAngleOffset + initialAngle.radians
         let corner = CGPoint(
             x: center.x + radius * cos(angle),
             y: center.y + radius * sin(angle)
