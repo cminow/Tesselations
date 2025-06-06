@@ -21,11 +21,14 @@ struct TempTestView: View {
                 context.stroke(layoutCircle1.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
                 
                 
-                let layoutCircle2: LayoutCircle = LayoutCircle(center: .zero, radius: 75.0, inscribedPolygonInitialAngle: .degrees(0.0))
+                let layoutCircle2: LayoutCircle = LayoutCircle(center: .zero, radius: 100.0, inscribedPolygonInitialAngle: .degrees(0.0))
                 context.stroke(layoutCircle2.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
                 context.stroke(layoutCircle2.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
-                
                 context.stroke(layoutCircle2.inscribedHexagon.inscribedSixPointStarPath, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                
+                let layoutCircle3: LayoutCircle = LayoutCircle(center: .zero, radius: 50.0, inscribedPolygonInitialAngle: .degrees(22.50))
+                context.stroke(layoutCircle3.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                context.stroke(layoutCircle3.inscribedOctagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
             }
         }
     }

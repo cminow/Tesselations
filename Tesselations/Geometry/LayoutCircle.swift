@@ -19,6 +19,10 @@ struct LayoutCircle {
         self.inscribedPolygonInitialAngle = inscribedPolygonInitialAngle
     }
 
+    var inscribedOctagon: Octagon {
+        return Octagon(center: center, radius: radius, initialAngle: inscribedPolygonInitialAngle)
+    }
+    
     var inscribedHexagon: Hexagon {
         return Hexagon(center: center, radius: radius, direction: inscribedPathDirection, initialAngle: inscribedPolygonInitialAngle)
     }
