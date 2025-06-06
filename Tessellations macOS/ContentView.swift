@@ -14,6 +14,17 @@ struct ContentView: View {
         NavigationSplitView {
             List {
                 NavigationLink {
+                    TempTestView()
+                } label: {
+                    HStack {
+                        TempTestView()
+                            .frame(width: frameWidth, height: frameWidth)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        Text("Temp Test View")
+                    }
+                }
+
+                NavigationLink {
                     Mondrian()
                 } label: {
                     HStack {
