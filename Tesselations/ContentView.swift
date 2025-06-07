@@ -15,6 +15,17 @@ struct ContentView: View {
             VStack(alignment: .leading) {
                 List {
                     NavigationLink {
+                        AlternatingOctagonalStarsView(radius: 32.0)
+                    } label: {
+                        HStack {
+                            AlternatingOctagonalStarsView(radius: 32.0)
+                                .frame(width: frameWidth, height: frameWidth)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Alternating Octagonal Stars")
+                        }
+                    }
+
+                    NavigationLink {
                         SquaresAndStars(radius: 32.0)
                     } label: {
                         HStack {

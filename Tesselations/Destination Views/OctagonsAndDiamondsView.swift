@@ -14,7 +14,7 @@ struct OctagonsAndDiamondsView: View {
     }
     var body: some View {
         VStack {
-            Canvas { context, size in
+            Canvas(rendersAsynchronously: true) { context, size in
                 let rows = size.height / blockWidth
                 let columns = size.width / blockWidth
                 

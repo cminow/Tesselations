@@ -12,7 +12,7 @@ struct TwelvePointStarView: View {
 
     var body: some View {
         VStack {
-            Canvas { context, size in
+            Canvas(rendersAsynchronously: true) { context, size in
                 let rows: CGFloat = (size.height * 1.5) / radius
                 let columns: CGFloat = size.width / radius
                 let backgroundRect: CGRect = context.clipBoundingRect

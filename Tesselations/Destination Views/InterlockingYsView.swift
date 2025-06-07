@@ -14,7 +14,7 @@ struct InterlockingYsView: View {
 
     var body: some View {
         VStack {
-            Canvas { context, size in
+            Canvas(rendersAsynchronously: true) { context, size in
                 let rows = (size.height * 1.5) / hexRadius
                 let columns = size.width / hexRadius
                 

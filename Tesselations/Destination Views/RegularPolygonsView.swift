@@ -12,7 +12,7 @@ struct RegularPolygonsView: View {
 
     var body: some View {
         VStack {
-            Canvas { context, size in
+            Canvas(rendersAsynchronously: true) { context, size in
                 let rows: CGFloat = size.height / objectRadius
                 let columns: CGFloat = size.width / objectRadius
                 for row in 0...Int(rows) {

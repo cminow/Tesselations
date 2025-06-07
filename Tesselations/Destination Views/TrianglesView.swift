@@ -13,7 +13,7 @@ struct TrianglesView: View {
 
     var body: some View {
         VStack {
-            Canvas { context, size in
+            Canvas(rendersAsynchronously: true) { context, size in
                 let rows = size.height / hexRadius
                 let columns = (size.width * (1.0 + halfSqrt3 )) / hexRadius
                 
