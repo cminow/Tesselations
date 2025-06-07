@@ -51,6 +51,7 @@
 		CB1B76352DEC9A3E0058D08E /* Exceptions for "Tesselations" folder in "Tessellations macOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"Destination Views/AlternatingOctagonalStarsView.swift",
 				"Destination Views/ArcsView.swift",
 				"Destination Views/EastWestHexagonsView.swift",
 				"Destination Views/EightPointStarView.swift",
