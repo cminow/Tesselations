@@ -125,6 +125,17 @@ struct ContentView: View {
                     }
 
                     NavigationLink {
+                        OctagonsAndStarsView(radius: 32.0)
+                    } label: {
+                        HStack {
+                            OctagonsAndStarsView(radius: 16.0)
+                                .frame(width: frameWidth, height: frameWidth)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Octagons and Stars")
+                        }
+                    }
+
+                    NavigationLink {
                         TrianglesView(hexRadius: 32.0)
                     } label: {
                         HStack {
