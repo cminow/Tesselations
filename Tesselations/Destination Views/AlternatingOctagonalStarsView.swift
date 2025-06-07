@@ -11,9 +11,11 @@ struct AlternatingOctagonalStarsView: View {
     var radius: CGFloat
     var body: some View {
         VStack {
-            Canvas { context, size in
+            Canvas(rendersAsynchronously: true) { context, size in
                 let rows: CGFloat = size.height / radius
                 let columns: CGFloat = size.width / radius
+                let rect: CGRect = context.clipBoundingRect
+                context.fill(Rectangle().path(in: rect), with: .color(.white))
                 
                 var remainder: Int = 0
                 for row in 0...Int(rows) {
