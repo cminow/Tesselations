@@ -15,6 +15,17 @@ struct ContentView: View {
             VStack(alignment: .leading) {
                 List {
                     NavigationLink {
+                        SquaresAndStars(radius: 32.0)
+                    } label: {
+                        HStack {
+                            SquaresAndStars(radius: 16.0)
+                                .frame(width: frameWidth, height: frameWidth)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Squares and Stars")
+                        }
+                    }
+
+                    NavigationLink {
                         Mondrian()
                     } label: {
                         HStack {
