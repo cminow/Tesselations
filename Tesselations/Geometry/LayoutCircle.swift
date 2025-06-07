@@ -10,13 +10,14 @@ import SwiftUI
 struct LayoutCircle {
     var center: CGPoint
     var radius: CGFloat
-    var inscribedPathDirection: HexDirection = .eastWest
+    var inscribedPathDirection: HexDirection
     var inscribedPolygonInitialAngle: Angle
     
-    init(center: CGPoint, radius: CGFloat, inscribedPolygonInitialAngle: Angle = .degrees(0.0)) {
+    init(center: CGPoint, radius: CGFloat, inscribedPathDirection: HexDirection = .eastWest, inscribedPolygonInitialAngle: Angle = .degrees(0.0)) {
         self.center = center
         self.radius = radius
         self.inscribedPolygonInitialAngle = inscribedPolygonInitialAngle
+        self.inscribedPathDirection = inscribedPathDirection
     }
 
     var inscribedOctagon: Octagon {

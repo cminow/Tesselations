@@ -14,13 +14,13 @@ struct ContentView: View {
         NavigationSplitView {
             List {
                 NavigationLink {
-                    TempTestView()
+                    SquaresAndStars(radius: 32.0)
                 } label: {
                     HStack {
-                        TempTestView()
+                        SquaresAndStars(radius: 16.0)
                             .frame(width: frameWidth, height: frameWidth)
                             .clipShape(RoundedRectangle(cornerRadius: 8))
-                        Text("Temp Test View")
+                        Text("Squares and Stars")
                     }
                 }
 

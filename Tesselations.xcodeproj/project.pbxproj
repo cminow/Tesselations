@@ -66,6 +66,7 @@
 				"Destination Views/SixPointedStarView.swift",
 				"Destination Views/SixSidedRosetteView.swift",
 				"Destination Views/SpikeyBlocksView.swift",
+				"Destination Views/SquaresAndStars.swift",
 				"Destination Views/TempTestView.swift",
 				"Destination Views/TrianglesView.swift",
 				"Destination Views/TwelvePointStarView.swift",
