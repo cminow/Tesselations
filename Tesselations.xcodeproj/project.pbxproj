@@ -38,7 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CB1B76092DEC99410058D08E /* Tessellations macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tessellations macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB1B76092DEC99410058D08E /* Tessellations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tessellations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB1B76192DEC99420058D08E /* Tessellations macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tessellations macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB1B76232DEC99420058D08E /* Tessellations macOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tessellations macOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB89DDF82DDF974C006399AE /* Tessellations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tessellations.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,7 +186,7 @@
 				CB89DDF82DDF974C006399AE /* Tessellations.app */,
 				CB89DE082DDF974C006399AE /* TessellationsTests.xctest */,
 				CB89DE122DDF974C006399AE /* TessellationsUITests.xctest */,
-				CB1B76092DEC99410058D08E /* Tessellations macOS.app */,
+				CB1B76092DEC99410058D08E /* Tessellations.app */,
 				CB1B76192DEC99420058D08E /* Tessellations macOSTests.xctest */,
 				CB1B76232DEC99420058D08E /* Tessellations macOSUITests.xctest */,
 			);
@@ -215,7 +215,7 @@
 			packageProductDependencies = (
 			);
 			productName = "Tessellations macOS";
-			productReference = CB1B76092DEC99410058D08E /* Tessellations macOS.app */;
+			productReference = CB1B76092DEC99410058D08E /* Tessellations.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CB1B76182DEC99420058D08E /* Tessellations macOSTests */ = {
@@ -527,7 +527,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cminow.Tessellations-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Tessellations;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -557,7 +557,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cminow.Tessellations-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Tessellations;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
