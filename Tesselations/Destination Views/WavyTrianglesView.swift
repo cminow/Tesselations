@@ -29,18 +29,25 @@ struct WavyTrianglesView: View {
                             y: Double(row) * radius * 3.0
                         )
                         let triangle: Path = trianglePath(center: center, radius: radius)
-                        context.fill(triangle, with: .color(.blue))
+                        let brightness: Double = .random(in: 0.80...1.0)
+                        context.fill(triangle, with: .color(.init(Color(hue: 0.5750, saturation: 1.0, brightness: brightness))))
 
-                        let hexagon: Hexagon = Hexagon(center: center, radius: radius * (.sqrt3 / 2.450))
-                        context.fill(hexagon.path, with: .color(.white))
+                        let hexagon: Hexagon = Hexagon(center: center, radius: radius * (.sqrt3 / 2.350))
+                        let brightness1: Double = .random(in: 0.950...1.0)
+                        context.fill(hexagon.path, with: .color(.init(white: brightness1)))
                         
                         let blackStarCenter: CGPoint = CGPoint(
                             x: center.x + radius * .sqrt3,
                             y: center.y - radius
                         )
                         
-                        let hexagon2: Hexagon = Hexagon(center: blackStarCenter, radius: radius * (.sqrt3 / 2.450))
-                        context.fill(hexagon2.inscribedSixPointStarPath, with: .color(.black))
+                        let triangle2: Path = trianglePath(center: blackStarCenter, radius: -radius)
+                        let whiteness: Double = .random(in: 0.90...01.0)
+                        context.fill(triangle2, with: .color(.init(white: whiteness)))
+                        
+                        let hexagon2: Hexagon = Hexagon(center: blackStarCenter, radius: radius * (.sqrt3 / 2.350))
+                        let brightness2: Double = .random(in: 0.15...0.35)
+                        context.fill(hexagon2.inscribedSixPointStarPath, with: .color(.init(white: brightness2)))
                     }
                 }
             }
@@ -104,5 +111,5 @@ struct WavyTrianglesView: View {
 }
 
 #Preview {
-    WavyTrianglesView(radius: 32)
+    WavyTrianglesView(radius: 16)
 }
