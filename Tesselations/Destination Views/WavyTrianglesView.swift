@@ -12,19 +12,37 @@ struct WavyTrianglesView: View {
 
     var body: some View {
         VStack {
-            Canvas { context, size in
+            Canvas(rendersAsynchronously: true) { context, size in
                 let rows: CGFloat = (size.height * 1.5) / radius
                 let columns: CGFloat = size.width / radius
-                context.translateBy(x: size.width / 2.0, y: size.height / 2.0)
+                let backgroundRect: CGRect = context.clipBoundingRect
+                context.fill(Rectangle().path(in: backgroundRect), with: .color(.white))
                 
-                let center: CGPoint = .zero
-                let triangle: Path = trianglePath(center: center, radius: radius)
-                context.fill(triangle, with: .color(.blue))
+                for row in 0...Int(rows) {
+                    var rowOffset: CGFloat = 0.0
+                    if row % 2 == 1 {
+                        rowOffset = -.sqrt3
+                    }
+                    for column in -1...Int(columns) {
+                        let center: CGPoint = CGPoint(
+                            x: Double(column) * radius * .sqrt3 * 2.0 + (radius * rowOffset),
+                            y: Double(row) * radius * 3.0
+                        )
+                        let triangle: Path = trianglePath(center: center, radius: radius)
+                        context.fill(triangle, with: .color(.blue))
 
-                let center2: CGPoint = CGPoint(x: radius * .sqrt3, y: -radius * 1.0)
-                let triangle2: Path = trianglePath(center: center2, radius: -radius)
-                context.fill(triangle2, with: .color(.red))
-
+                        let hexagon: Hexagon = Hexagon(center: center, radius: radius * (.sqrt3 / 2.450))
+                        context.fill(hexagon.path, with: .color(.white))
+                        
+                        let blackStarCenter: CGPoint = CGPoint(
+                            x: center.x + radius * .sqrt3,
+                            y: center.y - radius
+                        )
+                        
+                        let hexagon2: Hexagon = Hexagon(center: blackStarCenter, radius: radius * (.sqrt3 / 2.450))
+                        context.fill(hexagon2.inscribedSixPointStarPath, with: .color(.black))
+                    }
+                }
             }
         }
     }
@@ -36,7 +54,7 @@ struct WavyTrianglesView: View {
             x: center.x - radius * .sqrt3 / 2.0,
             y: center.y + radius * 1.5
         )
-        let layoutCircle1: LayoutCircle = .init(center: bottomLeftCenterPoint, radius: radius, inscribedPathDirection: .northSouth)
+//        let layoutCircle1: LayoutCircle = .init(center: bottomLeftCenterPoint, radius: radius, inscribedPathDirection: .northSouth)
         path.addArc(center: bottomLeftCenterPoint,
                     radius: radius,
                     startAngle: .degrees(210.0),
@@ -52,7 +70,7 @@ struct WavyTrianglesView: View {
             x: center.x + radius * .sqrt3,
             y: center.y
         )
-        let layoutCircle2: LayoutCircle = .init(center: rightCenterPoint, radius: radius, inscribedPathDirection: .northSouth)
+//        let layoutCircle2: LayoutCircle = .init(center: rightCenterPoint, radius: radius, inscribedPathDirection: .northSouth)
         path.addArc(center: rightCenterPoint,
                     radius: radius,
                     startAngle: .degrees(90),
@@ -68,7 +86,7 @@ struct WavyTrianglesView: View {
             x: center.x - radius * .sqrt3 / 2.0,
             y: center.y - radius * 1.5
         )
-        let leftLayoutCircle: LayoutCircle = .init(center: topLeftPoint, radius: radius, inscribedPathDirection: .northSouth)
+//        let leftLayoutCircle: LayoutCircle = .init(center: topLeftPoint, radius: radius, inscribedPathDirection: .northSouth)
 
         path.addArc(center: topLeftPoint,
                     radius: radius,

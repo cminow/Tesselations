@@ -14,13 +14,13 @@ struct ContentView: View {
         NavigationSplitView {
             List {
                 NavigationLink {
-                    WavyTrianglesView(radius: 32.0)
+                    WavyTrianglesView(radius: 16.0)
                 } label: {
                     HStack {
-                        WavyTrianglesView(radius: 32.0)
+                        WavyTrianglesView(radius: 8.0)
                             .frame(width: frameWidth, height: frameWidth)
                             .clipShape(RoundedRectangle(cornerRadius: 8))
-                        Text("Alternating Octagonal Stars")
+                        Text("Wavy Triangles")
                     }
                 }
 
