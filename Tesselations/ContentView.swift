@@ -15,6 +15,17 @@ struct ContentView: View {
             VStack(alignment: .leading) {
                 List {
                     NavigationLink {
+                        WavyTrianglesView(radius: 16.0)
+                    } label: {
+                        HStack {
+                            WavyTrianglesView(radius: 8.0)
+                                .frame(width: frameWidth, height: frameWidth)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Wavy Triangles")
+                        }
+                    }
+
+                    NavigationLink {
                         AlternatingOctagonalStarsView(radius: 32.0)
                     } label: {
                         HStack {
