@@ -53,6 +53,7 @@
 			membershipExceptions = (
 				"Destination Views/AlternatingOctagonalStarsView.swift",
 				"Destination Views/ArcsView.swift",
+				"Destination Views/BlackAndWhiteBlocksView.swift",
 				"Destination Views/EastWestHexagonsView.swift",
 				"Destination Views/EightPointStarView.swift",
 				"Destination Views/HexagonalLatticeView.swift",
