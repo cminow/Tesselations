@@ -17,25 +17,45 @@ struct BlackAndWhiteBlocksView: View {
                 context.translateBy(x: size.width / 2.0, y: size.height / 2.0)
 
                 let center: CGPoint = .zero
-                let layoutCircle1: LayoutCircle = LayoutCircle(center: center, radius: blockWidth, inscribedPolygonInitialAngle: .degrees(45))
+                let layoutCircle1: LayoutCircle = LayoutCircle(center: center, radius: blockWidth, inscribedPolygonInitialAngle: .degrees(45.0))
                 context.stroke(layoutCircle1.inscribedSquare.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+
+                let hypotenuse: CGFloat = blockWidth
+                let shortSide: CGFloat = (hypotenuse * .sqrt3) / 2.0
+                let longSide: CGFloat = hypotenuse / 2.0
                 
-                let newCenter: CGPoint = CGPoint(x: center.x + blockWidth / sqrt(2) / 16, y: center.y + blockWidth *  sqrt(2) / 2.0)
-                let layoutCircle2: LayoutCircle = LayoutCircle(center: newCenter, radius: blockWidth / 1.50)
-                context.stroke(layoutCircle2.inscribedTriangle.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                let newHypotenuse: CGFloat = shortSide
+                let newShortSide: CGFloat = (newHypotenuse * .sqrt3) / 2.0
+                let newLongSide: CGFloat = newHypotenuse / 2.0
                 
-                let newCenter2: CGPoint = CGPoint(x: center.x - blockWidth / sqrt(2) / 16, y: center.y - blockWidth *  sqrt(2) / 2.0)
-                let layoutCircle3: LayoutCircle = LayoutCircle(center: newCenter2, radius: -blockWidth / 1.50)
-                context.stroke(layoutCircle3.inscribedTriangle.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
                 
-                let newCenter3: CGPoint = CGPoint(x: center.x - blockWidth *  sqrt(2) / 2.0, y: center.y + blockWidth / sqrt(2) / 16)
-                let layoutCircle4: LayoutCircle = LayoutCircle(center: newCenter3, radius: blockWidth / 1.50, inscribedPolygonInitialAngle: .degrees(-30))
-                context.stroke(layoutCircle4.inscribedTriangle.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                for index in 1...4 {
+                    var path: Path = Path()
+                    let point1: CGPoint = CGPoint(
+                        x: layoutCircle1.inscribedSquare.points[0].x,
+                        y: layoutCircle1.inscribedSquare.points[0].y
+                    )
+                    path.move(to: point1)
+                    
+                    let point2: CGPoint = CGPoint(
+                        x: center.x + blockWidth / 1.9 - newShortSide / 2.0,
+                        y: center.y - newLongSide
+                    )
+                    path.addLine(to: point2)
+                    let point3: CGPoint = CGPoint(
+                        x: layoutCircle1.inscribedSquare.points[3].x,
+                        y: layoutCircle1.inscribedSquare.points[3].y
+                    )
+                    path.addLine(to: point3)
+                    path.addLine(to: point1)
+                    
+                    context.stroke(path, with: .color(.black), style: .init(lineWidth: 6.0, lineJoin: .round))
+                    context.rotate(by: .degrees(Double(index) * 90.0))
+                    
+                }
                 
-                let newCenter4: CGPoint = CGPoint(x: center.x + blockWidth *  sqrt(2) / 2.0, y: center.y - blockWidth / sqrt(2) / 16)
-                let layoutCircle5: LayoutCircle = LayoutCircle(center: newCenter4, radius: -blockWidth / 1.50, inscribedPolygonInitialAngle: .degrees(-30))
-                context.stroke(layoutCircle5.inscribedTriangle.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
                 
+
 //                for row in 0...Int(rows) {
 //                    for column in 0...Int(columns) {
 //                        
@@ -47,5 +67,5 @@ struct BlackAndWhiteBlocksView: View {
 }
 
 #Preview {
-    BlackAndWhiteBlocksView(blockWidth: 128.0)
+    BlackAndWhiteBlocksView(blockWidth: 64)
 }
