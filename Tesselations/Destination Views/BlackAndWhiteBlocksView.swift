@@ -14,58 +14,87 @@ struct BlackAndWhiteBlocksView: View {
             Canvas { context, size in
                 let rows: CGFloat = size.height / blockWidth
                 let columns: CGFloat = size.width / blockWidth
-                context.translateBy(x: size.width / 2.0, y: size.height / 2.0)
+//                context.translateBy(x: size.width / 2.0, y: size.height / 2.0)
 
-                let center: CGPoint = .zero
-                let layoutCircle1: LayoutCircle = LayoutCircle(center: center, radius: blockWidth, inscribedPolygonInitialAngle: .degrees(45.0))
-                context.stroke(layoutCircle1.inscribedSquare.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                
+                
+                for row in 0...Int(rows) {
+                    for column in 0...Int(columns) {
 
-                let hypotenuse: CGFloat = blockWidth
-                let shortSide: CGFloat = (hypotenuse * .sqrt3) / 2.0
-                let longSide: CGFloat = hypotenuse / 2.0
-                
-                let newHypotenuse: CGFloat = shortSide
-                let newShortSide: CGFloat = (newHypotenuse * .sqrt3) / 2.0
-                let newLongSide: CGFloat = newHypotenuse / 2.0
-                
-                
-                for index in 1...4 {
-                    var path: Path = Path()
-                    let point1: CGPoint = CGPoint(
-                        x: layoutCircle1.inscribedSquare.points[0].x,
-                        y: layoutCircle1.inscribedSquare.points[0].y
-                    )
-                    path.move(to: point1)
-                    
-                    let point2: CGPoint = CGPoint(
-                        x: center.x + blockWidth / 1.9 - newShortSide / 2.0,
-                        y: center.y - newLongSide
-                    )
-                    path.addLine(to: point2)
-                    let point3: CGPoint = CGPoint(
-                        x: layoutCircle1.inscribedSquare.points[3].x,
-                        y: layoutCircle1.inscribedSquare.points[3].y
-                    )
-                    path.addLine(to: point3)
-                    path.addLine(to: point1)
-                    
-                    context.stroke(path, with: .color(.black), style: .init(lineWidth: 6.0, lineJoin: .round))
-                    context.rotate(by: .degrees(Double(index) * 90.0))
-                    
+                        var center: CGPoint = CGPoint(
+                            x: Double(column) * blockWidth * 2.0,
+                            y: Double(row) * blockWidth * 2.0
+                        )
+                        let layoutCircle1: LayoutCircle = LayoutCircle(center: center, radius: blockWidth, inscribedPolygonInitialAngle: .degrees(45.0))
+
+                        let shoulderIndent: CGFloat = blockWidth / 6.0
+                        let halfBlockWidth: CGFloat = blockWidth / 2.0
+                        
+                        for _ in 0...1 {
+                            var path: Path = Path()
+                            path.move(to: center)
+                            path.addLine(to: CGPoint(x: center.x + halfBlockWidth - shoulderIndent, y: center.y - halfBlockWidth))
+                            path.addLine(to: CGPoint(x: center.x + halfBlockWidth, y: center.y - halfBlockWidth))
+                            path.addLine(to: CGPoint(x: center.x + halfBlockWidth, y: center.y - halfBlockWidth + shoulderIndent))
+                            path.addLine(to: CGPoint(x: center.x + blockWidth, y: center.y))
+                            path.addLine(to: CGPoint(x: center.x + halfBlockWidth, y: center.y + halfBlockWidth -  shoulderIndent))
+                            path.addLine(to: CGPoint(x: center.x + halfBlockWidth, y: center.y + halfBlockWidth))
+                            path.addLine(to: CGPoint(x: center.x + halfBlockWidth, y: center.y + halfBlockWidth))
+                            path.addLine(to: CGPoint(x: center.x + halfBlockWidth - shoulderIndent, y: center.y + halfBlockWidth))
+                            path.addLine(to: center)
+                            path.closeSubpath()
+                            context.fill(path, with: .color(.black))
+                            
+                            var path2: Path = Path()
+                            path2.move(to: center)
+                            path2.addLine(to: CGPoint(x: center.x - halfBlockWidth + shoulderIndent, y: center.y - halfBlockWidth))
+                            path2.addLine(to: CGPoint(x: center.x - halfBlockWidth, y: center.y - halfBlockWidth))
+                            path2.addLine(to: CGPoint(x: center.x - halfBlockWidth, y: center.y - halfBlockWidth + shoulderIndent))
+                            path2.addLine(to: CGPoint(x: center.x - blockWidth, y: center.y))
+                            path2.addLine(to: CGPoint(x: center.x - halfBlockWidth, y: center.y + halfBlockWidth -  shoulderIndent))
+                            path2.addLine(to: CGPoint(x: center.x - halfBlockWidth, y: center.y + halfBlockWidth))
+                            path2.addLine(to: CGPoint(x: center.x - halfBlockWidth, y: center.y + halfBlockWidth))
+                            path2.addLine(to: CGPoint(x: center.x - halfBlockWidth + shoulderIndent, y: center.y + halfBlockWidth))
+                            path2.addLine(to: center)
+                            path2.closeSubpath()
+                            context.fill(path2, with: .color(.black))
+                            
+                            var path3: Path = Path()
+                            path3.move(to: center)
+                            path3.addLine(to: CGPoint(x: center.x - halfBlockWidth + shoulderIndent, y: center.y - halfBlockWidth))
+                            path3.addLine(to: CGPoint(x: center.x - halfBlockWidth, y: center.y - halfBlockWidth))
+                            path3.addLine(to: CGPoint(x: center.x - halfBlockWidth, y: center.y - halfBlockWidth - shoulderIndent))
+                            path3.addLine(to: CGPoint(x: center.x, y: center.y - blockWidth))
+                            path3.addLine(to: CGPoint(x: center.x + halfBlockWidth, y: center.y - halfBlockWidth - shoulderIndent))
+                            path3.addLine(to: CGPoint(x: center.x + halfBlockWidth, y: center.y - halfBlockWidth))
+                            path3.addLine(to: CGPoint(x: center.x + halfBlockWidth -  shoulderIndent, y: center.y - halfBlockWidth))
+                            path3.addLine(to: center)
+                            path3.closeSubpath()
+                            context.fill(path3, with: .color(.white))
+                            
+                            var path4: Path = Path()
+                            path4.move(to: center)
+                            path4.addLine(to: CGPoint(x: center.x - halfBlockWidth + shoulderIndent, y: center.y + halfBlockWidth))
+                            path4.addLine(to: CGPoint(x: center.x - halfBlockWidth, y: center.y + halfBlockWidth))
+                            path4.addLine(to: CGPoint(x: center.x - halfBlockWidth, y: center.y + halfBlockWidth + shoulderIndent))
+                            path4.addLine(to: CGPoint(x: center.x, y: center.y + blockWidth))
+                            path4.addLine(to: CGPoint(x: center.x + halfBlockWidth, y: center.y + halfBlockWidth + shoulderIndent))
+                            path4.addLine(to: CGPoint(x: center.x + halfBlockWidth, y: center.y + halfBlockWidth))
+                            path4.addLine(to: CGPoint(x: center.x + halfBlockWidth - shoulderIndent, y: center.y + halfBlockWidth))
+                            path4.addLine(to: center)
+                            path4.closeSubpath()
+                            context.fill(path4, with: .color(.white))
+                            
+                            center.x += blockWidth
+                            center.y += blockWidth
+                        }
+                    }
                 }
-                
-                
-
-//                for row in 0...Int(rows) {
-//                    for column in 0...Int(columns) {
-//                        
-//                    }
-//                }
             }
         }
     }
 }
 
 #Preview {
-    BlackAndWhiteBlocksView(blockWidth: 64)
+    BlackAndWhiteBlocksView(blockWidth: 32)
 }
