@@ -25,6 +25,17 @@ struct ContentView: View {
                 }
 
                 NavigationLink {
+                    BlackAndWhiteBlocksView(blockWidth: 32.0)
+                } label: {
+                    HStack {
+                        BlackAndWhiteBlocksView(blockWidth: 16.0)
+                            .frame(width: frameWidth, height: frameWidth)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        Text("Alternating Blocks")
+                    }
+                }
+
+                NavigationLink {
                     AlternatingOctagonalStarsView(radius: 32.0)
                 } label: {
                     HStack {

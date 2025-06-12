@@ -70,7 +70,7 @@ struct BlackAndWhiteBlocksView: View {
                             path3.addLine(to: CGPoint(x: center.x + halfBlockWidth -  shoulderIndent, y: center.y - halfBlockWidth))
                             path3.addLine(to: center)
                             path3.closeSubpath()
-                            context.fill(path3, with: .color(.white))
+                            context.fill(path3, with: .color(.blue))
                             
                             var path4: Path = Path()
                             path4.move(to: center)
@@ -83,7 +83,7 @@ struct BlackAndWhiteBlocksView: View {
                             path4.addLine(to: CGPoint(x: center.x + halfBlockWidth - shoulderIndent, y: center.y + halfBlockWidth))
                             path4.addLine(to: center)
                             path4.closeSubpath()
-                            context.fill(path4, with: .color(.white))
+                            context.fill(path4, with: .color(.blue))
                             
                             center.x += blockWidth
                             center.y += blockWidth
