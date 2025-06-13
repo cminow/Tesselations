@@ -51,7 +51,7 @@ struct WavyTrianglesAlternateView: View {
                         var flipFactor: CGFloat = 1.0
                         for index in 0...5 {
                             let path = trianglePath(center: innerLayoutCircle.inscribedHexagon.points[index], radius: radius * 0.2 * flipFactor)
-                            context.fill(path, with: .color(.black))
+                            context.fill(path, with: .radialGradient(Gradient(colors: [.black, .red]), center: center, startRadius: radius, endRadius: 0.0))
                             flipFactor = -flipFactor
                         }
                         
