@@ -15,21 +15,46 @@ struct WavyTrianglesAlternateView: View {
             Canvas { context, size in
                 let rows: CGFloat = size.height / radius
                 let columns: CGFloat = size.width / radius
-                
-                
-                for row in 0...Int(rows) {
-                    var flipFactor: CGFloat = -1.0
-                    for column in 0...Int(columns) {
-                        
-                        let center: CGPoint = CGPoint(
-                            x: Double(column) * radius * 1.50,
-                            y: Double(row) * radius * 1.5
-                        )
-                        let path: Path = trianglePath(center: center, radius: radius / .sqrt3 / 1.50 * flipFactor)
+                let backgroundRect: CGRect = context.clipBoundingRect
+                context.fill(Rectangle().path(in: backgroundRect), with: .color(.red))
 
-                        context.fill(path, with: .color(.black))
+                for row in 0...Int(rows) {
+                    for column in 0...Int(columns) {
+                        var columnOffset: CGFloat = 0.0
+                        var degreeOffset: CGFloat = 15.0
+                        var radiusFactor: CGFloat = 0.515
                         
-                        flipFactor = -flipFactor
+                        
+                        if column % 2 != 0 {
+                            columnOffset = radius * sqrt(3) / 2.0
+                        }
+
+                        if row % 2 != 0 {
+                            degreeOffset = -45.0
+                            radiusFactor = 0.565
+                        } else {
+                            degreeOffset = 15.0
+                        }
+
+                        let center = CGPoint(
+                            x: Double(column) * radius * 1.5,
+                            y: Double(row) * radius * sqrt(3) + columnOffset
+                        )
+                        
+                        let mainLayoutCircle: LayoutCircle = LayoutCircle(center: center, radius: radius)
+//                        context.stroke(mainLayoutCircle.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                        context.fill(mainLayoutCircle.inscribedHexagon.path,
+                                     with: .radialGradient(Gradient(colors: [.red, .blue, .yellow]), center: center, startRadius: radius, endRadius: 0.0))
+                        
+                        let innerLayoutCircle: LayoutCircle = LayoutCircle(center: center, radius: radius * radiusFactor, inscribedPolygonInitialAngle: .degrees(degreeOffset))
+//                        context.stroke(innerLayoutCircle.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+                        var flipFactor: CGFloat = 1.0
+                        for index in 0...5 {
+                            let path = trianglePath(center: innerLayoutCircle.inscribedHexagon.points[index], radius: radius * 0.2 * flipFactor)
+                            context.fill(path, with: .color(.black))
+                            flipFactor = -flipFactor
+                        }
+                        
                     }
                 }
             }
@@ -92,5 +117,5 @@ struct WavyTrianglesAlternateView: View {
 }
 
 #Preview {
-    WavyTrianglesAlternateView(radius: 32.0)
+    WavyTrianglesAlternateView(radius: 64)
 }
