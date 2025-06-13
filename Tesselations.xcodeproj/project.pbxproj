@@ -72,6 +72,7 @@
 				"Destination Views/SquaresAndStars.swift",
 				"Destination Views/TrianglesView.swift",
 				"Destination Views/TwelvePointStarView.swift",
+				"Destination Views/WavyTrianglesAlternateView.swift",
 				"Destination Views/WavyTrianglesView.swift",
 				Extensions/CGFloat.swift,
 				Extensions/CGRect.swift,
