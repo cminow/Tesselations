@@ -248,6 +248,17 @@ struct ContentView: View {
                     }
 
                     NavigationLink {
+                        HalfCirclesView(radius: 24.0)
+                    } label: {
+                        HStack {
+                            HalfCirclesView(radius: 8.0)
+                                .frame(width: frameWidth, height: frameWidth)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text("Half Circles Pattern")
+                        }
+                    }
+
+                    NavigationLink {
                         WavyTrianglesAlternateView(radius: 64.0)
                     } label: {
                         HStack {

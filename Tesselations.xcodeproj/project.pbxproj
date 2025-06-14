@@ -56,6 +56,7 @@
 				"Destination Views/BlackAndWhiteBlocksView.swift",
 				"Destination Views/EastWestHexagonsView.swift",
 				"Destination Views/EightPointStarView.swift",
+				"Destination Views/HalfCirclesView.swift",
 				"Destination Views/HexagonalLatticeView.swift",
 				"Destination Views/InterlockingYsView.swift",
 				"Destination Views/Mondrian.swift",
