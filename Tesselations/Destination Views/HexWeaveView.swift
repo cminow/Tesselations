@@ -34,6 +34,15 @@ struct HexWeaveView: View {
                         
                         let innerCircle: LayoutCircle = LayoutCircle(center: center, radius: radius * 0.5775)
 //                        context.stroke(innerCircle.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
+
+                        context.fill(innerCircle.inscribedHexagon.path,
+                                     with: .radialGradient(Gradient(colors: [.init(red: 0.20, green: 0.0, blue: 0.20), .purple]),
+                                                           center: center,
+                                                           startRadius: radius * 0.675,
+                                                           endRadius: 0.0))
+                        context.stroke(innerCircle.inscribedHexagon.path, with: .color(.white), style: .init(lineWidth: outlineWidth, lineCap: .round, lineJoin: .round))
+                        
+                        context.stroke(innerCircle.inscribedHexagon.inscribedSixPointStarPath, with: .color(.white), style: .init(lineWidth: outlineWidth, lineCap: .round, lineJoin: .round))
                         
                         var path1 = Path()
                         let point1: CGPoint = CGPoint(
