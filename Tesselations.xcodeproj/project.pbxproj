@@ -58,6 +58,7 @@
 				"Destination Views/EightPointStarView.swift",
 				"Destination Views/HalfCirclesView.swift",
 				"Destination Views/HexagonalLatticeView.swift",
+				"Destination Views/HexWeaveView.swift",
 				"Destination Views/InterlockingYsView.swift",
 				"Destination Views/Mondrian.swift",
 				"Destination Views/MoreHexagons.swift",

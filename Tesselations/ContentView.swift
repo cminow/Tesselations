@@ -16,6 +16,17 @@ struct ContentView: View {
                 List {
                     Section(header: Text("Tessellations")) {
                         NavigationLink {
+                            HexWeaveView(radius: 32.0)
+                        } label: {
+                            HStack {
+                                HexWeaveView(radius: 16.0)
+                                    .frame(width: frameWidth, height: frameWidth)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                Text("Hexagonal Weave")
+                            }
+                        }
+
+                        NavigationLink {
                             WavyTrianglesView(radius: 16.0)
                         } label: {
                             HStack {
