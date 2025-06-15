@@ -58,7 +58,9 @@ struct HexWeaveView: View {
                         path1.addLine(to: point4)
                         path1.addLine(to: point1)
                         path1.closeSubpath()
-                        context.fill(path1, with: .color(.red))
+                        context.fill(path1,
+                                     with: .linearGradient(
+                                        Gradient(colors: [.init(red: 0.75, green: 0.0, blue: 0.0), .red, .red, .init(red: 0.75, green: 0.0, blue: 0.0)]), startPoint: point1, endPoint: point3))
 
                         var path2: Path = Path()
                         
@@ -77,7 +79,10 @@ struct HexWeaveView: View {
                         path2.addLine(to: layoutCircle1.inscribedHexagon.points[0])
                         path2.addLine(to: point5)
                         path2.closeSubpath()
-                        context.fill(path2, with: .color(.blue))
+                        context.fill(path2,
+                                     with: .linearGradient(Gradient(colors: [.init(red: 0.0, green: 0.0, blue: 0.75), .blue, .blue, .init(red: 0.0, green: 0.0, blue: 0.75)]),
+                                                           startPoint: point6,
+                                                           endPoint: layoutCircle1.inscribedHexagon.points[0]))
 
                         var path3: Path = Path()
                         path3.move(to: innerCircle.inscribedHexagon.points[0])
@@ -89,7 +94,7 @@ struct HexWeaveView: View {
                         path3.addLine(to: point8)
                         path3.addLine(to: layoutCircle1.inscribedHexagon.points[1])
                         path3.addLine(to: innerCircle.inscribedHexagon.points[0])
-                        context.fill(path3, with: .color(.yellow))
+                        context.fill(path3, with: .linearGradient(Gradient(colors: [.init(red: 0.75, green: 0.75, blue: 0.0), .yellow, .yellow, .init(red: 0.75, green: 0.75, blue: 0.0)]), startPoint: innerCircle.inscribedHexagon.points[0], endPoint: innerCircle.inscribedHexagon.points[2]))
                         
                         context.stroke(path1, with: .color(.white), style: .init(lineWidth: outlineWidth, lineCap: .round, lineJoin: .round))
                         context.stroke(path2, with: .color(.white), style: .init(lineWidth: outlineWidth, lineCap: .round, lineJoin: .round))
@@ -103,5 +108,5 @@ struct HexWeaveView: View {
 }
 
 #Preview {
-    HexWeaveView(radius: 32)
+    HexWeaveView(radius: 64)
 }
