@@ -19,6 +19,7 @@ struct HexWeaveView: View {
                 
                 let outlineWidth: CGFloat = radius * 0.05
                 
+                var count: Int = 0
                 for row in -1...Int(rows) {
                     for column in -1...Int(columns) {
                         var rowOffset: CGFloat = 0.0
@@ -35,14 +36,32 @@ struct HexWeaveView: View {
                         let innerCircle: LayoutCircle = LayoutCircle(center: center, radius: radius * 0.5775)
 //                        context.stroke(innerCircle.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
 
-                        context.fill(innerCircle.inscribedHexagon.path,
-                                     with: .radialGradient(Gradient(colors: [.init(red: 0.20, green: 0.0, blue: 0.20), .purple]),
-                                                           center: center,
-                                                           startRadius: radius * 0.675,
-                                                           endRadius: 0.0))
-                        context.stroke(innerCircle.inscribedHexagon.path, with: .color(.white), style: .init(lineWidth: outlineWidth, lineCap: .round, lineJoin: .round))
                         
-                        context.stroke(innerCircle.inscribedHexagon.inscribedSixPointStarPath, with: .color(.white), style: .init(lineWidth: outlineWidth, lineCap: .round, lineJoin: .round))
+                        
+                        if count % 2 == 0 {
+                            context.fill(innerCircle.inscribedHexagon.path,
+                                         with: .radialGradient(Gradient(colors: [.init(red: 0.20, green: 0.0, blue: 0.20), .purple]),
+                                                               center: center,
+                                                               startRadius: radius * 0.675,
+                                                               endRadius: 0.0))
+                            context.stroke(innerCircle.inscribedHexagon.inscribedSixPointStarPath, with: .color(.white), style: .init(lineWidth: outlineWidth, lineCap: .round, lineJoin: .round))
+                        } else {
+                            context.fill(innerCircle.inscribedHexagon.path,
+                                         with: .radialGradient(Gradient(colors: [.init(red: 0.0, green: 0.0, blue: 0.50), .purple]),
+                                                               center: center,
+                                                               startRadius: radius * 0.675,
+                                                               endRadius: 0.0))
+                            for index in 0...5 {
+                                var path: Path = Path()
+                                path.move(to: center)
+                                path.addLine(to: innerCircle.inscribedHexagon.points[index])
+                                path.addLine(to: innerCircle.inscribedHexagon.points[index % 5])
+                                context.stroke(path, with: .color(.white), style: .init(lineWidth: outlineWidth, lineCap: .round, lineJoin: .round))
+                            }
+                        }
+                        count += 1
+                        
+                        context.stroke(innerCircle.inscribedHexagon.path, with: .color(.white), style: .init(lineWidth: outlineWidth, lineCap: .round, lineJoin: .round))
                         
                         var path1 = Path()
                         let point1: CGPoint = CGPoint(
@@ -103,7 +122,7 @@ struct HexWeaveView: View {
                         path3.addLine(to: point8)
                         path3.addLine(to: layoutCircle1.inscribedHexagon.points[1])
                         path3.addLine(to: innerCircle.inscribedHexagon.points[0])
-                        context.fill(path3, with: .linearGradient(Gradient(colors: [.init(red: 0.75, green: 0.75, blue: 0.0), .yellow, .yellow, .init(red: 0.75, green: 0.75, blue: 0.0)]), startPoint: innerCircle.inscribedHexagon.points[0], endPoint: innerCircle.inscribedHexagon.points[2]))
+                        context.fill(path3, with: .linearGradient(Gradient(colors: [.init(red: 0.65, green: 0.65, blue: 0.10), .yellow, .yellow, .init(red: 0.65, green: 0.65, blue: 0.10)]), startPoint: innerCircle.inscribedHexagon.points[0], endPoint: innerCircle.inscribedHexagon.points[2]))
                         
                         context.stroke(path1, with: .color(.white), style: .init(lineWidth: outlineWidth, lineCap: .round, lineJoin: .round))
                         context.stroke(path2, with: .color(.white), style: .init(lineWidth: outlineWidth, lineCap: .round, lineJoin: .round))
