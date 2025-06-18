@@ -38,7 +38,7 @@ struct ContentView: View {
                         }
 
                         NavigationLink {
-                            BlackAndWhiteBlocksView(blockWidth: 48.0)
+                            BlackAndWhiteBlocksContainerView()
                         } label: {
                             HStack {
                                 BlackAndWhiteBlocksView(blockWidth: 16.0)
