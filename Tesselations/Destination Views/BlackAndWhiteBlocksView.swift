@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BlackAndWhiteBlocksView: View {
     var blockWidth: CGFloat
+    var shoulderDivisor: CGFloat = 6.0
     
     var body: some View {
         VStack {
@@ -24,7 +25,7 @@ struct BlackAndWhiteBlocksView: View {
                             y: Double(row) * blockWidth * 2.0
                         )
 
-                        let shoulderIndent: CGFloat = blockWidth / 6.0
+                        let shoulderIndent: CGFloat = blockWidth / shoulderDivisor
 
                         for _ in 0...1 {
                             let paths = blockPaths(center: center, blockWidth: blockWidth, shoulderIndent: shoulderIndent)
