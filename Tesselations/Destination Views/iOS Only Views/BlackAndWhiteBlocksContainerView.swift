@@ -13,6 +13,9 @@ struct BlackAndWhiteBlocksContainerView: View {
     var body: some View {
         VStack {
             BlackAndWhiteBlocksView(blockWidth: 48.0, shoulderDivisor: shoulderDivisor)
+
+            Text("Value: \(shoulderDivisor, format: .number.precision(.significantDigits(2...3)))")
+
             Slider(value: $shoulderDivisor, in: 2.25...12.0) {
                Text("Shoulder Value")
             } minimumValueLabel: {
@@ -21,7 +24,7 @@ struct BlackAndWhiteBlocksContainerView: View {
                 Text("12.0")
             }
             .padding()
-            Text("Value: \(shoulderDivisor, format: .number.precision(.significantDigits(2...3)))")
+            
         }
         
     }
