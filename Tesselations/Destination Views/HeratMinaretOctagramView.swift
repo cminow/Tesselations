@@ -55,11 +55,11 @@ struct HeratMinaretOctagramView: View {
                         context.stroke(horizontalStretchedStar, with: .color(.white), style: .init(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
 
                         let bottomLayoutCircle: LayoutCircle = LayoutCircle(center: CGPoint(x: center.x, y: center.y + blockWidth / 2.0), radius: blockWidth / .sqrt3 / 3.66666667, inscribedPolygonInitialAngle: .degrees(22.50))
-                        context.fill(bottomLayoutCircle.inscribedOctagon.path, with: .color(.init(hue: 0.550, saturation: 1.0, brightness: 0.5)))
+                        context.fill(bottomLayoutCircle.inscribedOctagon.path, with: .color(.init(hue: 0.550, saturation: 1.0, brightness: 0.35)))
                         context.stroke(bottomLayoutCircle.inscribedOctagon.path, with: .color(.white), style: .init(lineWidth: lineWidth))
                         
                         let rightLayoutCircle: LayoutCircle = LayoutCircle(center: CGPoint(x: center.x + blockWidth / 2.0, y: center.y), radius: blockWidth / .sqrt3 / 3.66666667, inscribedPolygonInitialAngle: .degrees(22.50))
-                        context.fill(rightLayoutCircle.inscribedOctagon.path, with: .color(.init(hue: 0.550, saturation: 1.0, brightness: 0.5)))
+                        context.fill(rightLayoutCircle.inscribedOctagon.path, with: .color(.init(hue: 0.550, saturation: 1.0, brightness: 0.35)))
                         context.stroke(rightLayoutCircle.inscribedOctagon.path, with: .color(.white), style: .init(lineWidth: lineWidth))
                     }
                 }
