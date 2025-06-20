@@ -18,7 +18,19 @@ struct HeratMinaretOctagramView: View {
                 let columns: CGFloat = size.width / blockWidth
                 let lineWidth: CGFloat = blockWidth / 32.0
                 let backgroundRect: CGRect = context.clipBoundingRect
-                context.fill(Rectangle().path(in: backgroundRect), with: .color(.black))
+                context.fill(Rectangle().path(in: backgroundRect), with: .color(.init(hue: 0.550, saturation: 1.0, brightness: 0.5)))
+
+                for row in 0...Int(rows) {
+                    for column in 0...Int(columns) {
+                        let center: CGPoint = CGPoint(
+                            x: Double(column) * blockWidth + blockWidth / 2.0,
+                            y: Double(row) * blockWidth + blockWidth / 2.0
+                        )
+                        let layoutCircle: LayoutCircle = LayoutCircle(center: center, radius: blockWidth / .sqrt3 / 2.250)
+                        context.fill(layoutCircle.inscribedOctagon.path, with: .radialGradient(Gradient(colors: [.yellow, .red]), center: center, startRadius: blockWidth / .sqrt3 / 3.0, endRadius: blockWidth / 16.0))
+                        context.stroke(layoutCircle.inscribedOctagon.path, with: .color(.white), style: .init(lineWidth: lineWidth))
+                    }
+                }
                 
                 for row in 0...Int(rows) {
                     for column in 0...Int(columns) {
@@ -29,15 +41,17 @@ struct HeratMinaretOctagramView: View {
 
                         let layoutCircle: LayoutCircle = LayoutCircle(center: center, radius: blockWidth / .sqrt3 / 2.0)
 //                        context.stroke(layoutCircle.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
-                        context.fill(layoutCircle.inscribedOctagon.stellatedPath, with: .color(.red))
+                        context.fill(layoutCircle.inscribedOctagon.stellatedPath, with: .radialGradient(Gradient(colors: [.red, .yellow]), center: center, startRadius: blockWidth / .sqrt3 / 3.0, endRadius: blockWidth / 16.0))
                         context.stroke(layoutCircle.inscribedOctagon.stellatedPath, with: .color(.white), style: .init(lineWidth: lineWidth,lineCap: .round, lineJoin: .round))
                         
+                        let fillColor: GraphicsContext.Shading = .color(red: 0.20, green: 0.50, blue: 0.50)
+                        
                         let verticalStretchedStar: Path = verticalStretchedStar(center: center, blockWidth: blockWidth)
-                        context.fill(verticalStretchedStar, with: .color(.red))
+                        context.fill(verticalStretchedStar, with: fillColor)
                         context.stroke(verticalStretchedStar, with: .color(.white), style: .init(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
 
                         let horizontalStretchedStar: Path = horizontalStretchedStar(center: center, blockWidht: blockWidth)
-                        context.fill(horizontalStretchedStar, with: .color(.red))
+                        context.fill(horizontalStretchedStar, with: fillColor)
                         context.stroke(horizontalStretchedStar, with: .color(.white), style: .init(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
                     }
                 }

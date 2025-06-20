@@ -17,17 +17,6 @@ struct ContentView: View {
                     Section(header: Text("Tessellations")) {
 
                         NavigationLink {
-                            HeratMinaretOctagramView(blockWidth: 64.0)
-                        } label: {
-                            HStack {
-                                HeratMinaretOctagramView(blockWidth: 16.0)
-                                    .frame(width: frameWidth, height: frameWidth)
-                                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                                Text("Herat Minaret")
-                            }
-                        }
-
-                        NavigationLink {
                             HexWeaveView(radius: 64.0)
                         } label: {
                             HStack {
@@ -178,6 +167,17 @@ struct ContentView: View {
                                     .frame(width: frameWidth, height: frameWidth)
                                     .clipShape(RoundedRectangle(cornerRadius: 8))
                                 Text("Octagons and Stars")
+                            }
+                        }
+
+                        NavigationLink {
+                            HeratMinaretOctagramView(blockWidth: 64.0)
+                        } label: {
+                            HStack {
+                                HeratMinaretOctagramView(blockWidth: 16.0)
+                                    .frame(width: frameWidth, height: frameWidth)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                Text("Herat Minaret")
                             }
                         }
 
