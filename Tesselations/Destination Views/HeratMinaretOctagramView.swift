@@ -28,7 +28,7 @@ struct HeratMinaretOctagramView: View {
                         )
                         let layoutCircle: LayoutCircle = LayoutCircle(center: center, radius: blockWidth / .sqrt3 / 2.250)
                         context.fill(layoutCircle.inscribedOctagon.path, with: .radialGradient(Gradient(colors: [.yellow, .red]), center: center, startRadius: blockWidth / .sqrt3 / 3.0, endRadius: blockWidth / 16.0))
-                        context.stroke(layoutCircle.inscribedOctagon.path, with: .color(.white), style: .init(lineWidth: lineWidth))
+                        context.stroke(layoutCircle.inscribedOctagon.path, with: .color(.white), style: .init(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
                     }
                 }
                 
@@ -53,6 +53,14 @@ struct HeratMinaretOctagramView: View {
                         let horizontalStretchedStar: Path = horizontalStretchedStar(center: center, blockWidht: blockWidth)
                         context.fill(horizontalStretchedStar, with: fillColor)
                         context.stroke(horizontalStretchedStar, with: .color(.white), style: .init(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
+
+                        let bottomLayoutCircle: LayoutCircle = LayoutCircle(center: CGPoint(x: center.x, y: center.y + blockWidth / 2.0), radius: blockWidth / .sqrt3 / 3.66666667, inscribedPolygonInitialAngle: .degrees(22.50))
+                        context.fill(bottomLayoutCircle.inscribedOctagon.path, with: .color(.init(hue: 0.550, saturation: 1.0, brightness: 0.5)))
+                        context.stroke(bottomLayoutCircle.inscribedOctagon.path, with: .color(.white), style: .init(lineWidth: lineWidth))
+                        
+                        let rightLayoutCircle: LayoutCircle = LayoutCircle(center: CGPoint(x: center.x + blockWidth / 2.0, y: center.y), radius: blockWidth / .sqrt3 / 3.66666667, inscribedPolygonInitialAngle: .degrees(22.50))
+                        context.fill(rightLayoutCircle.inscribedOctagon.path, with: .color(.init(hue: 0.550, saturation: 1.0, brightness: 0.5)))
+                        context.stroke(rightLayoutCircle.inscribedOctagon.path, with: .color(.white), style: .init(lineWidth: lineWidth))
                     }
                 }
             }
