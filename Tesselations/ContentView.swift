@@ -171,7 +171,7 @@ struct ContentView: View {
                         }
 
                         NavigationLink {
-                            HeratMinaretOctagramView(blockWidth: 64.0)
+                            HeratMinaretOctagramView(blockWidth: 128.0)
                         } label: {
                             HStack {
                                 HeratMinaretOctagramView(blockWidth: 16.0)
