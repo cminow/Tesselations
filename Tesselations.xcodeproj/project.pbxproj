@@ -66,6 +66,7 @@
 				"Destination Views/NorthSouthHexagonsView.swift",
 				"Destination Views/OctagonsAndDiamondsView.swift",
 				"Destination Views/OctagonsAndStarsView.swift",
+				"Destination Views/OriginalSixFoldDesignView.swift",
 				"Destination Views/RectanglesAndFourPointStarsView.swift",
 				"Destination Views/RegularPolygonsView.swift",
 				"Destination Views/RoundInterlockedHexView.swift",
