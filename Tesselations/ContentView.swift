@@ -136,6 +136,16 @@ struct ContentView: View {
                                 Text("More Hexagons")
                             }
                         }
+                        NavigationLink {
+                            OriginalSixFoldDesignView(radius: 64.0)
+                        } label: {
+                            HStack {
+                                OriginalSixFoldDesignView(radius: 32.0)
+                                    .frame(width: frameWidth, height: frameWidth)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                Text("Original Hexagonal Design")
+                            }
+                        }
 
                         NavigationLink {
                             InterlockingYsView(hexRadius: 16.0)
