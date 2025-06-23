@@ -21,10 +21,10 @@ struct OriginalSixFoldDesignView: View {
                 let rows: CGFloat = size.height / radius
                 let columns: CGFloat = size.width / radius
 
-                let lineWidth: CGFloat = radius * 0.025
+                let lineWidth: CGFloat = radius * 0.01
 
                 let rect: CGRect = context.clipBoundingRect
-                context.fill(Rectangle().path(in: rect), with: .color(.init(hue: 0.0, saturation: 0.5, brightness: 0.25)))
+                context.fill(Rectangle().path(in: rect), with: .color(.init(hue: 0.0, saturation: 1.5, brightness: 0.65)))
                 
                 for row in 0...Int(rows) {
                     for column in 0...Int(columns) {
@@ -52,6 +52,7 @@ struct OriginalSixFoldDesignView: View {
 //                        context.stroke(outerLayoutCircle.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
                         
                         let innerLayoutCircle: LayoutCircle = LayoutCircle(center: center, radius: radius / .sqrt3 / 2.0, inscribedPathDirection: .northSouth)
+                        context.fill(innerLayoutCircle.inscribedHexagon.path, with: .color(.init(hue: 0.125, saturation: 1.0, brightness: 1.0)))
 //                        context.stroke(innerLayoutCircle.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
                         let middleLayoutCircle: LayoutCircle = LayoutCircle(center: center, radius: radius / 2.0)
 //                        context.stroke(middleLayoutCircle.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
@@ -65,8 +66,8 @@ struct OriginalSixFoldDesignView: View {
                                 brightness = 0.5
                             }
                             let petalPath: Path = outerPetalPath(innerLayoutCircle: thirdLayoutCircle, outerLayoutCircle: outerLayoutCircle, radius: radius, cornerIndex: index)
-                            context.fill(petalPath, with: .color(.init(hue: 0.025, saturation: 0.750, brightness: brightness)))
-                            context.stroke(petalPath, with: .color(.white), style: .init(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
+//                            context.fill(petalPath, with: .color(.init(hue: 0.025, saturation: 0.750, brightness: brightness)))
+//                            context.stroke(petalPath, with: .color(.white), style: .init(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
                         }
                         
                         let kiteLayoutCircle: LayoutCircle = LayoutCircle(center: center, radius: radius / 4.0)
@@ -79,8 +80,8 @@ struct OriginalSixFoldDesignView: View {
                             }
                             let kitePath: Path = kiteLayoutPath(layoutCircle1: kiteLayoutCircle, layoutCircle2: innerLayoutCircle, cornerIndex: index)
                             let fillColor: GraphicsContext.Shading = .color(.init(hue: 1.0, saturation: 1.0, brightness: brightness))
-                            context.fill(kitePath, with: fillColor)
-                            context.stroke(kitePath, with: .color(.white), style: .init(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
+//                            context.fill(kitePath, with: fillColor)
+//                            context.stroke(kitePath, with: .color(.white), style: .init(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
                         }
 
                         for index in 0...5 {
@@ -113,7 +114,7 @@ struct OriginalSixFoldDesignView: View {
                         }
 
                         for index in 0...5 {
-                            var brightness: Double = 0.35
+                            var brightness: Double = 0.75
                             if index % 2 == 0 {
                                 brightness = 0.5
                             }
@@ -122,7 +123,7 @@ struct OriginalSixFoldDesignView: View {
                                                                 outerLayoutCircle: secondaryLayoutCircle,
                                                                 radius: radius,
                                                                 cornerIndex: index)
-                            context.fill(outerDiamond, with: .color(.init(hue: 0.5, saturation: 1.0, brightness: brightness)))
+                            context.fill(outerDiamond, with: .color(.init(hue: 0.1, saturation: 1.0, brightness: brightness)))
                             context.stroke(outerDiamond, with: .color(.white), style: .init(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
                         }
                     }
