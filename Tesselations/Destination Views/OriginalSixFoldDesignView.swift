@@ -52,7 +52,8 @@ struct OriginalSixFoldDesignView: View {
 //                        context.stroke(outerLayoutCircle.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
                         
                         let innerLayoutCircle: LayoutCircle = LayoutCircle(center: center, radius: radius / .sqrt3 / 2.0, inscribedPathDirection: .northSouth)
-                        context.fill(innerLayoutCircle.inscribedHexagon.path, with: .color(.init(hue: 0.125, saturation: 1.0, brightness: 1.0)))
+                        context.fill(innerLayoutCircle.inscribedHexagon.path, with: .radialGradient(Gradient(colors: [.red, .yellow]), center: center, startRadius: radius / .sqrt3 / 2.0, endRadius: radius / .sqrt3 / 8.0))
+                        context.stroke(innerLayoutCircle.inscribedHexagon.path, with: .color(.white), style: .init(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
 //                        context.stroke(innerLayoutCircle.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
                         let middleLayoutCircle: LayoutCircle = LayoutCircle(center: center, radius: radius / 2.0)
 //                        context.stroke(middleLayoutCircle.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
@@ -60,29 +61,15 @@ struct OriginalSixFoldDesignView: View {
                         let thirdLayoutCircle: LayoutCircle = LayoutCircle(center: center, radius: radius / .sqrt3, inscribedPathDirection: .northSouth)
 //                        context.stroke(thirdLayoutCircle.path, with: .color(.cyan), style: .init(lineWidth: 40.0))
                         
-                        for index in 0...5 {
-                            var brightness: Double = 0.350
-                            if index % 2 == 0 {
-                                brightness = 0.5
-                            }
-                            let petalPath: Path = outerPetalPath(innerLayoutCircle: thirdLayoutCircle, outerLayoutCircle: outerLayoutCircle, radius: radius, cornerIndex: index)
+//                        for index in 0...5 {
+//                            var brightness: Double = 0.350
+//                            if index % 2 == 0 {
+//                                brightness = 0.5
+//                            }
+//                            let petalPath: Path = outerPetalPath(innerLayoutCircle: thirdLayoutCircle, outerLayoutCircle: outerLayoutCircle, radius: radius, cornerIndex: index)
 //                            context.fill(petalPath, with: .color(.init(hue: 0.025, saturation: 0.750, brightness: brightness)))
 //                            context.stroke(petalPath, with: .color(.white), style: .init(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
-                        }
-                        
-                        let kiteLayoutCircle: LayoutCircle = LayoutCircle(center: center, radius: radius / 4.0)
-//                        context.stroke(kiteLayoutCircle.inscribedHexagon.path, with: .color(.cyan), style: .init(lineWidth: 1.0))
-                        
-                        for index in 0...5 {
-                            var brightness: Double = 0.90
-                            if index % 2 == 0 {
-                                brightness = 0.8
-                            }
-                            let kitePath: Path = kiteLayoutPath(layoutCircle1: kiteLayoutCircle, layoutCircle2: innerLayoutCircle, cornerIndex: index)
-                            let fillColor: GraphicsContext.Shading = .color(.init(hue: 1.0, saturation: 1.0, brightness: brightness))
-//                            context.fill(kitePath, with: fillColor)
-//                            context.stroke(kitePath, with: .color(.white), style: .init(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
-                        }
+//                        }
 
                         for index in 0...5 {
                             let kitePath: Path = outerKitePath(innerLayoutCircle: middleLayoutCircle, outerLayoutCircle: outerLayoutCircle, radius: radius, cornerIndex: index)
